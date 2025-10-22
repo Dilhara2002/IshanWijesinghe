@@ -86,7 +86,7 @@ const About = () => {
         .about-container {
           max-width: 1200px;
           margin: 0 auto;
-          padding: 100px 2rem;
+          padding: 80px 2rem; /* Reduced padding */
           position: relative;
           z-index: 10;
         }
@@ -94,7 +94,7 @@ const About = () => {
           font-size: 3rem;
           font-weight: 800;
           text-align: center;
-          margin-bottom: 1rem;
+          margin-bottom: 0.5rem; /* Reduced margin */
           background: linear-gradient(135deg, #ffffff, #a855f7, #6366f1);
           background-size: 200% 200%;
           -webkit-background-clip: text;
@@ -109,7 +109,7 @@ const About = () => {
           text-align: center;
           color: #9ca3af;
           font-size: 1.1rem;
-          margin-bottom: 4rem;
+          margin-bottom: 2.5rem; /* Reduced from 4rem to 2.5rem */
           opacity: 0;
         }
         .section-subtitle.visible {
@@ -118,7 +118,7 @@ const About = () => {
         .content-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 3rem;
+          gap: 2.5rem; /* Slightly reduced gap */
           margin-bottom: 3rem;
         }
         .about-card {

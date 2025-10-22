@@ -160,7 +160,7 @@ const Home = () => {
           max-width: 1200px;
           margin: 0 auto;
           padding: 2rem;
-          min-height: 100vh;
+          min-height: 10vh;
           position: relative;
           z-index: 10;
         }
