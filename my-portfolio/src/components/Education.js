@@ -14,19 +14,6 @@ const educationHistory = [
     color: "#6366f1",
     gradient: "linear-gradient(135deg, #6366f1, #4f46e5)",
     status: "current"
-  },
-  {
-    institution: "XYZ Higher Secondary School",
-    degree: "G.C.E. Advanced Level (A/L)",
-    duration: "2019 – 2021",
-    location: "Colombo, Sri Lanka",
-    details: "Focus on Physical Science stream (Combined Maths, Physics, Chemistry). Achieved 3 'A' passes.",
-    achievements: ["Gold Medal in Science", "Best Student Award", "Olympiad Participant"],
-    courses: ["Combined Mathematics", "Physics", "Chemistry", "Information Technology"],
-    icon: GraduationCap,
-    color: "#a855f7",
-    gradient: "linear-gradient(135deg, #a855f7, #9333ea)",
-    status: "completed"
   }
 ];
 
@@ -186,11 +173,6 @@ const Education = () => {
             width: 100%;
             opacity: 1;
           }
-        }
-
-        @keyframes shimmer {
-          0% { background-position: -1000px 0; }
-          100% { background-position: 1000px 0; }
         }
 
         @keyframes particleFloat {

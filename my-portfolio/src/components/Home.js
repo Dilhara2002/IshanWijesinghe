@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
+import profileImage from "../assets/profile.JPG";
+import cvFile from "../assets/IshanDilharaCV.pdf";
 
 const Home = () => {
-  const [isVisible, setIsVisible] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
 
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
+    useEffect(() => {
+        setIsVisible(true);
+    }, []);
 
-  return (
-    <>
-      <style>{`
+    return (
+        <>
+            <style>{`
         @keyframes gradientBG {
           0% { background-position: 0% 50%; }
           50% { background-position: 100% 50%; }
@@ -43,6 +45,28 @@ const Home = () => {
           }
         }
 
+        @keyframes fadeInLeft {
+          from {
+            opacity: 0;
+            transform: translateX(-50px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        @keyframes fadeInRight {
+          from {
+            opacity: 0;
+            transform: translateX(50px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
         @keyframes pulse {
           0%, 100% { transform: scale(1); }
           50% { transform: scale(1.05); }
@@ -64,6 +88,7 @@ const Home = () => {
           background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #1a1a2e);
           background-size: 400% 400%;
           animation: gradientBG 15s ease infinite;
+          min-height: 100vh;
         }
 
         .particles {
@@ -127,6 +152,34 @@ const Home = () => {
           animation-delay: 4s;
         }
 
+        .content-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 4rem;
+          align-items: center;
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 2rem;
+          min-height: 100vh;
+          position: relative;
+          z-index: 10;
+        }
+
+        .text-content {
+          animation: fadeInLeft 1s ease-out;
+          animation-delay: 0.4s;
+          animation-fill-mode: backwards;
+        }
+
+        .image-content {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          animation: fadeInRight 1s ease-out;
+          animation-delay: 0.2s;
+          animation-fill-mode: backwards;
+        }
+
         .profile-image-container {
           position: relative;
           animation: fadeInScale 1s ease-out;
@@ -135,26 +188,26 @@ const Home = () => {
         }
 
         .profile-image {
-          width: 180px;
-          height: 180px;
+          width: 400px;
+          height: 400px;
           border-radius: 50%;
-          border: 5px solid rgba(255, 255, 255, 0.2);
+          border: 6px solid rgba(255, 255, 255, 0.2);
           box-shadow: 
-            0 0 30px rgba(168, 85, 247, 0.5),
-            0 0 60px rgba(99, 102, 241, 0.3),
-            0 20px 40px rgba(0, 0, 0, 0.3);
+            0 0 50px rgba(168, 85, 247, 0.6),
+            0 0 100px rgba(99, 102, 241, 0.4),
+            0 25px 50px rgba(0, 0, 0, 0.4);
           object-fit: cover;
           transition: all 0.4s ease;
-          animation: pulse 3s ease-in-out infinite;
+          animation: pulse 4s ease-in-out infinite;
         }
 
         .profile-image:hover {
-          transform: scale(1.1);
+          transform: scale(1.05);
           border-color: rgba(168, 85, 247, 0.8);
           box-shadow: 
-            0 0 40px rgba(168, 85, 247, 0.8),
-            0 0 80px rgba(99, 102, 241, 0.5),
-            0 25px 50px rgba(0, 0, 0, 0.4);
+            0 0 60px rgba(168, 85, 247, 0.8),
+            0 0 120px rgba(99, 102, 241, 0.6),
+            0 30px 60px rgba(0, 0, 0, 0.5);
         }
 
         .image-ring {
@@ -162,22 +215,39 @@ const Home = () => {
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          width: 200px;
-          height: 200px;
-          border: 2px solid transparent;
+          width: 440px;
+          height: 440px;
+          border: 3px solid transparent;
           border-radius: 50%;
           border-top-color: #6366f1;
           border-right-color: #a855f7;
-          animation: spin 4s linear infinite;
+          border-bottom-color: #ec4899;
+          border-left-color: #10b981;
+          animation: spin 6s linear infinite;
+        }
+
+        .image-ring-2 {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 480px;
+          height: 480px;
+          border: 2px solid transparent;
+          border-radius: 50%;
+          border-top-color: #10b981;
+          border-right-color: #6366f1;
+          border-bottom-color: #a855f7;
+          border-left-color: #ec4899;
+          animation: spinReverse 8s linear infinite;
         }
 
         @keyframes spin {
           to { transform: translate(-50%, -50%) rotate(360deg); }
         }
 
-        .content-wrapper {
-          position: relative;
-          z-index: 10;
+        @keyframes spinReverse {
+          to { transform: translate(-50%, -50%) rotate(-360deg); }
         }
 
         .title {
@@ -193,10 +263,11 @@ const Home = () => {
           animation-fill-mode: normal, backwards;
           margin-bottom: 0.5rem;
           text-shadow: 0 0 40px rgba(168, 85, 247, 0.3);
+          line-height: 1.2;
         }
 
         .subtitle {
-          font-size: 1.5rem;
+          font-size: 1.8rem;
           color: #e0e0e0;
           font-weight: 300;
           margin-bottom: 1.5rem;
@@ -206,26 +277,26 @@ const Home = () => {
         }
 
         .description {
-          max-width: 600px;
-          margin: 20px auto;
+          max-width: 500px;
           color: #b0b0b0;
-          font-size: 1.1rem;
+          font-size: 1.2rem;
           line-height: 1.8;
           animation: fadeInUp 1s ease-out;
           animation-delay: 0.8s;
           animation-fill-mode: backwards;
+          margin-bottom: 2rem;
         }
 
         .cv-button {
           display: inline-block;
-          margin-top: 2rem;
-          padding: 1rem 2.5rem;
+          margin-top: 1rem;
+          padding: 1.2rem 3rem;
           background: linear-gradient(135deg, #6366f1, #a855f7);
           color: white;
           text-decoration: none;
           border-radius: 50px;
           font-weight: 600;
-          font-size: 1.1rem;
+          font-size: 1.2rem;
           transition: all 0.4s ease;
           box-shadow: 
             0 10px 30px rgba(168, 85, 247, 0.4),
@@ -260,102 +331,152 @@ const Home = () => {
           transform: translateY(-1px) scale(1.02);
         }
 
-        @media (max-width: 768px) {
-          .title {
-            font-size: 2.5rem;
+        @media (max-width: 1024px) {
+          .content-grid {
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            text-align: center;
           }
           
-          .subtitle {
-            font-size: 1.2rem;
+          .text-content {
+            order: 2;
+          }
+          
+          .image-content {
+            order: 1;
           }
           
           .profile-image {
-            width: 150px;
-            height: 150px;
+            width: 300px;
+            height: 300px;
           }
           
           .image-ring {
-            width: 170px;
-            height: 170px;
+            width: 340px;
+            height: 340px;
+          }
+          
+          .image-ring-2 {
+            width: 380px;
+            height: 380px;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .title {
+            font-size: 2.8rem;
+          }
+          
+          .subtitle {
+            font-size: 1.4rem;
           }
           
           .description {
-            font-size: 1rem;
-            padding: 0 1rem;
+            font-size: 1.1rem;
+          }
+          
+          .profile-image {
+            width: 250px;
+            height: 250px;
+          }
+          
+          .image-ring {
+            width: 290px;
+            height: 290px;
+          }
+          
+          .image-ring-2 {
+            width: 330px;
+            height: 330px;
+          }
+          
+          .cv-button {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .title {
+            font-size: 2.2rem;
+          }
+          
+          .profile-image {
+            width: 200px;
+            height: 200px;
+          }
+          
+          .image-ring {
+            width: 240px;
+            height: 240px;
+          }
+          
+          .image-ring-2 {
+            width: 280px;
+            height: 280px;
           }
         }
       `}</style>
 
-      <section
-        id="home"
-        className="home-container"
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          minHeight: "100vh",
-          textAlign: "center",
-          padding: "2rem"
-        }}
-      >
-        {/* Animated Background Orbs */}
-        <div className="glow-orb orb-1"></div>
-        <div className="glow-orb orb-2"></div>
-        <div className="glow-orb orb-3"></div>
+            <section id="home" className="home-container">
+                {/* Animated Background Orbs */}
+                <div className="glow-orb orb-1"></div>
+                <div className="glow-orb orb-2"></div>
+                <div className="glow-orb orb-3"></div>
 
-        {/* Floating Particles */}
-        <div className="particles">
-          {[...Array(20)].map((_, i) => (
-            <div
-              key={i}
-              className="particle"
-              style={{
-                left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 15}s`,
-                width: `${Math.random() * 4 + 2}px`,
-                height: `${Math.random() * 4 + 2}px`
-              }}
-            ></div>
-          ))}
-        </div>
+                {/* Floating Particles */}
+                <div className="particles">
+                    {[...Array(20)].map((_, i) => (
+                        <div
+                            key={i}
+                            className="particle"
+                            style={{
+                                left: `${Math.random() * 100}%`,
+                                animationDelay: `${Math.random() * 15}s`,
+                                width: `${Math.random() * 4 + 2}px`,
+                                height: `${Math.random() * 4 + 2}px`
+                            }}
+                        ></div>
+                    ))}
+                </div>
 
-        <div className="content-wrapper">
-          {/* Profile Image */}
-          <div className="profile-image-container" style={{ marginBottom: "2rem" }}>
-            <div className="image-ring"></div>
-            <img
-              src="/profile.JPG"
-              alt="Ishan Dilhara"
-              className="profile-image"
-            />
-          </div>
+                <div className="content-grid">
+                    {/* Text Content - Left Side */}
+                    <div className="text-content">
+                        <h1 className="title">Ishan Dilhara Wijesinghe</h1>
+                        <h3 className="subtitle">Information Technology Undergraduate</h3>
+                        <p className="description">
+                            Professional and motivated IT student ready for opportunities in software
+                            development, AI projects, and innovative solutions. Passionate about creating
+                            cutting-edge technology and solving complex problems.
+                        </p>
+                        <a
+                            href={cvFile}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="cv-button"
+                            download="IshanDilhara_CV.pdf"  // This forces download
+                        >
+                            Download CV
+                        </a>
+                    </div>
 
-          {/* Title */}
-          <h1 className="title">Ishan Dilhara Wijesinghe</h1>
-
-          {/* Subtitle */}
-          <h3 className="subtitle">Information Technology Undergraduate</h3>
-
-          {/* Description */}
-          <p className="description">
-            Professional and motivated IT student ready for opportunities in software
-            development, AI projects, and innovative solutions.
-          </p>
-
-          {/* CV Button */}
-          <a
-            href="/IshanDilharaCV.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="cv-button"
-          >
-            Download CV
-          </a>
-        </div>
-      </section>
-    </>
-  );
+                    {/* Image Content - Right Side */}
+                    <div className="image-content">
+                        <div className="profile-image-container">
+                            <div className="image-ring-2"></div>
+                            <div className="image-ring"></div>
+                            <img
+                                src={profileImage}
+                                alt="Ishan Dilhara"
+                                className="profile-image"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </>
+    );
 };
 
 export default Home;
