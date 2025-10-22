@@ -369,14 +369,14 @@ const About = () => {
               <div className="info-icon">
                 <Phone size={20} color="#ffffff" />
               </div>
-              <span className="info-text">+94 XXXXXXXX</span>
+              <span className="info-text">+94762898945</span>
             </div>
 
             <div className="info-item">
               <div className="info-icon">
                 <MapPin size={20} color="#ffffff" />
               </div>
-              <span className="info-text">Colombo, Sri Lanka</span>
+              <span className="info-text">Malabe, Sri Lanka</span>
             </div>
           </div>
         </div>

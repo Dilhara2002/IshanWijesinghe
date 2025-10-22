@@ -7,7 +7,7 @@ const projects = [
     name: "Salon Diamond",
     description: "A comprehensive salon booking platform that allows users to book appointments, view services, and manage their beauty treatments seamlessly. Built with modern web technologies for optimal user experience.",
     video: "https://www.youtube.com/watch?v=VIDEO1",
-    github: "https://github.com/yourusername/salon-diamond",
+    github: "https://github.com/Dilhara2002/Salon_Diamond_Management-.git",
     live: "https://salondiamond.com",
     tags: ["React", "Node.js", "MongoDB", "Express"],
     accentColor: "#6366f1"
@@ -16,17 +16,17 @@ const projects = [
     name: "MyHomeStock",
     description: "Intelligent stock management application that helps households track inventory, set reminders for restocking, and analyze consumption patterns with AI-powered predictions.",
     video: "https://www.youtube.com/watch?v=VIDEO2", 
-    github: "https://github.com/yourusername/myhomestock",
-    live: "https://myhomestock.app",
+    github: "https://github.com/Dilhara2002/MyHomeStock.git",
+    live: "https://www.linkedin.com/posts/ishan-wijesinghe-5200a1318_homestock-management-system-full-stack-activity-7330534683954266113-0Rfe?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFB1c6gB-TZ8-R4Gw6mX_1bWZs2wgR1O8qQ",
     tags: ["Python", "Django", "PostgreSQL", "React"],
     accentColor: "#10b981"
   },
   {
     name: "Dish-Craft",
     description: "Social recipe sharing platform where food enthusiasts can discover, create, and share culinary masterpieces. Features include step-by-step instructions, nutritional analysis, and community ratings.",
-    video: "https://www.youtube.com/watch?v=VIDEO3",
-    github: "https://github.com/yourusername/dish-craft",
-    live: "https://dish-craft.com",
+    video: "https://www.linkedin.com/posts/ishan-wijesinghe-5200a1318_dishcraft-full-stack-cooking-recipe-activity-7330997076547223553-6YJi?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFB1c6gB-TZ8-R4Gw6mX_1bWZs2wgR1O8qQ",
+    github: "https://github.com/Dilhara2002/Dish-Craft.git",
+    live: "https://www.linkedin.com/posts/ishan-wijesinghe-5200a1318_dishcraft-full-stack-cooking-recipe-activity-7330997076547223553-6YJi?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFB1c6gB-TZ8-R4Gw6mX_1bWZs2wgR1O8qQ",
     tags: ["Vue.js", "Firebase", "Tailwind CSS", "Node.js"],
     accentColor: "#ec4899"
   }

@@ -62,24 +62,24 @@ const Contact = () => {
     {
       icon: Mail,
       label: "Email",
-      value: "ishan.dilhara@example.com",
-      link: "mailto:ishan.dilhara@example.com",
+      value: "wijesinghelageishan@gmail.com",
+      link: "mailto:wijesinghelageishan@gmail.com",
       color: "#6366f1",
       gradient: "linear-gradient(135deg, #6366f1, #4f46e5)"
     },
     {
       icon: Phone,
       label: "Phone",
-      value: "+94 77 123 4567",
-      link: "tel:+94771234567",
+      value: "+94 76 289 8945",
+      link: "tel:+94762898945",
       color: "#10b981",
       gradient: "linear-gradient(135deg, #10b981, #059669)"
     },
     {
       icon: MapPin,
       label: "Location",
-      value: "Colombo, Sri Lanka",
-      link: "https://maps.google.com/?q=Colombo,Sri+Lanka",
+      value: "Malabe, Sri Lanka",
+      link: "https://maps.google.com/?q=Malabe,Sri+Lanka",
       color: "#ec4899",
       gradient: "linear-gradient(135deg, #ec4899, #db2777)"
     },
@@ -87,7 +87,7 @@ const Contact = () => {
       icon: Linkedin,
       label: "LinkedIn",
       value: "linkedin.com/in/ishandilhara",
-      link: "https://linkedin.com/in/ishandilhara",
+      link: "https://www.linkedin.com/in/ishan-wijesinghe-5200a1318/",
       color: "#0a66c2",
       gradient: "linear-gradient(135deg, #0a66c2, #004182)"
     },
@@ -95,7 +95,7 @@ const Contact = () => {
       icon: Github,
       label: "GitHub",
       value: "github.com/ishandilhara",
-      link: "https://github.com/ishandilhara",
+      link: "https://github.com/Dilhara2002",
       color: "#333333",
       gradient: "linear-gradient(135deg, #333333, #000000)"
     }
@@ -1015,7 +1015,7 @@ const Contact = () => {
 
               <div className="social-links">
                 <a
-                  href="https://linkedin.com/in/ishandilhara"
+                  href="https://www.linkedin.com/in/ishan-wijesinghe-5200a1318/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="social-link"
@@ -1024,7 +1024,7 @@ const Contact = () => {
                   <Linkedin size={26} />
                 </a>
                 <a
-                  href="https://github.com/ishandilhara"
+                  href="https://github.com/Dilhara2002"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="social-link"
