@@ -249,9 +249,8 @@ const About = () => {
               <div className="card-icon"><User size={32} color="#ffffff" /></div>
               <h3 className="card-title">Who I Am</h3>
               <p className="card-content">
-                I am an Information Technology undergraduate at SLIIT with strong skills
-                in React, Python, and modern web technologies. I am passionate about building
-                professional projects and contributing to innovative solutions.
+         I am an Information Technology undergraduate at SLIIT, specializing in full-stack web development.
+I’m passionate about transforming creative ideas into functional and impactful digital solutions. With a strong foundation in React, Node.js, Express.js, and database management, I aim to combine technical excellence with innovative thinking to build scalable, user-focused applications.
               </p>
             </div>
 
@@ -259,10 +258,9 @@ const About = () => {
               <div className="card-icon"><Code size={32} color="#ffffff" /></div>
               <h3 className="card-title">What I Do</h3>
               <p className="card-content">
-                I specialize in full-stack web development, creating responsive and 
-                user-friendly applications. My expertise includes building modern web 
-                solutions using cutting-edge technologies and frameworks that deliver 
-                exceptional user experiences.
+                I design and develop modern full-stack web applications that are efficient, responsive, and visually appealing.
+My expertise covers frontend development using React and Tailwind CSS, backend systems with Node.js and Express.js, and database solutions using MongoDB and MySQL.
+I continuously explore new technologies and development practices to deliver reliable, maintainable, and high-performance solutions that meet both user needs and business goals.
               </p>
             </div>
           </div>
@@ -270,7 +268,7 @@ const About = () => {
           <div className={`info-grid ${isVisible ? 'visible' : ''}`}>
             <div className="info-item">
               <div className="info-icon"><Phone size={20} color="#ffffff" /></div>
-              <span className="info-text">+94762898945</span>
+              <span className="info-text">+94 76 289 8945</span>
             </div>
             <div className="info-item">
               <div className="info-icon"><MapPin size={20} color="#ffffff" /></div>

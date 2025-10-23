@@ -45,14 +45,12 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
     setTimeout(() => {
       setIsSubmitting(false);
-      // Create success animation
       const button = e.target.querySelector('.submit-button');
-      button.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+      button.style.transform = 'scale(0.95)';
       setTimeout(() => {
-        button.style.background = 'linear-gradient(135deg, #6366f1, #a855f7)';
+        button.style.transform = 'scale(1)';
         setFormData({ name: "", email: "", subject: "", message: "" });
       }, 2000);
     }, 2000);
@@ -64,50 +62,39 @@ const Contact = () => {
       label: "Email",
       value: "wijesinghelageishan@gmail.com",
       link: "mailto:wijesinghelageishan@gmail.com",
-      color: "#6366f1",
-      gradient: "linear-gradient(135deg, #6366f1, #4f46e5)"
     },
     {
       icon: Phone,
       label: "Phone",
       value: "+94 76 289 8945",
       link: "tel:+94762898945",
-      color: "#10b981",
-      gradient: "linear-gradient(135deg, #10b981, #059669)"
     },
     {
       icon: MapPin,
       label: "Location",
       value: "Malabe, Sri Lanka",
       link: "https://maps.google.com/?q=Malabe,Sri+Lanka",
-      color: "#ec4899",
-      gradient: "linear-gradient(135deg, #ec4899, #db2777)"
     },
     {
       icon: Linkedin,
       label: "LinkedIn",
       value: "linkedin.com/in/ishandilhara",
       link: "https://www.linkedin.com/in/ishan-wijesinghe-5200a1318/",
-      color: "#0a66c2",
-      gradient: "linear-gradient(135deg, #0a66c2, #004182)"
     },
     {
       icon: Github,
       label: "GitHub",
       value: "github.com/ishandilhara",
       link: "https://github.com/Dilhara2002",
-      color: "#333333",
-      gradient: "linear-gradient(135deg, #333333, #000000)"
     }
   ];
 
-  // Generate floating particles
   const particles = Array.from({ length: 20 }, (_, i) => ({
     id: i,
     size: Math.random() * 4 + 2,
     left: Math.random() * 100,
-    delay: Math.random() * 20,
-    duration: 15 + Math.random() * 15
+    delay: Math.random() * 15,
+    duration: 15 + Math.random() * 10
   }));
 
   return (
@@ -127,184 +114,69 @@ const Contact = () => {
         @keyframes slideInLeft {
           from {
             opacity: 0;
-            transform: translateX(-80px) rotate(-10deg);
+            transform: translateX(-60px);
           }
           to {
             opacity: 1;
-            transform: translateX(0) rotate(0deg);
+            transform: translateX(0);
           }
         }
 
         @keyframes slideInRight {
           from {
             opacity: 0;
-            transform: translateX(80px) rotate(10deg);
+            transform: translateX(60px);
           }
           to {
             opacity: 1;
-            transform: translateX(0) rotate(0deg);
+            transform: translateX(0);
           }
-        }
-
-        @keyframes gradientShift {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
         }
 
         @keyframes float {
           0%, 100% { 
             transform: translateY(0px) rotate(0deg); 
           }
-          33% { 
-            transform: translateY(-15px) rotate(3deg); 
-          }
-          66% { 
-            transform: translateY(-8px) rotate(-2deg); 
-          }
-        }
-
-        @keyframes pulse {
-          0%, 100% { 
-            transform: scale(1);
-            box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7);
-          }
           50% { 
-            transform: scale(1.05);
-          }
-          70% {
-            box-shadow: 0 0 0 20px rgba(99, 102, 241, 0);
+            transform: translateY(-20px) rotate(5deg); 
           }
         }
 
-        @keyframes glow {
-          0%, 100% { 
-            box-shadow: 
-              0 0 20px rgba(99, 102, 241, 0.3),
-              0 0 40px rgba(168, 85, 247, 0.2);
-          }
-          50% { 
-            box-shadow: 
-              0 0 30px rgba(99, 102, 241, 0.6),
-              0 0 60px rgba(168, 85, 247, 0.4);
-          }
-        }
-
-        @keyframes typewriter {
-          from { 
-            width: 0;
+        @keyframes particleFloat {
+          0% { 
+            transform: translateY(100vh) translateX(0) rotate(0deg);
             opacity: 0;
           }
-          to { 
-            width: 100%;
-            opacity: 1;
+          10% { 
+            opacity: 0.8;
           }
-        }
-
-        @keyframes shimmer {
-          0% { background-position: -1000px 0; }
-          100% { background-position: 1000px 0; }
+          90% { 
+            opacity: 0.8;
+          }
+          100% { 
+            transform: translateY(-100px) translateX(50px) rotate(360deg);
+            opacity: 0;
+          }
         }
 
         @keyframes spin {
           to { transform: rotate(360deg); }
         }
 
-        @keyframes bounceIn {
-          0% {
-            opacity: 0;
-            transform: scale(0.3) translateY(100px);
-          }
-          50% {
-            opacity: 1;
-            transform: scale(1.05) translateY(-10px);
-          }
-          70% {
-            transform: scale(0.9) translateY(5px);
-          }
-          100% {
-            opacity: 1;
-            transform: scale(1) translateY(0);
-          }
-        }
-
-        @keyframes ripple {
-          0% {
-            transform: scale(0);
-            opacity: 1;
-          }
-          100% {
-            transform: scale(4);
-            opacity: 0;
-          }
-        }
-
-        @keyframes particleFloat {
+        @keyframes pulse {
           0%, 100% { 
-            transform: translateY(100vh) rotate(0deg);
-            opacity: 0;
-          }
-          10% { 
-            opacity: 1;
-          }
-          90% { 
-            opacity: 1;
-          }
-          100% { 
-            transform: translateY(-100px) rotate(360deg);
-            opacity: 0;
-          }
-        }
-
-        @keyframes starTwinkle {
-          0%, 100% { 
-            opacity: 0.3;
             transform: scale(1);
+            opacity: 0.15;
           }
           50% { 
-            opacity: 1;
-            transform: scale(1.2);
-          }
-        }
-
-        @keyframes wave {
-          0%, 100% { 
-            transform: translateX(0) translateY(0);
-          }
-          25% { 
-            transform: translateX(-5px) translateY(-2px);
-          }
-          50% { 
-            transform: translateX(0) translateY(-5px);
-          }
-          75% { 
-            transform: translateX(5px) translateY(-2px);
-          }
-        }
-
-        @keyframes magneticHover {
-          0% {
-            transform: translate(0, 0);
-          }
-          100% {
-            transform: translate(var(--tx, 0), var(--ty, 0));
-          }
-        }
-
-        @keyframes textGlow {
-          0%, 100% { 
-            text-shadow: 0 0 5px currentColor;
-          }
-          50% { 
-            text-shadow: 0 0 20px currentColor, 0 0 30px currentColor;
+            transform: scale(1.1);
+            opacity: 0.25;
           }
         }
 
         .contact-section {
           position: relative;
-          background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
-          background-size: 400% 400%;
-          animation: gradientShift 15s ease infinite;
+          background: #0a0a0f;
           overflow: hidden;
           min-height: 100vh;
         }
@@ -333,35 +205,34 @@ const Contact = () => {
           position: absolute;
           border-radius: 50%;
           filter: blur(80px);
-          opacity: 0.15;
-          animation: float 12s ease-in-out infinite;
+          animation: pulse 6s ease-in-out infinite;
         }
 
         .element-1 {
           width: 400px;
           height: 400px;
-          background: #6366f1;
-          top: 10%;
-          left: 5%;
+          background: rgba(99, 102, 241, 0.15);
+          top: 5%;
+          left: 0%;
           animation-delay: 0s;
         }
 
         .element-2 {
           width: 500px;
           height: 500px;
-          background: #a855f7;
-          bottom: 10%;
-          right: 5%;
-          animation-delay: 4s;
+          background: rgba(168, 85, 247, 0.15);
+          bottom: 5%;
+          right: 0%;
+          animation-delay: 2s;
         }
 
         .element-3 {
-          width: 300px;
-          height: 300px;
-          background: #ec4899;
-          top: 50%;
-          left: 70%;
-          animation-delay: 8s;
+          width: 350px;
+          height: 350px;
+          background: rgba(236, 72, 153, 0.15);
+          top: 45%;
+          left: 65%;
+          animation-delay: 4s;
         }
 
         .particles-container {
@@ -373,37 +244,26 @@ const Contact = () => {
 
         .particle {
           position: absolute;
-          background: rgba(168, 85, 247, 0.6);
+          background: rgba(168, 85, 247, 0.3);
           border-radius: 50%;
           animation: particleFloat linear infinite;
+          box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
         }
 
         .particle:nth-child(2n) {
-          background: rgba(99, 102, 241, 0.6);
+          background: rgba(99, 102, 241, 0.3);
+          box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
         }
 
         .particle:nth-child(3n) {
-          background: rgba(236, 72, 153, 0.6);
-        }
-
-        .stars-container {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          pointer-events: none;
-        }
-
-        .star {
-          position: absolute;
-          background: #ffffff;
-          border-radius: 50%;
-          animation: starTwinkle 3s ease-in-out infinite;
+          background: rgba(236, 72, 153, 0.3);
+          box-shadow: 0 0 10px rgba(236, 72, 153, 0.5);
         }
 
         .contact-container {
-          max-width: 1200px;
+          max-width: 1280px;
           margin: 0 auto;
-          padding: 100px 2rem;
+          padding: 100px 3rem;
           position: relative;
           z-index: 10;
         }
@@ -412,50 +272,31 @@ const Contact = () => {
           font-size: 4rem;
           font-weight: 800;
           text-align: center;
-          margin-bottom: 1rem;
-          background: linear-gradient(135deg, #ffffff, #a855f7, #6366f1, #ec4899);
-          background-size: 300% 300%;
-          -webkit-background-clip: text;
-          background-clip: text;
-          -webkit-text-fill-color: transparent;
-          animation: gradientShift 8s ease infinite, fadeInUp 1s ease-out;
+          margin-bottom: 1.5rem;
+          color: #ffffff;
           opacity: 0;
-          position: relative;
-          text-shadow: 0 0 30px rgba(168, 85, 247, 0.3);
+          letter-spacing: -0.02em;
         }
 
         .section-title.visible {
-          animation: fadeInUp 0.8s ease-out forwards, gradientShift 8s ease infinite;
-        }
-
-        .section-title::after {
-          content: '';
-          position: absolute;
-          bottom: -15px;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 0;
-          height: 4px;
-          background: linear-gradient(90deg, #6366f1, #a855f7, #ec4899);
-          border-radius: 2px;
-          animation: typewriter 2s ease-out 0.5s forwards;
+          animation: fadeInUp 1s ease-out forwards;
         }
 
         .section-subtitle {
           text-align: center;
-          color: #9ca3af;
+          color: #a0a0a0;
           font-size: 1.3rem;
           margin-bottom: 4rem;
           opacity: 0;
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 0.8rem;
-          animation: textGlow 3s ease-in-out infinite;
+          gap: 0.7rem;
+          font-weight: 400;
         }
 
         .section-subtitle.visible {
-          animation: fadeInUp 0.8s ease-out 0.3s forwards, textGlow 3s ease-in-out infinite;
+          animation: fadeInUp 1s ease-out 0.2s forwards;
         }
 
         .contact-content {
@@ -467,138 +308,82 @@ const Contact = () => {
 
         .contact-info {
           opacity: 0;
-          transform: translateX(-50px);
+          transform: translateX(-30px);
         }
 
         .contact-info.visible {
-          animation: slideInLeft 1s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
+          animation: slideInLeft 1s ease-out 0.4s forwards;
         }
 
         .info-card {
-          background: rgba(255, 255, 255, 0.07);
-          backdrop-filter: blur(25px);
-          border: 1px solid rgba(255, 255, 255, 0.15);
-          border-radius: 25px;
+          background: rgba(255, 255, 255, 0.03);
+          backdrop-filter: blur(30px);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 24px;
           padding: 3rem;
           margin-bottom: 2.5rem;
-          position: relative;
-          overflow: hidden;
-          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .info-card::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: -100%;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(90deg, 
-            transparent, 
-            rgba(255, 255, 255, 0.1), 
-            transparent);
-          transition: left 0.6s ease;
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .info-card:hover {
-          transform: translateY(-10px) scale(1.02);
-          border-color: rgba(168, 85, 247, 0.4);
-          box-shadow: 
-            0 25px 80px rgba(0, 0, 0, 0.5),
-            0 0 50px rgba(168, 85, 247, 0.4);
-        }
-
-        .info-card:hover::before {
-          left: 100%;
+          transform: translateY(-8px);
+          border-color: rgba(168, 85, 247, 0.3);
+          box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+          background: rgba(255, 255, 255, 0.05);
         }
 
         .info-title {
-          font-size: 1.7rem;
+          font-size: 1.75rem;
           font-weight: 700;
           color: #ffffff;
           margin-bottom: 2rem;
           display: flex;
           align-items: center;
-          gap: 0.8rem;
-          animation: wave 3s ease-in-out infinite;
+          gap: 0.7rem;
         }
 
         .contact-items {
           display: flex;
           flex-direction: column;
-          gap: 1.8rem;
+          gap: 1.5rem;
         }
 
         .contact-item {
           display: flex;
           align-items: center;
           gap: 1.2rem;
-          padding: 1.2rem;
+          padding: 1.3rem;
           border-radius: 16px;
-          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           cursor: pointer;
           text-decoration: none;
           color: inherit;
-          position: relative;
-          overflow: hidden;
-        }
-
-        .contact-item::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: -100%;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(90deg, 
-            transparent, 
-            rgba(255, 255, 255, 0.1), 
-            transparent);
-          transition: left 0.6s ease;
+          background: rgba(255, 255, 255, 0.02);
+          border: 1px solid transparent;
         }
 
         .contact-item:hover {
-          background: rgba(255, 255, 255, 0.1);
-          transform: translateX(15px) scale(1.02);
-          animation: magneticHover 0.3s ease-out;
-        }
-
-        .contact-item:hover::before {
-          left: 100%;
+          background: rgba(255, 255, 255, 0.06);
+          transform: translateX(8px);
+          border-color: rgba(255, 255, 255, 0.1);
         }
 
         .contact-icon {
-          width: 60px;
-          height: 60px;
-          border-radius: 16px;
+          width: 56px;
+          height: 56px;
+          border-radius: 14px;
           display: flex;
           align-items: center;
           justify-content: center;
           flex-shrink: 0;
-          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-          position: relative;
-          overflow: hidden;
-        }
-
-        .contact-icon::before {
-          content: '';
-          position: absolute;
-          top: -50%;
-          left: -50%;
-          width: 200%;
-          height: 200%;
-          background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-          transform: rotate(45deg);
-          transition: all 0.6s ease;
+          transition: all 0.3s ease;
+          background: rgba(99, 102, 241, 0.15);
+          border: 1px solid rgba(99, 102, 241, 0.3);
         }
 
         .contact-item:hover .contact-icon {
-          transform: scale(1.15) rotate(8deg);
-          animation: glow 2s ease-in-out infinite;
-        }
-
-        .contact-item:hover .contact-icon::before {
-          transform: rotate(45deg) translate(50%, 50%);
+          transform: scale(1.1) rotate(5deg);
+          box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
         }
 
         .contact-details {
@@ -607,182 +392,117 @@ const Contact = () => {
 
         .contact-label {
           font-size: 0.95rem;
-          color: #9ca3af;
+          color: #a0a0a0;
           margin-bottom: 0.4rem;
           font-weight: 500;
-          transition: all 0.3s ease;
-        }
-
-        .contact-item:hover .contact-label {
-          color: #ffffff;
-          transform: translateX(5px);
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
         }
 
         .contact-value {
-          font-size: 1.1rem;
+          font-size: 1.05rem;
           color: #ffffff;
           font-weight: 600;
-          transition: all 0.3s ease;
-        }
-
-        .contact-item:hover .contact-value {
-          transform: translateX(5px);
-          animation: textGlow 2s ease-in-out infinite;
         }
 
         .social-links {
           display: flex;
           gap: 1.2rem;
-          margin-top: 2.5rem;
           justify-content: center;
         }
 
         .social-link {
-          width: 60px;
-          height: 60px;
-          border-radius: 16px;
+          width: 56px;
+          height: 56px;
+          border-radius: 14px;
           display: flex;
           align-items: center;
           justify-content: center;
-          background: rgba(255, 255, 255, 0.1);
+          background: rgba(255, 255, 255, 0.05);
           color: #e0e0e0;
           text-decoration: none;
-          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-          border: 1px solid rgba(255, 255, 255, 0.15);
-          position: relative;
-          overflow: hidden;
-        }
-
-        .social-link::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: -100%;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(90deg, 
-            transparent, 
-            rgba(255, 255, 255, 0.2), 
-            transparent);
-          transition: left 0.6s ease;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .social-link:hover {
-          transform: translateY(-8px) scale(1.1);
+          transform: translateY(-5px) rotate(5deg);
           color: #ffffff;
-          animation: pulse 1s ease-in-out;
-        }
-
-        .social-link:hover::before {
-          left: 100%;
+          background: rgba(255, 255, 255, 0.1);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .contact-form {
           opacity: 0;
-          transform: translateX(50px);
+          transform: translateX(30px);
         }
 
         .contact-form.visible {
-          animation: slideInRight 1s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
+          animation: slideInRight 1s ease-out 0.4s forwards;
         }
 
         .form-card {
-          background: rgba(255, 255, 255, 0.07);
-          backdrop-filter: blur(25px);
-          border: 1px solid rgba(255, 255, 255, 0.15);
-          border-radius: 25px;
+          background: rgba(255, 255, 255, 0.03);
+          backdrop-filter: blur(30px);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 24px;
           padding: 3rem;
-          position: relative;
-          overflow: hidden;
-          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .form-card::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: -100%;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(90deg, 
-            transparent, 
-            rgba(255, 255, 255, 0.1), 
-            transparent);
-          transition: left 0.6s ease;
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .form-card:hover {
-          transform: translateY(-10px) scale(1.02);
-          border-color: rgba(168, 85, 247, 0.4);
-          box-shadow: 
-            0 25px 80px rgba(0, 0, 0, 0.5),
-            0 0 50px rgba(168, 85, 247, 0.4);
-        }
-
-        .form-card:hover::before {
-          left: 100%;
+          transform: translateY(-8px);
+          border-color: rgba(168, 85, 247, 0.3);
+          box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+          background: rgba(255, 255, 255, 0.05);
         }
 
         .form-title {
-          font-size: 1.7rem;
+          font-size: 1.75rem;
           font-weight: 700;
           color: #ffffff;
           margin-bottom: 2.5rem;
           display: flex;
           align-items: center;
-          gap: 0.8rem;
-          animation: wave 3s ease-in-out infinite 1s;
+          gap: 0.7rem;
         }
 
         .form-group {
-          margin-bottom: 2rem;
-          position: relative;
+          margin-bottom: 1.8rem;
         }
 
         .form-label {
           display: block;
           color: #e0e0e0;
           font-weight: 600;
-          margin-bottom: 0.8rem;
-          font-size: 1rem;
-          transition: all 0.3s ease;
-        }
-
-        .form-group:focus-within .form-label {
-          color: #6366f1;
-          transform: translateX(5px);
+          margin-bottom: 0.7rem;
+          font-size: 0.95rem;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
         }
 
         .form-input {
           width: 100%;
-          padding: 1.2rem 1.8rem;
-          background: rgba(255, 255, 255, 0.1);
-          border: 2px solid rgba(255, 255, 255, 0.2);
-          border-radius: 14px;
+          padding: 1.2rem 0.8rem;
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          border-radius: 12px;
           color: #ffffff;
           font-size: 1rem;
-          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           font-family: inherit;
         }
 
         .form-input:focus {
           outline: none;
           border-color: #6366f1;
-          background: rgba(255, 255, 255, 0.15);
-          box-shadow: 
-            0 0 0 4px rgba(99, 102, 241, 0.1),
-            0 10px 30px rgba(0, 0, 0, 0.3);
+          background: rgba(255, 255, 255, 0.08);
+          box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
           transform: translateY(-2px);
         }
 
         .form-input::placeholder {
-          color: #9ca3af;
-          transition: all 0.3s ease;
-        }
-
-        .form-input:focus::placeholder {
-          color: #6366f1;
-          transform: translateX(5px);
+          color: #707070;
         }
 
         textarea.form-input {
@@ -794,52 +514,35 @@ const Contact = () => {
         .submit-button {
           width: 100%;
           padding: 1.4rem 2rem;
-          background: linear-gradient(135deg, #6366f1, #a855f7);
-          background-size: 200% 200%;
+          background: #6366f1;
           color: white;
           border: none;
-          border-radius: 14px;
-          font-size: 1.1rem;
+          border-radius: 12px;
+          font-size: 1.05rem;
           font-weight: 700;
           cursor: pointer;
-          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 0.8rem;
-          position: relative;
-          overflow: hidden;
-          animation: gradientShift 4s ease infinite;
-        }
-
-        .submit-button::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: -100%;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(90deg, 
-            transparent, 
-            rgba(255, 255, 255, 0.3), 
-            transparent);
-          transition: left 0.6s ease;
+          gap: 0.7rem;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
         }
 
         .submit-button:hover {
-          transform: translateY(-5px) scale(1.02);
-          box-shadow: 
-            0 15px 40px rgba(168, 85, 247, 0.5),
-            0 0 30px rgba(99, 102, 241, 0.4);
-          animation: pulse 1s ease-in-out;
+          transform: translateY(-3px);
+          box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
+          background: #5558e3;
         }
 
-        .submit-button:hover::before {
-          left: 100%;
+        .submit-button:active {
+          transform: translateY(-1px);
         }
 
         .submit-button:disabled {
-          opacity: 0.7;
+          opacity: 0.6;
           cursor: not-allowed;
           transform: none;
         }
@@ -859,24 +562,23 @@ const Contact = () => {
 
         .footer-note {
           text-align: center;
-          color: #9ca3af;
+          color: #a0a0a0;
           margin-top: 4rem;
           padding-top: 3rem;
-          border-top: 1px solid rgba(255, 255, 255, 0.1);
+          border-top: 1px solid rgba(255, 255, 255, 0.08);
           opacity: 0;
-          font-size: 1.1rem;
+          font-size: 1.05rem;
         }
 
         .footer-note.visible {
-          animation: fadeInUp 0.8s ease-out 0.8s forwards;
+          animation: fadeInUp 1s ease-out 0.6s forwards;
         }
 
         .footer-note p {
-          animation: textGlow 4s ease-in-out infinite;
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 0.5rem;
+          gap: 0.7rem;
         }
 
         @media (max-width: 968px) {
@@ -886,18 +588,22 @@ const Contact = () => {
           }
 
           .contact-info, .contact-form {
-            animation: fadeInUp 0.8s ease-out 0.4s forwards !important;
+            animation: fadeInUp 1s ease-out 0.4s forwards !important;
             transform: none !important;
           }
         }
 
         @media (max-width: 768px) {
           .contact-container {
-            padding: 80px 1rem;
+            padding: 80px 1.5rem;
           }
 
           .section-title {
-            font-size: 2.8rem;
+            font-size: 3rem;
+          }
+
+          .section-subtitle {
+            font-size: 1.1rem;
           }
 
           .info-card, .form-card {
@@ -913,8 +619,8 @@ const Contact = () => {
           }
 
           .contact-icon {
-            width: 50px;
-            height: 50px;
+            width: 48px;
+            height: 48px;
           }
 
           .social-links {
@@ -922,8 +628,8 @@ const Contact = () => {
           }
 
           .social-link {
-            width: 50px;
-            height: 50px;
+            width: 48px;
+            height: 48px;
           }
         }
       `}</style>
@@ -953,29 +659,12 @@ const Contact = () => {
           ))}
         </div>
 
-        <div className="stars-container">
-          {Array.from({ length: 30 }, (_, i) => (
-            <div
-              key={i}
-              className="star"
-              style={{
-                width: `${Math.random() * 2 + 1}px`,
-                height: `${Math.random() * 2 + 1}px`,
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 5}s`,
-                animationDuration: `${2 + Math.random() * 3}s`
-              }}
-            ></div>
-          ))}
-        </div>
-
         <div className="contact-container">
           <h2 className={`section-title ${isVisible ? 'visible' : ''}`}>
             Let's Connect
           </h2>
           <p className={`section-subtitle ${isVisible ? 'visible' : ''}`}>
-            <Zap size={24} />
+            <Zap size={22} />
             Ready to bring your ideas to life? Let's start a conversation!
           </p>
 
@@ -983,7 +672,7 @@ const Contact = () => {
             <div className={`contact-info ${isVisible ? 'visible' : ''}`}>
               <div className="info-card">
                 <h3 className="info-title">
-                  <Sparkles size={28} />
+                  <Sparkles size={26} />
                   Get In Touch
                 </h3>
                 <div className="contact-items">
@@ -997,17 +686,14 @@ const Contact = () => {
                       onMouseEnter={() => setHoveredItem(index)}
                       onMouseLeave={() => setHoveredItem(null)}
                     >
-                      <div 
-                        className="contact-icon"
-                        style={{ background: item.gradient }}
-                      >
-                        <item.icon size={26} color="#ffffff" />
+                      <div className="contact-icon">
+                        <item.icon size={24} color="#ffffff" />
                       </div>
                       <div className="contact-details">
                         <div className="contact-label">{item.label}</div>
                         <div className="contact-value">{item.value}</div>
                       </div>
-                      <ExternalLink size={18} color="#9ca3af" />
+                      <ExternalLink size={18} color="#707070" />
                     </a>
                   ))}
                 </div>
@@ -1019,26 +705,25 @@ const Contact = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="social-link"
-                  style={{ background: '#0a66c2' }}
                 >
-                  <Linkedin size={26} />
+                  <Linkedin size={24} />
                 </a>
                 <a
                   href="https://github.com/Dilhara2002"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="social-link"
-                  style={{ background: '#333333' }}
                 >
-                  <Github size={26} />
+                  <Github size={24} />
                 </a>
+                
               </div>
             </div>
 
             <div className={`contact-form ${isVisible ? 'visible' : ''}`}>
               <div className="form-card">
                 <h3 className="form-title">
-                  <MessageCircle size={28} />
+                  <MessageCircle size={26} />
                   Send Message
                 </h3>
                 <form onSubmit={handleSubmit}>
@@ -1105,7 +790,7 @@ const Contact = () => {
                       </>
                     ) : (
                       <>
-                        <Send size={22} />
+                        <Send size={20} />
                         Send Message
                       </>
                     )}
