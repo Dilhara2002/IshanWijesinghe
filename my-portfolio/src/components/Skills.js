@@ -1,24 +1,32 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Zap, Code, Users, Cpu, Brain, Rocket, Sparkles } from "lucide-react";
+import { Zap, Code, Users, Cpu, Brain, Rocket, Sparkles, Database, GitBranch, Clock, Aperture } from "lucide-react";
 
 const Skills = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const sectionRef = useRef(null);
 
+  // --- UPDATED SKILLS BASED ON ISHAN WIJESINGHE'S CV ---
   const technical = [
-    { name: "React / Next.js", level: 90, color: "#61dafb" },
-    { name: "Python / Django", level: 85, color: "#3776ab" },
-    { name: "Node.js / Express", level: 80, color: "#68a063" },
-    { name: "MongoDB / SQL", level: 75, color: "#47a248" },
-    { name: "AWS / Cloud", level: 65, color: "#ff9900" },
+    // Frontend
+    { name: "React", level: 90, color: "#61dafb", category: "Frontend" }, 
+    { name: "JavaScript / HTML / CSS", level: 85, color: "#f7df1e", category: "Frontend" },
+    // Backend
+    { name: "Node.js / Express.js", level: 88, color: "#68a063", category: "Backend" },
+    { name: "REST APIs / Spring Boot", level: 78, color: "#4f7a3f", category: "Backend" }, 
+    // Database
+    { name: "MongoDB / MySQL", level: 82, color: "#47a248", category: "Database" },
+    // Tools
+    { name: "Git / GitHub / VS Code", level: 95, color: "#f05032", category: "Tools" },
   ];
+  
   const soft = [
     { name: "Teamwork & Collaboration", icon: Users, color: "#6366f1" },
-    { name: "Communication (Verbal/Written)", icon: Zap, color: "#a855f7" },
-    { name: "Problem-Solving & Debugging", icon: Code, color: "#ec4899" },
-    { name: "Time Management & Agility", icon: Rocket, color: "#10b981" },
+    { name: "Problem-Solving", icon: Brain, color: "#a855f7" },
+    { name: "Time Management", icon: Clock, color: "#10b981" },
+    { name: "Team Leadership", icon: Zap, color: "#ec4899" },
   ];
+  // -----------------------------------------------------
 
   useEffect(() => {
     const currentRef = sectionRef.current;
@@ -50,17 +58,6 @@ const Skills = () => {
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
-
-  // Generate floating elements
-  const floatingElements = Array.from({ length: 12 }, (_, i) => ({
-    id: i,
-    size: Math.random() * 80 + 40,
-    left: Math.random() * 100,
-    top: Math.random() * 100,
-    delay: Math.random() * 15,
-    duration: 20 + Math.random() * 20,
-    color: ['#6366f1', '#a855f7', '#ec4899', '#10b981'][Math.floor(Math.random() * 4)]
-  }));
 
   // Generate particles
   const particles = Array.from({ length: 25 }, (_, i) => ({
@@ -643,8 +640,8 @@ const Skills = () => {
           <div className="floating-tech-icons">
             <Code className="tech-icon" size={60} style={{ top: '15%', left: '10%', animationDelay: '0s' }} />
             <Cpu className="tech-icon" size={50} style={{ top: '25%', right: '15%', animationDelay: '3s' }} />
-            <Brain className="tech-icon" size={70} style={{ bottom: '20%', left: '20%', animationDelay: '6s' }} />
-            <Rocket className="tech-icon" size={45} style={{ bottom: '30%', right: '10%', animationDelay: '9s' }} />
+            <Database className="tech-icon" size={70} style={{ bottom: '20%', left: '20%', animationDelay: '6s' }} />
+            <GitBranch className="tech-icon" size={45} style={{ bottom: '30%', right: '10%', animationDelay: '9s' }} />
           </div>
         </div>
         
@@ -662,7 +659,7 @@ const Skills = () => {
             <div className={`skill-card ${isVisible ? 'visible' : ''}`}>
               <div className="card-header">
                 <span className="icon-container"><Code color="#ffffff" size={28} /></span>
-                Technical Proficiency
+                Technical Proficiency (Full-Stack Focus)
               </div>
               
               <ul className="technical-list">

@@ -1,33 +1,38 @@
 import React, { useState, useEffect, useRef } from "react";
-import ReactPlayer from "react-player";
+import pimage from "../assets/DishCraft.mov";
 import { Play, Github, ExternalLink, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
+
+// NOTE: Please replace these with your actual project images
+import project1Image from "../assets/salonDiamond.png";
+import project2Image from "../assets/Homestock.png";
+import project3Image from "../assets/Dishcraft.png";
 
 const projects = [
   {
-    name: "Salon Diamond",
-    description: "A comprehensive salon booking platform that allows users to book appointments, view services, and manage their beauty treatments seamlessly. Built with modern web technologies for optimal user experience.",
-    video: "https://www.youtube.com/watch?v=VIDEO1",
+    name: "Salon Diamond Management System",
+    description: "Developed a full-stack salon management web application to handle appointments, clients, and services efficiently. Implemented server-side rendering with EJS and designed a relational SQL database schema for robust data management.",
+    image: project1Image,
     github: "https://github.com/Dilhara2002/Salon_Diamond_Management-.git",
-    live: "https://salondiamond.com",
-    tags: ["React", "Node.js", "MongoDB", "Express"],
+    live: "https://github.com/Dilhara2002/Salon_Diamond_Management-.git",
+    tags: ["Node.js", "Express.js", "EJS", "SQL"],
     accentColor: "#6366f1"
   },
   {
     name: "MyHomeStock",
-    description: "Intelligent stock management application that helps households track inventory, set reminders for restocking, and analyze consumption patterns with AI-powered predictions.",
-    video: "https://www.youtube.com/watch?v=VIDEO2", 
+    description: "Intelligent stock management application that helps households track inventory and consumption patterns. Built with React on the frontend and a Node/Express/MongoDB stack for dynamic inventory management.",
+    image: project2Image,
     github: "https://github.com/Dilhara2002/MyHomeStock.git",
-    live: "https://www.linkedin.com/posts/ishan-wijesinghe-5200a1318_homestock-management-system-full-stack-activity-7330534683954266113-0Rfe?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFB1c6gB-TZ8-R4Gw6mX_1bWZs2wgR1O8qQ",
-    tags: ["Python", "Django", "PostgreSQL", "React"],
+    live: "https://www.linkedin.com/in/ishan-wijesinghe-5200a1318",
+    tags: ["React", "Node.js", "Express.js", "MongoDB"],
     accentColor: "#10b981"
   },
   {
     name: "Dish-Craft",
-    description: "Social recipe sharing platform where food enthusiasts can discover, create, and share culinary masterpieces. Features include step-by-step instructions, nutritional analysis, and community ratings.",
-    video: "https://www.linkedin.com/posts/ishan-wijesinghe-5200a1318_dishcraft-full-stack-cooking-recipe-activity-7330997076547223553-6YJi?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFB1c6gB-TZ8-R4Gw6mX_1bWZs2wgR1O8qQ",
+    description: "A full-stack recipe management web application enabling users to create, browse, and share cooking recipes online. It uses React and Express.js with MongoDB to manage recipe data efficiently.",
+    image: project3Image,
     github: "https://github.com/Dilhara2002/Dish-Craft.git",
-    live: "https://www.linkedin.com/posts/ishan-wijesinghe-5200a1318_dishcraft-full-stack-cooking-recipe-activity-7330997076547223553-6YJi?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFB1c6gB-TZ8-R4Gw6mX_1bWZs2wgR1O8qQ",
-    tags: ["Vue.js", "Firebase", "Tailwind CSS", "Node.js"],
+    live: "https://www.linkedin.com/in/ishan-wijesinghe-5200a1318",
+    tags: ["React", "Node.js", "Express.js", "MongoDB"],
     accentColor: "#ec4899"
   }
 ];
@@ -35,9 +40,11 @@ const projects = [
 const Projects = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [activeProject, setActiveProject] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const sectionRef = useRef(null);
+  
+  const currentProject = projects[activeProject];
+  const currentAccentColor = currentProject.accentColor;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -71,23 +78,11 @@ const Projects = () => {
 
   const nextProject = () => {
     setActiveProject((prev) => (prev + 1) % projects.length);
-    setIsPlaying(false);
   };
 
   const prevProject = () => {
     setActiveProject((prev) => (prev - 1 + projects.length) % projects.length);
-    setIsPlaying(false);
   };
-
-  // Generate floating elements
-  const floatingElements = Array.from({ length: 15 }, (_, i) => ({
-    id: i,
-    size: Math.random() * 100 + 50,
-    left: Math.random() * 100,
-    top: Math.random() * 100,
-    delay: Math.random() * 20,
-    duration: 20 + Math.random() * 20
-  }));
 
   // Generate particles
   const particles = Array.from({ length: 30 }, (_, i) => ({
@@ -102,36 +97,18 @@ const Projects = () => {
     <>
       <style>{`
         @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(40px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+          from { opacity: 0; transform: translateY(40px); }
+          to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes slideInLeft {
-          from {
-            opacity: 0;
-            transform: translateX(-50px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
+          from { opacity: 0; transform: translateX(-50px); }
+          to { opacity: 1; transform: translateX(0); }
         }
 
         @keyframes slideInRight {
-          from {
-            opacity: 0;
-            transform: translateX(50px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
+          from { opacity: 0; transform: translateX(50px); }
+          to { opacity: 1; transform: translateX(0); }
         }
 
         @keyframes gradientShift {
@@ -141,79 +118,27 @@ const Projects = () => {
         }
 
         @keyframes float {
-          0%, 100% { 
-            transform: translateY(0px) rotate(0deg); 
-          }
-          33% { 
-            transform: translateY(-20px) rotate(5deg); 
-          }
-          66% { 
-            transform: translateY(-10px) rotate(-3deg); 
-          }
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          33% { transform: translateY(-20px) rotate(5deg); }
+          66% { transform: translateY(-10px) rotate(-3deg); }
         }
 
         @keyframes pulse {
-          0%, 100% { 
-            transform: scale(1);
-            box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.7);
-          }
-          50% { 
-            transform: scale(1.05);
-          }
-          70% {
-            box-shadow: 0 0 0 15px rgba(168, 85, 247, 0);
-          }
-        }
-
-        @keyframes glow {
-          0%, 100% { 
-            box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
-          }
-          50% { 
-            box-shadow: 0 0 40px rgba(168, 85, 247, 0.5);
-          }
+          0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.7); }
+          50% { transform: scale(1.05); }
+          70% { box-shadow: 0 0 0 15px rgba(168, 85, 247, 0); }
         }
 
         @keyframes particleFloat {
-          0%, 100% { 
-            transform: translateY(100vh) rotate(0deg);
-            opacity: 0;
-          }
-          10% { 
-            opacity: 1;
-          }
-          90% { 
-            opacity: 1;
-          }
-          100% { 
-            transform: translateY(-100px) rotate(360deg);
-            opacity: 0;
-          }
+          0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+          10% { opacity: 1; }
+          90% { opacity: 1; }
+          100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
         }
 
         @keyframes orbit {
-          0% {
-            transform: rotate(0deg) translateX(150px) rotate(0deg);
-          }
-          100% {
-            transform: rotate(360deg) translateX(150px) rotate(-360deg);
-          }
-        }
-
-        @keyframes shimmer {
-          0% { background-position: -1000px 0; }
-          100% { background-position: 1000px 0; }
-        }
-
-        @keyframes ripple {
-          0% {
-            transform: scale(0);
-            opacity: 1;
-          }
-          100% {
-            transform: scale(4);
-            opacity: 0;
-          }
+          0% { transform: rotate(0deg) translateX(150px) rotate(0deg); }
+          100% { transform: rotate(360deg) translateX(150px) rotate(-360deg); }
         }
 
         @keyframes twinkle {
@@ -455,7 +380,7 @@ const Projects = () => {
 
         .project-number {
           font-size: 0.9rem;
-          color: ${projects[activeProject].accentColor};
+          color: ${currentAccentColor};
           font-weight: 600;
           margin-bottom: 1rem;
           display: block;
@@ -466,10 +391,8 @@ const Projects = () => {
         .project-name {
           font-size: 2.5rem;
           font-weight: 700;
-          color: #ffffff;
           margin-bottom: 1.5rem;
-          line-height: 1.2;
-          background: linear-gradient(135deg, #ffffff, ${projects[activeProject].accentColor});
+          background: linear-gradient(135deg, #ffffff, ${currentAccentColor});
           -webkit-background-clip: text;
           background-clip: text;
           -webkit-text-fill-color: transparent;
@@ -571,7 +494,7 @@ const Projects = () => {
           animation: slideInRight 0.8s ease-out 0.6s forwards;
         }
 
-        .video-container {
+        .image-container {
           position: relative;
           border-radius: 16px;
           overflow: hidden;
@@ -580,63 +503,55 @@ const Projects = () => {
             0 0 50px rgba(168, 85, 247, 0.2);
           background: #000;
           transition: all 0.4s ease;
+          aspect-ratio: 16/9;
         }
 
-        .video-container:hover {
+        .image-container:hover {
           transform: translateY(-5px);
           box-shadow: 
             0 25px 80px rgba(0, 0, 0, 0.6),
             0 0 70px rgba(168, 85, 247, 0.3);
         }
 
-        .video-overlay {
+        .project-image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.4s ease;
+        }
+
+        .image-container:hover .project-image {
+          transform: scale(1.05);
+        }
+
+        .image-overlay {
           position: absolute;
           top: 0;
           left: 0;
           right: 0;
           bottom: 0;
-          background: rgba(0, 0, 0, 0.7);
+          background: linear-gradient(
+            to bottom,
+            transparent 0%,
+            rgba(0, 0, 0, 0.1) 50%,
+            rgba(0, 0, 0, 0.3) 100%
+          );
           display: flex;
-          align-items: center;
-          justify-content: center;
-          opacity: ${isPlaying ? 0 : 1};
+          align-items: flex-end;
+          padding: 2rem;
+          opacity: 0;
           transition: opacity 0.3s ease;
-          cursor: pointer;
         }
 
-        .play-button {
-          width: 80px;
-          height: 80px;
-          background: linear-gradient(135deg, #6366f1, #a855f7);
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          animation: pulse 2s ease-in-out infinite;
-          transition: all 0.3s ease;
-          position: relative;
-          overflow: hidden;
+        .image-container:hover .image-overlay {
+          opacity: 1;
         }
 
-        .play-button::before {
-          content: '';
-          position: absolute;
-          top: -50%;
-          left: -50%;
-          width: 200%;
-          height: 200%;
-          background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-          transform: rotate(45deg);
-          transition: all 0.6s ease;
-        }
-
-        .play-button:hover {
-          transform: scale(1.1);
-          animation: none;
-        }
-
-        .play-button:hover::before {
-          transform: rotate(45deg) translate(50%, 50%);
+        .image-caption {
+          color: white;
+          font-size: 1rem;
+          font-weight: 600;
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .carousel-controls {
@@ -723,7 +638,7 @@ const Projects = () => {
 
         .carousel-dot.active {
           width: 20px;
-          background: ${projects[activeProject].accentColor};
+          background: ${currentAccentColor};
         }
 
         @media (max-width: 1024px) {
@@ -841,20 +756,20 @@ const Projects = () => {
                 <span className="project-number">
                   Project {activeProject + 1} of {projects.length}
                 </span>
-                <h3 className="project-name">{projects[activeProject].name}</h3>
+                <h3 className="project-name">{currentProject.name}</h3>
                 <p className="project-description">
-                  {projects[activeProject].description}
+                  {currentProject.description}
                 </p>
                 
                 <div className="project-tags">
-                  {projects[activeProject].tags.map((tag, index) => (
+                  {currentProject.tags.map((tag, index) => (
                     <span key={index} className="project-tag">{tag}</span>
                   ))}
                 </div>
                 
                 <div className="project-links">
                   <a 
-                    href={projects[activeProject].github} 
+                    href={currentProject.github} 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="project-link link-github"
@@ -863,7 +778,7 @@ const Projects = () => {
                     GitHub
                   </a>
                   <a 
-                    href={projects[activeProject].live} 
+                    href={currentProject.live} 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="project-link link-live"
@@ -875,26 +790,17 @@ const Projects = () => {
               </div>
               
               <div className={`project-media ${isVisible ? 'visible' : ''}`}>
-                <div className="video-container">
-                  <ReactPlayer
-                    url={projects[activeProject].video}
-                    width="100%"
-                    height="400px"
-                    controls
-                    playing={isPlaying}
-                    onPlay={() => setIsPlaying(true)}
-                    onPause={() => setIsPlaying(false)}
+                <div className="image-container">
+                  <img 
+                    src={currentProject.image} 
+                    alt={currentProject.name}
+                    className="project-image"
                   />
-                  {!isPlaying && (
-                    <div 
-                      className="video-overlay"
-                      onClick={() => setIsPlaying(true)}
-                    >
-                      <div className="play-button">
-                        <Play size={32} color="#ffffff" fill="#ffffff" />
-                      </div>
+                  <div className="image-overlay">
+                    <div className="image-caption">
+                      {currentProject.name} - Project Preview
                     </div>
-                  )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -909,10 +815,7 @@ const Projects = () => {
                   <div
                     key={index}
                     className={`carousel-dot ${index === activeProject ? 'active' : ''}`}
-                    onClick={() => {
-                      setActiveProject(index);
-                      setIsPlaying(false);
-                    }}
+                    onClick={() => setActiveProject(index)}
                   />
                 ))}
               </div>

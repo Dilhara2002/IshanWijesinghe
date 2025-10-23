@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import profileImage from "../assets/p2.JPG";
+import profileImage from "../assets/profile.JPG";
 import cvFile from "../assets/IshanDilharaCV.pdf";
+
 
 const Home = () => {
     const [isVisible, setIsVisible] = useState(false);
@@ -72,6 +73,23 @@ const Home = () => {
           50% { transform: scale(1.05); }
         }
 
+        @keyframes pulseGlow {
+          0%, 100% { 
+            box-shadow: 
+              0 0 60px rgba(168, 85, 247, 0.8),
+              0 0 120px rgba(99, 102, 241, 0.6),
+              0 0 180px rgba(236, 72, 153, 0.4),
+              0 25px 50px rgba(0, 0, 0, 0.4);
+          }
+          50% { 
+            box-shadow: 
+              0 0 80px rgba(168, 85, 247, 1),
+              0 0 140px rgba(99, 102, 241, 0.8),
+              0 0 200px rgba(236, 72, 153, 0.6),
+              0 30px 60px rgba(0, 0, 0, 0.5);
+          }
+        }
+
         @keyframes shimmer {
           0% { background-position: -1000px 0; }
           100% { background-position: 1000px 0; }
@@ -80,6 +98,21 @@ const Home = () => {
         @keyframes particles {
           0% { transform: translateY(0) rotate(0deg); opacity: 1; }
           100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes halo {
+          0% { 
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 0.6;
+          }
+          50% { 
+            transform: translate(-50%, -50%) scale(1.1);
+            opacity: 0.8;
+          }
+          100% { 
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 0.6;
+          }
         }
 
         .home-container {
@@ -188,26 +221,36 @@ const Home = () => {
         }
 
         .profile-image {
-          width: 400px;
-          height: 400px;
+          width: 420px;
+          height: 420px;
           border-radius: 50%;
-          border: 6px solid rgba(255, 255, 255, 0.2);
-          box-shadow: 
-            0 0 50px rgba(168, 85, 247, 0.6),
-            0 0 100px rgba(99, 102, 241, 0.4),
-            0 25px 50px rgba(0, 0, 0, 0.4);
+          border: 8px solid rgba(255, 255, 255, 0.3);
           object-fit: cover;
           transition: all 0.4s ease;
-          animation: pulse 4s ease-in-out infinite;
+          animation: pulseGlow 3s ease-in-out infinite;
+          position: relative;
+          z-index: 5;
+          filter: brightness(1.1) contrast(1.1);
         }
 
         .profile-image:hover {
-          transform: scale(1.05);
-          border-color: rgba(168, 85, 247, 0.8);
-          box-shadow: 
-            0 0 60px rgba(168, 85, 247, 0.8),
-            0 0 120px rgba(99, 102, 241, 0.6),
-            0 30px 60px rgba(0, 0, 0, 0.5);
+          transform: scale(1.08);
+          border-color: rgba(255, 255, 255, 0.5);
+          animation: pulseGlow 1.5s ease-in-out infinite;
+          filter: brightness(1.2) contrast(1.2);
+        }
+
+        .halo-effect {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 460px;
+          height: 460px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(168, 85, 247, 0.4) 0%, rgba(168, 85, 247, 0) 70%);
+          animation: halo 3s ease-in-out infinite;
+          z-index: 1;
         }
 
         .image-ring {
@@ -215,15 +258,16 @@ const Home = () => {
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          width: 440px;
-          height: 440px;
-          border: 3px solid transparent;
+          width: 480px;
+          height: 480px;
+          border: 4px solid transparent;
           border-radius: 50%;
           border-top-color: #6366f1;
           border-right-color: #a855f7;
           border-bottom-color: #ec4899;
           border-left-color: #10b981;
           animation: spin 6s linear infinite;
+          z-index: 2;
         }
 
         .image-ring-2 {
@@ -231,15 +275,32 @@ const Home = () => {
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          width: 480px;
-          height: 480px;
-          border: 2px solid transparent;
+          width: 520px;
+          height: 520px;
+          border: 3px solid transparent;
           border-radius: 50%;
           border-top-color: #10b981;
           border-right-color: #6366f1;
           border-bottom-color: #a855f7;
           border-left-color: #ec4899;
           animation: spinReverse 8s linear infinite;
+          z-index: 1;
+        }
+
+        .sparkle {
+          position: absolute;
+          width: 8px;
+          height: 8px;
+          background: white;
+          border-radius: 50%;
+          filter: blur(1px);
+          animation: sparkleTwinkle 2s ease-in-out infinite;
+          z-index: 6;
+        }
+
+        @keyframes sparkleTwinkle {
+          0%, 100% { opacity: 0; transform: scale(0); }
+          50% { opacity: 1; transform: scale(1); }
         }
 
         @keyframes spin {
@@ -347,18 +408,23 @@ const Home = () => {
           }
           
           .profile-image {
-            width: 300px;
-            height: 300px;
+            width: 320px;
+            height: 320px;
+          }
+          
+          .halo-effect {
+            width: 360px;
+            height: 360px;
           }
           
           .image-ring {
-            width: 340px;
-            height: 340px;
+            width: 380px;
+            height: 380px;
           }
           
           .image-ring-2 {
-            width: 380px;
-            height: 380px;
+            width: 420px;
+            height: 420px;
           }
         }
 
@@ -376,18 +442,23 @@ const Home = () => {
           }
           
           .profile-image {
-            width: 250px;
-            height: 250px;
+            width: 280px;
+            height: 280px;
+          }
+          
+          .halo-effect {
+            width: 320px;
+            height: 320px;
           }
           
           .image-ring {
-            width: 290px;
-            height: 290px;
+            width: 340px;
+            height: 340px;
           }
           
           .image-ring-2 {
-            width: 330px;
-            height: 330px;
+            width: 380px;
+            height: 380px;
           }
           
           .cv-button {
@@ -402,18 +473,23 @@ const Home = () => {
           }
           
           .profile-image {
-            width: 200px;
-            height: 200px;
-          }
-          
-          .image-ring {
             width: 240px;
             height: 240px;
           }
           
-          .image-ring-2 {
+          .halo-effect {
             width: 280px;
             height: 280px;
+          }
+          
+          .image-ring {
+            width: 300px;
+            height: 300px;
+          }
+          
+          .image-ring-2 {
+            width: 340px;
+            height: 340px;
           }
         }
       `}</style>
@@ -455,7 +531,7 @@ const Home = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="cv-button"
-                            download="IshanDilhara_CV.pdf"  // This forces download
+                            download="IshanDilhara_CV.pdf"
                         >
                             Download CV
                         </a>
@@ -464,6 +540,20 @@ const Home = () => {
                     {/* Image Content - Right Side */}
                     <div className="image-content">
                         <div className="profile-image-container">
+                            {/* Sparkle Effects */}
+                            {[...Array(6)].map((_, i) => (
+                                <div
+                                    key={i}
+                                    className="sparkle"
+                                    style={{
+                                        top: `${20 + (i * 15)}%`,
+                                        left: `${10 + (i * 16)}%`,
+                                        animationDelay: `${i * 0.5}s`
+                                    }}
+                                ></div>
+                            ))}
+                            
+                            <div className="halo-effect"></div>
                             <div className="image-ring-2"></div>
                             <div className="image-ring"></div>
                             <img

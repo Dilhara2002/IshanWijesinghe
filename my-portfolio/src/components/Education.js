@@ -7,7 +7,7 @@ const educationHistory = [
     degree: "BSc (Hons) in Information Technology",
     duration: "2023 – 2026 (Expected)",
     location: "Malabe, Sri Lanka",
-    details: "Specializing in Software Engineering and Artificial Intelligence principles. Current GPA: 3.8+",
+    details: "Specialized in Information Technology.",
     achievements: ["Dean's List 2023", "Best Project Award", "Research Paper Publication"],
     courses: ["Advanced Algorithms", "Machine Learning", "Web Development", "Database Systems"],
     icon: GraduationCap,
@@ -672,7 +672,7 @@ const Education = () => {
 
                   <div className="additional-info">
                     <div className="info-section">
-                      <div className="info-label">
+                      {/* <div className="info-label">
                         <Award size={16} />
                         Key Achievements
                       </div>
@@ -682,11 +682,11 @@ const Education = () => {
                             {achievement}
                           </span>
                         ))}
-                      </div>
+                      </div> */}
                     </div>
 
                     <div className="info-section">
-                      <div className="info-label">
+                      {/* <div className="info-label">
                         <BookOpen size={16} />
                         Relevant Courses
                       </div>
@@ -696,7 +696,7 @@ const Education = () => {
                             {course}
                           </span>
                         ))}
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>
