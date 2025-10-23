@@ -1,43 +1,21 @@
 {
   "files": {
     "main.css": "/IshanWijesinghe/static/css/main.e6c13ad2.css",
-    "main.js": "/IshanWijesinghe/static/js/main.a306a44c.js",
-    "reactPlayerHls.js": "/IshanWijesinghe/static/js/reactPlayerHls.3bd33718.chunk.js",
-    "reactPlayerDash.js": "/IshanWijesinghe/static/js/reactPlayerDash.a1b45373.chunk.js",
-    "reactPlayerMux.js": "/IshanWijesinghe/static/js/reactPlayerMux.d86530f5.chunk.js",
-    "reactPlayerYouTube.js": "/IshanWijesinghe/static/js/reactPlayerYouTube.0e846089.chunk.js",
-    "reactPlayerVimeo.js": "/IshanWijesinghe/static/js/reactPlayerVimeo.acefc4ad.chunk.js",
-    "reactPlayerWistia.js": "/IshanWijesinghe/static/js/reactPlayerWistia.88f0d5a9.chunk.js",
-    "reactPlayerSpotify.js": "/IshanWijesinghe/static/js/reactPlayerSpotify.9f26f080.chunk.js",
-    "reactPlayerTwitch.js": "/IshanWijesinghe/static/js/reactPlayerTwitch.baa42f60.chunk.js",
-    "reactPlayerTiktok.js": "/IshanWijesinghe/static/js/reactPlayerTiktok.0deec5e2.chunk.js",
-    "reactPlayerPreview.js": "/IshanWijesinghe/static/js/reactPlayerPreview.0cfdcefd.chunk.js",
+    "main.js": "/IshanWijesinghe/static/js/main.3877a663.js",
     "static/js/453.ececc0a5.chunk.js": "/IshanWijesinghe/static/js/453.ececc0a5.chunk.js",
-    "static/js/416.1587bf58.chunk.js": "/IshanWijesinghe/static/js/416.1587bf58.chunk.js",
-    "static/js/372.d20e73c6.chunk.js": "/IshanWijesinghe/static/js/372.d20e73c6.chunk.js",
-    "static/js/788.48d64e2e.chunk.js": "/IshanWijesinghe/static/js/788.48d64e2e.chunk.js",
-    "static/media/p2.JPG": "/IshanWijesinghe/static/media/p2.027aa949f0a44cc73bf1.JPG",
-    "static/media/IshanDilharaCV.pdf": "/IshanWijesinghe/static/media/IshanDilharaCV.de338234e6e6b53b745e.pdf",
+    "static/media/DishCraft.mov": "/IshanWijesinghe/static/media/DishCraft.a56878e7b92092c2b7db.mov",
+    "static/media/Dishcraft.png": "/IshanWijesinghe/static/media/Dishcraft.4debac032f2276ecccb4.png",
+    "static/media/Homestock.png": "/IshanWijesinghe/static/media/Homestock.f402e692cbbde2a78744.png",
+    "static/media/profile.JPG": "/IshanWijesinghe/static/media/profile.4d8e2cba8326b0de50ee.JPG",
+    "static/media/salonDiamond.png": "/IshanWijesinghe/static/media/salonDiamond.2b3ed719928aafc67930.png",
+    "static/media/IshanDilharaCV.pdf": "/IshanWijesinghe/static/media/IshanDilharaCV.78805a5d6eac8aa6c2d6.pdf",
     "index.html": "/IshanWijesinghe/index.html",
     "main.e6c13ad2.css.map": "/IshanWijesinghe/static/css/main.e6c13ad2.css.map",
-    "main.a306a44c.js.map": "/IshanWijesinghe/static/js/main.a306a44c.js.map",
-    "reactPlayerHls.3bd33718.chunk.js.map": "/IshanWijesinghe/static/js/reactPlayerHls.3bd33718.chunk.js.map",
-    "reactPlayerDash.a1b45373.chunk.js.map": "/IshanWijesinghe/static/js/reactPlayerDash.a1b45373.chunk.js.map",
-    "reactPlayerMux.d86530f5.chunk.js.map": "/IshanWijesinghe/static/js/reactPlayerMux.d86530f5.chunk.js.map",
-    "reactPlayerYouTube.0e846089.chunk.js.map": "/IshanWijesinghe/static/js/reactPlayerYouTube.0e846089.chunk.js.map",
-    "reactPlayerVimeo.acefc4ad.chunk.js.map": "/IshanWijesinghe/static/js/reactPlayerVimeo.acefc4ad.chunk.js.map",
-    "reactPlayerWistia.88f0d5a9.chunk.js.map": "/IshanWijesinghe/static/js/reactPlayerWistia.88f0d5a9.chunk.js.map",
-    "reactPlayerSpotify.9f26f080.chunk.js.map": "/IshanWijesinghe/static/js/reactPlayerSpotify.9f26f080.chunk.js.map",
-    "reactPlayerTwitch.baa42f60.chunk.js.map": "/IshanWijesinghe/static/js/reactPlayerTwitch.baa42f60.chunk.js.map",
-    "reactPlayerTiktok.0deec5e2.chunk.js.map": "/IshanWijesinghe/static/js/reactPlayerTiktok.0deec5e2.chunk.js.map",
-    "reactPlayerPreview.0cfdcefd.chunk.js.map": "/IshanWijesinghe/static/js/reactPlayerPreview.0cfdcefd.chunk.js.map",
-    "453.ececc0a5.chunk.js.map": "/IshanWijesinghe/static/js/453.ececc0a5.chunk.js.map",
-    "416.1587bf58.chunk.js.map": "/IshanWijesinghe/static/js/416.1587bf58.chunk.js.map",
-    "372.d20e73c6.chunk.js.map": "/IshanWijesinghe/static/js/372.d20e73c6.chunk.js.map",
-    "788.48d64e2e.chunk.js.map": "/IshanWijesinghe/static/js/788.48d64e2e.chunk.js.map"
+    "main.3877a663.js.map": "/IshanWijesinghe/static/js/main.3877a663.js.map",
+    "453.ececc0a5.chunk.js.map": "/IshanWijesinghe/static/js/453.ececc0a5.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.a306a44c.js"
+    "static/js/main.3877a663.js"
   ]
 }
