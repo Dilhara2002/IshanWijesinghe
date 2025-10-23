@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import profileImage from "../assets/profile.JPG";
+import profileImage from "../assets/p2.JPG";
 import cvFile from "../assets/IshanDilharaCV.pdf";
 
 
