@@ -13,7 +13,8 @@ const projects = [
     image: project1Image,
     github: "https://github.com/Dilhara2002/Salon_Diamond_Management-.git",
     tags: ["Node.js", "Express.js", "EJS", "SQL"],
-    accentColor: "#6366f1"
+    accentColor: "#6366f1",
+    hasLiveDemo: false
   },
   {
     name: "MyHomeStock",
@@ -22,16 +23,18 @@ const projects = [
     github: "https://github.com/Dilhara2002/MyHomeStock.git",
     live: "https://www.linkedin.com/in/ishan-wijesinghe-5200a1318",
     tags: ["React", "Node.js", "Express.js", "MongoDB"],
-    accentColor: "#10b981"
+    accentColor: "#10b981",
+    hasLiveDemo: true
   },
   {
-    name: "Dish-Craft",
+    name: "Dish Craft",
     description: "A full-stack recipe management web application enabling users to create, browse, and share cooking recipes online. It uses React and Express.js with MongoDB to manage recipe data efficiently.",
     image: project3Image,
     github: "https://github.com/Dilhara2002/Dish-Craft.git",
     live: "https://www.linkedin.com/in/ishan-wijesinghe-5200a1318",
     tags: ["React", "Node.js", "Express.js", "MongoDB"],
-    accentColor: "#ec4899"
+    accentColor: "#ec4899",
+    hasLiveDemo: true
   }
 ];
 
@@ -775,15 +778,17 @@ const Projects = () => {
                     <Github size={20} />
                     GitHub
                   </a>
-                  <a 
-                    href={currentProject.live} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="project-link link-live"
-                  >
-                    <ExternalLink size={20} />
-                    Live Demo
-                  </a>
+                  {currentProject.hasLiveDemo && (
+                    <a 
+                      href={currentProject.live} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="project-link link-live"
+                    >
+                      <ExternalLink size={20} />
+                      Live Demo
+                    </a>
+                  )}
                 </div>
               </div>
               

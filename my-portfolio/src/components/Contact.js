@@ -89,12 +89,12 @@ const Contact = () => {
     }
   ];
 
-  const particles = Array.from({ length: 15 }, (_, i) => ({
+  const particles = Array.from({ length: 12 }, (_, i) => ({
     id: i,
-    size: Math.random() * 3 + 1,
+    size: Math.random() * 2 + 1,
     left: Math.random() * 100,
-    delay: Math.random() * 15,
-    duration: 15 + Math.random() * 10
+    delay: Math.random() * 10,
+    duration: 12 + Math.random() * 8
   }));
 
   return (
@@ -103,7 +103,7 @@ const Contact = () => {
         @keyframes fadeInUp {
           from {
             opacity: 0;
-            transform: translateY(40px);
+            transform: translateY(30px);
           }
           to {
             opacity: 1;
@@ -114,7 +114,7 @@ const Contact = () => {
         @keyframes slideInLeft {
           from {
             opacity: 0;
-            transform: translateX(-60px);
+            transform: translateX(-40px);
           }
           to {
             opacity: 1;
@@ -125,7 +125,7 @@ const Contact = () => {
         @keyframes slideInRight {
           from {
             opacity: 0;
-            transform: translateX(60px);
+            transform: translateX(40px);
           }
           to {
             opacity: 1;
@@ -133,12 +133,14 @@ const Contact = () => {
           }
         }
 
-        @keyframes float {
+        @keyframes pulse {
           0%, 100% { 
-            transform: translateY(0px) rotate(0deg); 
+            transform: scale(1);
+            opacity: 0.1;
           }
           50% { 
-            transform: translateY(-20px) rotate(5deg); 
+            transform: scale(1.05);
+            opacity: 0.2;
           }
         }
 
@@ -148,30 +150,19 @@ const Contact = () => {
             opacity: 0;
           }
           10% { 
-            opacity: 0.8;
+            opacity: 0.6;
           }
           90% { 
-            opacity: 0.8;
+            opacity: 0.6;
           }
           100% { 
-            transform: translateY(-100px) translateX(50px) rotate(360deg);
+            transform: translateY(-100px) translateX(30px) rotate(360deg);
             opacity: 0;
           }
         }
 
         @keyframes spin {
           to { transform: rotate(360deg); }
-        }
-
-        @keyframes pulse {
-          0%, 100% { 
-            transform: scale(1);
-            opacity: 0.15;
-          }
-          50% { 
-            transform: scale(1.1);
-            opacity: 0.25;
-          }
         }
 
         .contact-section {
@@ -187,7 +178,7 @@ const Contact = () => {
           left: 0;
           width: 100%;
           height: 100%;
-          opacity: 0.05;
+          opacity: 0.04;
           background-image: 
             radial-gradient(circle at 20% 80%, #6366f1 0%, transparent 50%),
             radial-gradient(circle at 80% 20%, #a855f7 0%, transparent 50%),
@@ -204,34 +195,33 @@ const Contact = () => {
         .floating-element {
           position: absolute;
           border-radius: 50%;
-          filter: blur(80px);
-          animation: pulse 6s ease-in-out infinite;
+          filter: blur(60px);
+          animation: pulse 8s ease-in-out infinite;
         }
 
         .element-1 {
-          width: 400px;
-          height: 400px;
-          background: rgba(99, 102, 241, 0.15);
-          top: 5%;
-          left: 0%;
-          animation-delay: 0s;
+          width: 300px;
+          height: 300px;
+          background: rgba(99, 102, 241, 0.1);
+          top: 10%;
+          left: 5%;
         }
 
         .element-2 {
-          width: 500px;
-          height: 500px;
-          background: rgba(168, 85, 247, 0.15);
-          bottom: 5%;
-          right: 0%;
+          width: 350px;
+          height: 350px;
+          background: rgba(168, 85, 247, 0.1);
+          bottom: 10%;
+          right: 5%;
           animation-delay: 2s;
         }
 
         .element-3 {
-          width: 350px;
-          height: 350px;
-          background: rgba(236, 72, 153, 0.15);
-          top: 45%;
-          left: 65%;
+          width: 250px;
+          height: 250px;
+          background: rgba(236, 72, 153, 0.1);
+          top: 50%;
+          left: 70%;
           animation-delay: 4s;
         }
 
@@ -244,50 +234,46 @@ const Contact = () => {
 
         .particle {
           position: absolute;
-          background: rgba(168, 85, 247, 0.3);
+          background: rgba(168, 85, 247, 0.2);
           border-radius: 50%;
           animation: particleFloat linear infinite;
-          box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
         }
 
         .particle:nth-child(2n) {
-          background: rgba(99, 102, 241, 0.3);
-          box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+          background: rgba(99, 102, 241, 0.2);
         }
 
         .particle:nth-child(3n) {
-          background: rgba(236, 72, 153, 0.3);
-          box-shadow: 0 0 10px rgba(236, 72, 153, 0.5);
+          background: rgba(236, 72, 153, 0.2);
         }
 
         .contact-container {
-          max-width: 1280px;
+          max-width: 1200px;
           margin: 0 auto;
-          padding: 80px 1rem;
+          padding: 60px 1rem;
           position: relative;
           z-index: 10;
         }
 
         .section-title {
-          font-size: 2.5rem;
+          font-size: 2rem;
           font-weight: 800;
           text-align: center;
           margin-bottom: 1rem;
           color: #ffffff;
           opacity: 0;
-          letter-spacing: -0.02em;
           line-height: 1.2;
         }
 
         .section-title.visible {
-          animation: fadeInUp 1s ease-out forwards;
+          animation: fadeInUp 0.8s ease-out forwards;
         }
 
         .section-subtitle {
           text-align: center;
           color: #a0a0a0;
-          font-size: 1rem;
-          margin-bottom: 3rem;
+          font-size: 0.95rem;
+          margin-bottom: 2.5rem;
           opacity: 0;
           display: flex;
           align-items: center;
@@ -299,47 +285,46 @@ const Contact = () => {
         }
 
         .section-subtitle.visible {
-          animation: fadeInUp 1s ease-out 0.2s forwards;
+          animation: fadeInUp 0.8s ease-out 0.2s forwards;
         }
 
         .contact-content {
           display: grid;
           grid-template-columns: 1fr;
-          gap: 3rem;
+          gap: 2rem;
           align-items: start;
         }
 
         .contact-info {
           opacity: 0;
-          transform: translateX(-30px);
+          transform: translateX(-20px);
         }
 
         .contact-info.visible {
-          animation: slideInLeft 1s ease-out 0.4s forwards;
+          animation: slideInLeft 0.8s ease-out 0.3s forwards;
         }
 
         .info-card {
           background: rgba(255, 255, 255, 0.03);
-          backdrop-filter: blur(30px);
+          backdrop-filter: blur(20px);
           border: 1px solid rgba(255, 255, 255, 0.08);
-          border-radius: 20px;
-          padding: 2rem 1.5rem;
-          margin-bottom: 2rem;
-          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          border-radius: 16px;
+          padding: 1.5rem;
+          margin-bottom: 1.5rem;
+          transition: all 0.3s ease;
         }
 
         .info-card:hover {
-          transform: translateY(-8px);
+          transform: translateY(-5px);
           border-color: rgba(168, 85, 247, 0.3);
-          box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-          background: rgba(255, 255, 255, 0.05);
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
         }
 
         .info-title {
-          font-size: 1.5rem;
+          font-size: 1.25rem;
           font-weight: 700;
           color: #ffffff;
-          margin-bottom: 1.5rem;
+          margin-bottom: 1.25rem;
           display: flex;
           align-items: center;
           gap: 0.5rem;
@@ -348,16 +333,16 @@ const Contact = () => {
         .contact-items {
           display: flex;
           flex-direction: column;
-          gap: 1rem;
+          gap: 0.75rem;
         }
 
         .contact-item {
           display: flex;
           align-items: center;
-          gap: 1rem;
-          padding: 1rem;
-          border-radius: 12px;
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          gap: 0.75rem;
+          padding: 0.875rem;
+          border-radius: 10px;
+          transition: all 0.3s ease;
           cursor: pointer;
           text-decoration: none;
           color: inherit;
@@ -367,14 +352,14 @@ const Contact = () => {
 
         .contact-item:hover {
           background: rgba(255, 255, 255, 0.06);
-          transform: translateX(8px);
+          transform: translateX(5px);
           border-color: rgba(255, 255, 255, 0.1);
         }
 
         .contact-icon {
-          width: 48px;
-          height: 48px;
-          border-radius: 12px;
+          width: 44px;
+          height: 44px;
+          border-radius: 10px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -385,8 +370,8 @@ const Contact = () => {
         }
 
         .contact-item:hover .contact-icon {
-          transform: scale(1.1) rotate(5deg);
-          box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+          transform: scale(1.05);
+          box-shadow: 0 6px 15px rgba(99, 102, 241, 0.3);
         }
 
         .contact-details {
@@ -395,16 +380,16 @@ const Contact = () => {
         }
 
         .contact-label {
-          font-size: 0.85rem;
+          font-size: 0.8rem;
           color: #a0a0a0;
-          margin-bottom: 0.3rem;
+          margin-bottom: 0.25rem;
           font-weight: 500;
           text-transform: uppercase;
           letter-spacing: 0.05em;
         }
 
         .contact-value {
-          font-size: 0.95rem;
+          font-size: 0.9rem;
           color: #ffffff;
           font-weight: 600;
           word-break: break-word;
@@ -412,69 +397,69 @@ const Contact = () => {
 
         .social-links {
           display: flex;
-          gap: 1rem;
+          gap: 0.75rem;
           justify-content: center;
           flex-wrap: wrap;
         }
 
         .social-link {
-          width: 50px;
-          height: 50px;
-          border-radius: 12px;
+          width: 46px;
+          height: 46px;
+          border-radius: 10px;
           display: flex;
           align-items: center;
           justify-content: center;
           background: rgba(255, 255, 255, 0.05);
           color: #e0e0e0;
           text-decoration: none;
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          transition: all 0.3s ease;
           border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .social-link:hover {
-          transform: translateY(-5px) rotate(5deg);
+          transform: translateY(-3px);
           color: #ffffff;
           background: rgba(255, 255, 255, 0.1);
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
 
         .contact-form {
           opacity: 0;
-          transform: translateX(30px);
+          transform: translateX(20px);
         }
 
         .contact-form.visible {
-          animation: slideInRight 1s ease-out 0.4s forwards;
+          animation: slideInRight 0.8s ease-out 0.3s forwards;
         }
 
         .form-card {
           background: rgba(255, 255, 255, 0.03);
-          backdrop-filter: blur(30px);
+          backdrop-filter: blur(20px);
           border: 1px solid rgba(255, 255, 255, 0.08);
-          border-radius: 20px;
-          padding: 2rem 1.5rem;
-          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          border-radius: 16px;
+          padding: 1.5rem;
+          transition: all 0.3s ease;
         }
 
         .form-card:hover {
-          transform: translateY(-8px);
+          transform: translateY(-5px);
           border-color: rgba(168, 85, 247, 0.3);
-          box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
           background: rgba(255, 255, 255, 0.05);
         }
 
         .form-title {
-          font-size: 1.5rem;
+          font-size: 1.25rem;
           font-weight: 700;
           color: #ffffff;
-          margin-bottom: 2rem;
+          margin-bottom: 1.5rem;
           display: flex;
           align-items: center;
           gap: 0.5rem;
         }
 
         .form-group {
-          margin-bottom: 1.5rem;
+          margin-bottom: 1.25rem;
         }
 
         .form-label {
@@ -482,20 +467,20 @@ const Contact = () => {
           color: #e0e0e0;
           font-weight: 600;
           margin-bottom: 0.5rem;
-          font-size: 0.9rem;
+          font-size: 0.85rem;
           text-transform: uppercase;
           letter-spacing: 0.05em;
         }
 
         .form-input {
           width: 100%;
-          padding: 1rem;
+          padding: 0.875rem;
           background: rgba(255, 255, 255, 0.05);
           border: 1px solid rgba(255, 255, 255, 0.1);
-          border-radius: 10px;
+          border-radius: 8px;
           color: #ffffff;
-          font-size: 1rem;
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          font-size: 0.95rem;
+          transition: all 0.3s ease;
           font-family: inherit;
           box-sizing: border-box;
         }
@@ -504,8 +489,7 @@ const Contact = () => {
           outline: none;
           border-color: #6366f1;
           background: rgba(255, 255, 255, 0.08);
-          box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-          transform: translateY(-2px);
+          box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1);
         }
 
         .form-input::placeholder {
@@ -514,33 +498,33 @@ const Contact = () => {
 
         textarea.form-input {
           resize: vertical;
-          min-height: 120px;
+          min-height: 100px;
           font-family: inherit;
         }
 
         .submit-button {
           width: 100%;
-          padding: 1.2rem 2rem;
+          padding: 1rem 1.5rem;
           background: #6366f1;
           color: white;
           border: none;
-          border-radius: 10px;
-          font-size: 1rem;
+          border-radius: 8px;
+          font-size: 0.95rem;
           font-weight: 700;
           cursor: pointer;
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          transition: all 0.3s ease;
           display: flex;
           align-items: center;
           justify-content: center;
           gap: 0.5rem;
           text-transform: uppercase;
           letter-spacing: 0.05em;
-          box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+          box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
         }
 
         .submit-button:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
           background: #5558e3;
         }
 
@@ -559,8 +543,8 @@ const Contact = () => {
         }
 
         .loading-spinner {
-          width: 20px;
-          height: 20px;
+          width: 18px;
+          height: 18px;
           border: 2px solid transparent;
           border-top: 2px solid #ffffff;
           border-radius: 50%;
@@ -570,15 +554,15 @@ const Contact = () => {
         .footer-note {
           text-align: center;
           color: #a0a0a0;
-          margin-top: 3rem;
-          padding-top: 2rem;
+          margin-top: 2.5rem;
+          padding-top: 1.5rem;
           border-top: 1px solid rgba(255, 255, 255, 0.08);
           opacity: 0;
-          font-size: 0.95rem;
+          font-size: 0.9rem;
         }
 
         .footer-note.visible {
-          animation: fadeInUp 1s ease-out 0.6s forwards;
+          animation: fadeInUp 0.8s ease-out 0.4s forwards;
         }
 
         .footer-note p {
@@ -593,134 +577,225 @@ const Contact = () => {
         /* Tablet Styles */
         @media (min-width: 768px) {
           .contact-container {
-            padding: 100px 2rem;
+            padding: 80px 2rem;
           }
 
           .section-title {
-            font-size: 3.5rem;
+            font-size: 2.5rem;
           }
 
           .section-subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 4rem;
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
           }
 
           .contact-content {
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            gap: 3rem;
           }
 
           .info-card, .form-card {
-            padding: 2.5rem;
+            padding: 2rem;
           }
 
           .info-title, .form-title {
-            font-size: 1.75rem;
+            font-size: 1.5rem;
           }
 
           .contact-items {
-            gap: 1.2rem;
+            gap: 1rem;
           }
 
           .contact-item {
-            padding: 1.2rem;
+            padding: 1rem;
           }
 
           .contact-icon {
-            width: 52px;
-            height: 52px;
+            width: 48px;
+            height: 48px;
           }
 
           .social-link {
-            width: 54px;
-            height: 54px;
+            width: 50px;
+            height: 50px;
           }
         }
 
         /* Desktop Styles */
         @media (min-width: 1024px) {
           .contact-container {
-            padding: 100px 3rem;
+            padding: 100px 2rem;
           }
 
           .section-title {
-            font-size: 4rem;
+            font-size: 3rem;
           }
 
           .section-subtitle {
-            font-size: 1.3rem;
+            font-size: 1.15rem;
           }
 
           .contact-content {
-            gap: 5rem;
+            gap: 4rem;
           }
 
           .info-card, .form-card {
-            padding: 3rem;
-            border-radius: 24px;
+            padding: 2.5rem;
+            border-radius: 20px;
           }
 
           .contact-items {
-            gap: 1.5rem;
+            gap: 1.25rem;
           }
 
           .contact-item {
-            padding: 1.3rem;
+            padding: 1.125rem;
           }
 
           .contact-icon {
-            width: 56px;
-            height: 56px;
+            width: 50px;
+            height: 50px;
           }
 
           .social-link {
-            width: 56px;
-            height: 56px;
+            width: 52px;
+            height: 52px;
           }
         }
 
-        /* Small mobile adjustments */
-        @media (max-width: 360px) {
+        /* Mobile optimizations */
+        @media (max-width: 480px) {
           .contact-container {
-            padding: 60px 0.5rem;
+            padding: 50px 0.75rem;
           }
 
           .section-title {
-            font-size: 2rem;
+            font-size: 1.75rem;
           }
 
           .section-subtitle {
             font-size: 0.9rem;
-            padding: 0 0.5rem;
+            margin-bottom: 2rem;
+            flex-direction: column;
+            gap: 0.25rem;
           }
 
           .info-card, .form-card {
-            padding: 1.5rem 1rem;
+            padding: 1.25rem;
+            border-radius: 14px;
+          }
+
+          .info-title, .form-title {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+          }
+
+          .contact-items {
+            gap: 0.5rem;
           }
 
           .contact-item {
-            padding: 0.8rem;
-            gap: 0.8rem;
+            padding: 0.75rem;
+            gap: 0.75rem;
           }
 
           .contact-icon {
+            width: 40px;
+            height: 40px;
+          }
+
+          .contact-icon svg {
+            width: 18px;
+            height: 18px;
+          }
+
+          .contact-label {
+            font-size: 0.75rem;
+          }
+
+          .contact-value {
+            font-size: 0.85rem;
+          }
+
+          .social-links {
+            gap: 0.5rem;
+          }
+
+          .social-link {
             width: 42px;
             height: 42px;
           }
 
-          .contact-icon svg {
-            width: 20px;
-            height: 20px;
-          }
-
-          .social-link {
-            width: 44px;
-            height: 44px;
-          }
-
           .social-link svg {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
+          }
+
+          .form-group {
+            margin-bottom: 1rem;
+          }
+
+          .form-input {
+            padding: 0.75rem;
+            font-size: 0.9rem;
+          }
+
+          .submit-button {
+            padding: 0.875rem 1.25rem;
+            font-size: 0.9rem;
+          }
+
+          .footer-note {
+            margin-top: 2rem;
+            font-size: 0.85rem;
+          }
+
+          .footer-note p {
+            flex-direction: column;
+            gap: 0.25rem;
+          }
+
+          .floating-element {
+            filter: blur(40px);
+          }
+
+          .element-1 {
+            width: 200px;
+            height: 200px;
+          }
+
+          .element-2 {
+            width: 250px;
+            height: 250px;
+          }
+
+          .element-3 {
+            width: 180px;
+            height: 180px;
+          }
+        }
+
+        @media (max-width: 360px) {
+          .contact-container {
+            padding: 40px 0.5rem;
+          }
+
+          .section-title {
+            font-size: 1.5rem;
+          }
+
+          .info-card, .form-card {
+            padding: 1rem;
+          }
+
+          .contact-item {
+            padding: 0.625rem;
+            gap: 0.625rem;
+          }
+
+          .contact-icon {
+            width: 36px;
+            height: 36px;
           }
         }
       `}</style>
@@ -755,7 +830,7 @@ const Contact = () => {
             Let's Connect
           </h2>
           <p className={`section-subtitle ${isVisible ? 'visible' : ''}`}>
-            <Zap size={20} />
+            <Zap size={18} />
             Ready to bring your ideas to life? Let's start a conversation!
           </p>
 
@@ -763,7 +838,7 @@ const Contact = () => {
             <div className={`contact-info ${isVisible ? 'visible' : ''}`}>
               <div className="info-card">
                 <h3 className="info-title">
-                  <Sparkles size={22} />
+                  <Sparkles size={20} />
                   Get In Touch
                 </h3>
                 <div className="contact-items">
@@ -778,42 +853,25 @@ const Contact = () => {
                       onMouseLeave={() => setHoveredItem(null)}
                     >
                       <div className="contact-icon">
-                        <item.icon size={20} color="#ffffff" />
+                        <item.icon size={18} color="#ffffff" />
                       </div>
                       <div className="contact-details">
                         <div className="contact-label">{item.label}</div>
                         <div className="contact-value">{item.value}</div>
                       </div>
-                      <ExternalLink size={16} color="#707070" />
+                      <ExternalLink size={14} color="#707070" />
                     </a>
                   ))}
                 </div>
               </div>
 
-              <div className="social-links">
-                <a
-                  href="https://www.linkedin.com/in/ishan-wijesinghe-5200a1318/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="social-link"
-                >
-                  <Linkedin size={20} />
-                </a>
-                <a
-                  href="https://github.com/Dilhara2002"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="social-link"
-                >
-                  <Github size={20} />
-                </a>
-              </div>
+             
             </div>
 
             <div className={`contact-form ${isVisible ? 'visible' : ''}`}>
               <div className="form-card">
                 <h3 className="form-title">
-                  <MessageCircle size={22} />
+                  <MessageCircle size={20} />
                   Send Message
                 </h3>
                 <form onSubmit={handleSubmit}>
@@ -880,7 +938,7 @@ const Contact = () => {
                       </>
                     ) : (
                       <>
-                        <Send size={18} />
+                        <Send size={16} />
                         Send Message
                       </>
                     )}
@@ -892,9 +950,9 @@ const Contact = () => {
 
           <div className={`footer-note ${isVisible ? 'visible' : ''}`}>
             <p>
-              <Star size={16} />
+              <Star size={14} />
               I typically respond within 24 hours. Let's create something amazing together! 
-              <Sparkles size={16} />
+              <Sparkles size={14} />
             </p>
           </div>
         </div>
