@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import pimage from "../assets/DishCraft.mov";
 import { Play, Github, ExternalLink, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 
 // NOTE: Please replace these with your actual project images
@@ -13,7 +12,6 @@ const projects = [
     description: "Developed a full-stack salon management web application to handle appointments, clients, and services efficiently. Implemented server-side rendering with EJS and designed a relational SQL database schema for robust data management.",
     image: project1Image,
     github: "https://github.com/Dilhara2002/Salon_Diamond_Management-.git",
-    live: "https://github.com/Dilhara2002/Salon_Diamond_Management-.git",
     tags: ["Node.js", "Express.js", "EJS", "SQL"],
     accentColor: "#6366f1"
   },

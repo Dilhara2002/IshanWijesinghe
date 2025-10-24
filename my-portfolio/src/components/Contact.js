@@ -89,9 +89,9 @@ const Contact = () => {
     }
   ];
 
-  const particles = Array.from({ length: 20 }, (_, i) => ({
+  const particles = Array.from({ length: 15 }, (_, i) => ({
     id: i,
-    size: Math.random() * 4 + 2,
+    size: Math.random() * 3 + 1,
     left: Math.random() * 100,
     delay: Math.random() * 15,
     duration: 15 + Math.random() * 10
@@ -263,19 +263,20 @@ const Contact = () => {
         .contact-container {
           max-width: 1280px;
           margin: 0 auto;
-          padding: 100px 3rem;
+          padding: 80px 1rem;
           position: relative;
           z-index: 10;
         }
 
         .section-title {
-          font-size: 4rem;
+          font-size: 2.5rem;
           font-weight: 800;
           text-align: center;
-          margin-bottom: 1.5rem;
+          margin-bottom: 1rem;
           color: #ffffff;
           opacity: 0;
           letter-spacing: -0.02em;
+          line-height: 1.2;
         }
 
         .section-title.visible {
@@ -285,14 +286,16 @@ const Contact = () => {
         .section-subtitle {
           text-align: center;
           color: #a0a0a0;
-          font-size: 1.3rem;
-          margin-bottom: 4rem;
+          font-size: 1rem;
+          margin-bottom: 3rem;
           opacity: 0;
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 0.7rem;
+          gap: 0.5rem;
           font-weight: 400;
+          line-height: 1.5;
+          padding: 0 1rem;
         }
 
         .section-subtitle.visible {
@@ -301,8 +304,8 @@ const Contact = () => {
 
         .contact-content {
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 5rem;
+          grid-template-columns: 1fr;
+          gap: 3rem;
           align-items: start;
         }
 
@@ -319,9 +322,9 @@ const Contact = () => {
           background: rgba(255, 255, 255, 0.03);
           backdrop-filter: blur(30px);
           border: 1px solid rgba(255, 255, 255, 0.08);
-          border-radius: 24px;
-          padding: 3rem;
-          margin-bottom: 2.5rem;
+          border-radius: 20px;
+          padding: 2rem 1.5rem;
+          margin-bottom: 2rem;
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -333,27 +336,27 @@ const Contact = () => {
         }
 
         .info-title {
-          font-size: 1.75rem;
+          font-size: 1.5rem;
           font-weight: 700;
           color: #ffffff;
-          margin-bottom: 2rem;
+          margin-bottom: 1.5rem;
           display: flex;
           align-items: center;
-          gap: 0.7rem;
+          gap: 0.5rem;
         }
 
         .contact-items {
           display: flex;
           flex-direction: column;
-          gap: 1.5rem;
+          gap: 1rem;
         }
 
         .contact-item {
           display: flex;
           align-items: center;
-          gap: 1.2rem;
-          padding: 1.3rem;
-          border-radius: 16px;
+          gap: 1rem;
+          padding: 1rem;
+          border-radius: 12px;
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           cursor: pointer;
           text-decoration: none;
@@ -369,9 +372,9 @@ const Contact = () => {
         }
 
         .contact-icon {
-          width: 56px;
-          height: 56px;
-          border-radius: 14px;
+          width: 48px;
+          height: 48px;
+          border-radius: 12px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -388,33 +391,36 @@ const Contact = () => {
 
         .contact-details {
           flex: 1;
+          min-width: 0;
         }
 
         .contact-label {
-          font-size: 0.95rem;
+          font-size: 0.85rem;
           color: #a0a0a0;
-          margin-bottom: 0.4rem;
+          margin-bottom: 0.3rem;
           font-weight: 500;
           text-transform: uppercase;
           letter-spacing: 0.05em;
         }
 
         .contact-value {
-          font-size: 1.05rem;
+          font-size: 0.95rem;
           color: #ffffff;
           font-weight: 600;
+          word-break: break-word;
         }
 
         .social-links {
           display: flex;
-          gap: 1.2rem;
+          gap: 1rem;
           justify-content: center;
+          flex-wrap: wrap;
         }
 
         .social-link {
-          width: 56px;
-          height: 56px;
-          border-radius: 14px;
+          width: 50px;
+          height: 50px;
+          border-radius: 12px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -445,8 +451,8 @@ const Contact = () => {
           background: rgba(255, 255, 255, 0.03);
           backdrop-filter: blur(30px);
           border: 1px solid rgba(255, 255, 255, 0.08);
-          border-radius: 24px;
-          padding: 3rem;
+          border-radius: 20px;
+          padding: 2rem 1.5rem;
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -458,46 +464,47 @@ const Contact = () => {
         }
 
         .form-title {
-          font-size: 1.75rem;
+          font-size: 1.5rem;
           font-weight: 700;
           color: #ffffff;
-          margin-bottom: 2.5rem;
+          margin-bottom: 2rem;
           display: flex;
           align-items: center;
-          gap: 0.7rem;
+          gap: 0.5rem;
         }
 
         .form-group {
-          margin-bottom: 1.8rem;
+          margin-bottom: 1.5rem;
         }
 
         .form-label {
           display: block;
           color: #e0e0e0;
           font-weight: 600;
-          margin-bottom: 0.7rem;
-          font-size: 0.95rem;
+          margin-bottom: 0.5rem;
+          font-size: 0.9rem;
           text-transform: uppercase;
           letter-spacing: 0.05em;
         }
 
         .form-input {
           width: 100%;
-          padding: 1.2rem 0.8rem;
+          padding: 1rem;
           background: rgba(255, 255, 255, 0.05);
           border: 1px solid rgba(255, 255, 255, 0.1);
-          border-radius: 12px;
+          border-radius: 10px;
           color: #ffffff;
           font-size: 1rem;
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           font-family: inherit;
+          box-sizing: border-box;
         }
 
         .form-input:focus {
           outline: none;
           border-color: #6366f1;
           background: rgba(255, 255, 255, 0.08);
-          box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+          box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
           transform: translateY(-2px);
         }
 
@@ -507,25 +514,25 @@ const Contact = () => {
 
         textarea.form-input {
           resize: vertical;
-          min-height: 140px;
+          min-height: 120px;
           font-family: inherit;
         }
 
         .submit-button {
           width: 100%;
-          padding: 1.4rem 2rem;
+          padding: 1.2rem 2rem;
           background: #6366f1;
           color: white;
           border: none;
-          border-radius: 12px;
-          font-size: 1.05rem;
+          border-radius: 10px;
+          font-size: 1rem;
           font-weight: 700;
           cursor: pointer;
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 0.7rem;
+          gap: 0.5rem;
           text-transform: uppercase;
           letter-spacing: 0.05em;
           box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
@@ -552,10 +559,10 @@ const Contact = () => {
         }
 
         .loading-spinner {
-          width: 22px;
-          height: 22px;
-          border: 3px solid transparent;
-          border-top: 3px solid #ffffff;
+          width: 20px;
+          height: 20px;
+          border: 2px solid transparent;
+          border-top: 2px solid #ffffff;
           border-radius: 50%;
           animation: spin 1s linear infinite;
         }
@@ -563,11 +570,11 @@ const Contact = () => {
         .footer-note {
           text-align: center;
           color: #a0a0a0;
-          margin-top: 4rem;
-          padding-top: 3rem;
+          margin-top: 3rem;
+          padding-top: 2rem;
           border-top: 1px solid rgba(255, 255, 255, 0.08);
           opacity: 0;
-          font-size: 1.05rem;
+          font-size: 0.95rem;
         }
 
         .footer-note.visible {
@@ -578,36 +585,37 @@ const Contact = () => {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 0.7rem;
+          gap: 0.5rem;
+          flex-wrap: wrap;
+          line-height: 1.5;
         }
 
-        @media (max-width: 968px) {
-          .contact-content {
-            grid-template-columns: 1fr;
-            gap: 3rem;
-          }
-
-          .contact-info, .contact-form {
-            animation: fadeInUp 1s ease-out 0.4s forwards !important;
-            transform: none !important;
-          }
-        }
-
-        @media (max-width: 768px) {
+        /* Tablet Styles */
+        @media (min-width: 768px) {
           .contact-container {
-            padding: 80px 1.5rem;
+            padding: 100px 2rem;
           }
 
           .section-title {
-            font-size: 3rem;
+            font-size: 3.5rem;
           }
 
           .section-subtitle {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            margin-bottom: 4rem;
+          }
+
+          .contact-content {
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
           }
 
           .info-card, .form-card {
-            padding: 2rem;
+            padding: 2.5rem;
+          }
+
+          .info-title, .form-title {
+            font-size: 1.75rem;
           }
 
           .contact-items {
@@ -615,21 +623,104 @@ const Contact = () => {
           }
 
           .contact-item {
-            padding: 1rem;
+            padding: 1.2rem;
           }
 
           .contact-icon {
-            width: 48px;
-            height: 48px;
-          }
-
-          .social-links {
-            gap: 1rem;
+            width: 52px;
+            height: 52px;
           }
 
           .social-link {
-            width: 48px;
-            height: 48px;
+            width: 54px;
+            height: 54px;
+          }
+        }
+
+        /* Desktop Styles */
+        @media (min-width: 1024px) {
+          .contact-container {
+            padding: 100px 3rem;
+          }
+
+          .section-title {
+            font-size: 4rem;
+          }
+
+          .section-subtitle {
+            font-size: 1.3rem;
+          }
+
+          .contact-content {
+            gap: 5rem;
+          }
+
+          .info-card, .form-card {
+            padding: 3rem;
+            border-radius: 24px;
+          }
+
+          .contact-items {
+            gap: 1.5rem;
+          }
+
+          .contact-item {
+            padding: 1.3rem;
+          }
+
+          .contact-icon {
+            width: 56px;
+            height: 56px;
+          }
+
+          .social-link {
+            width: 56px;
+            height: 56px;
+          }
+        }
+
+        /* Small mobile adjustments */
+        @media (max-width: 360px) {
+          .contact-container {
+            padding: 60px 0.5rem;
+          }
+
+          .section-title {
+            font-size: 2rem;
+          }
+
+          .section-subtitle {
+            font-size: 0.9rem;
+            padding: 0 0.5rem;
+          }
+
+          .info-card, .form-card {
+            padding: 1.5rem 1rem;
+          }
+
+          .contact-item {
+            padding: 0.8rem;
+            gap: 0.8rem;
+          }
+
+          .contact-icon {
+            width: 42px;
+            height: 42px;
+          }
+
+          .contact-icon svg {
+            width: 20px;
+            height: 20px;
+          }
+
+          .social-link {
+            width: 44px;
+            height: 44px;
+          }
+
+          .social-link svg {
+            width: 20px;
+            height: 20px;
           }
         }
       `}</style>
@@ -664,7 +755,7 @@ const Contact = () => {
             Let's Connect
           </h2>
           <p className={`section-subtitle ${isVisible ? 'visible' : ''}`}>
-            <Zap size={22} />
+            <Zap size={20} />
             Ready to bring your ideas to life? Let's start a conversation!
           </p>
 
@@ -672,7 +763,7 @@ const Contact = () => {
             <div className={`contact-info ${isVisible ? 'visible' : ''}`}>
               <div className="info-card">
                 <h3 className="info-title">
-                  <Sparkles size={26} />
+                  <Sparkles size={22} />
                   Get In Touch
                 </h3>
                 <div className="contact-items">
@@ -687,13 +778,13 @@ const Contact = () => {
                       onMouseLeave={() => setHoveredItem(null)}
                     >
                       <div className="contact-icon">
-                        <item.icon size={24} color="#ffffff" />
+                        <item.icon size={20} color="#ffffff" />
                       </div>
                       <div className="contact-details">
                         <div className="contact-label">{item.label}</div>
                         <div className="contact-value">{item.value}</div>
                       </div>
-                      <ExternalLink size={18} color="#707070" />
+                      <ExternalLink size={16} color="#707070" />
                     </a>
                   ))}
                 </div>
@@ -706,7 +797,7 @@ const Contact = () => {
                   rel="noopener noreferrer"
                   className="social-link"
                 >
-                  <Linkedin size={24} />
+                  <Linkedin size={20} />
                 </a>
                 <a
                   href="https://github.com/Dilhara2002"
@@ -714,16 +805,15 @@ const Contact = () => {
                   rel="noopener noreferrer"
                   className="social-link"
                 >
-                  <Github size={24} />
+                  <Github size={20} />
                 </a>
-                
               </div>
             </div>
 
             <div className={`contact-form ${isVisible ? 'visible' : ''}`}>
               <div className="form-card">
                 <h3 className="form-title">
-                  <MessageCircle size={26} />
+                  <MessageCircle size={22} />
                   Send Message
                 </h3>
                 <form onSubmit={handleSubmit}>
@@ -790,7 +880,7 @@ const Contact = () => {
                       </>
                     ) : (
                       <>
-                        <Send size={20} />
+                        <Send size={18} />
                         Send Message
                       </>
                     )}
@@ -802,9 +892,9 @@ const Contact = () => {
 
           <div className={`footer-note ${isVisible ? 'visible' : ''}`}>
             <p>
-              <Star size={18} />
+              <Star size={16} />
               I typically respond within 24 hours. Let's create something amazing together! 
-              <Sparkles size={18} />
+              <Sparkles size={16} />
             </p>
           </div>
         </div>
