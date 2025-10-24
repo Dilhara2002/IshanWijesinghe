@@ -1,21 +1,18 @@
 {
   "files": {
     "main.css": "/IshanWijesinghe/static/css/main.e6c13ad2.css",
-    "main.js": "/IshanWijesinghe/static/js/main.3877a663.js",
-    "static/js/453.ececc0a5.chunk.js": "/IshanWijesinghe/static/js/453.ececc0a5.chunk.js",
-    "static/media/DishCraft.mov": "/IshanWijesinghe/static/media/DishCraft.a56878e7b92092c2b7db.mov",
-    "static/media/Dishcraft.png": "/IshanWijesinghe/static/media/Dishcraft.4debac032f2276ecccb4.png",
-    "static/media/Homestock.png": "/IshanWijesinghe/static/media/Homestock.f402e692cbbde2a78744.png",
-    "static/media/profile.JPG": "/IshanWijesinghe/static/media/profile.4d8e2cba8326b0de50ee.JPG",
-    "static/media/salonDiamond.png": "/IshanWijesinghe/static/media/salonDiamond.2b3ed719928aafc67930.png",
+    "main.js": "/IshanWijesinghe/static/js/main.38716e1c.js",
+    "static/media/salonDiamond.png": "/IshanWijesinghe/static/media/salonDiamond.7ec8c654163281db6052.png",
+    "static/media/Homestock.png": "/IshanWijesinghe/static/media/Homestock.821bfffbea6838ed8e77.png",
+    "static/media/p2.JPG": "/IshanWijesinghe/static/media/p2.d056c3acf8dff8800e86.JPG",
+    "static/media/Dishcraft.png": "/IshanWijesinghe/static/media/Dishcraft.167d1acb6c567de32bce.png",
     "static/media/IshanDilharaCV.pdf": "/IshanWijesinghe/static/media/IshanDilharaCV.78805a5d6eac8aa6c2d6.pdf",
     "index.html": "/IshanWijesinghe/index.html",
     "main.e6c13ad2.css.map": "/IshanWijesinghe/static/css/main.e6c13ad2.css.map",
-    "main.3877a663.js.map": "/IshanWijesinghe/static/js/main.3877a663.js.map",
-    "453.ececc0a5.chunk.js.map": "/IshanWijesinghe/static/js/453.ececc0a5.chunk.js.map"
+    "main.38716e1c.js.map": "/IshanWijesinghe/static/js/main.38716e1c.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.3877a663.js"
+    "static/js/main.38716e1c.js"
   ]
 }
