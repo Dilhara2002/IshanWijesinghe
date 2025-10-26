@@ -1,15 +1,14 @@
 import React from 'react';
-// Use the new client API for React 18+ / React 19
-import ReactDOM from 'react-dom/client'; 
-// Import your main application component
-import App from './App'; 
-// Import your main CSS file (optional, but standard)
-import './index.css'; 
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import './index.css';
 
 // Get the root element from public/index.html
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const rootElement = document.getElementById('root');
 
-// Render the App component
+// Create a React root and render the App component
+const root = ReactDOM.createRoot(rootElement);
+
 root.render(
   <React.StrictMode>
     <App />

@@ -5,6 +5,7 @@ import { Play, Github, ExternalLink, ChevronLeft, ChevronRight, Sparkles } from 
 import project1Image from "../assets/salonDiamond.png";
 import project2Image from "../assets/Homestock.png";
 import project3Image from "../assets/Dishcraft.png";
+import project4Image from "../assets/TrendtrackerAI.png";
 
 const projects = [
   {
@@ -30,11 +31,20 @@ const projects = [
     name: "Dish Craft",
     description: "A full-stack recipe management web application enabling users to create, browse, and share cooking recipes online. It uses React and Express.js with MongoDB to manage recipe data efficiently.",
     image: project3Image,
-    github: "https://github.com/Dilhara2002/Dish-Craft.git",
+    github: "https://github.com/Dilhara2002/TrendTracker-AI.git",
     live: "https://www.linkedin.com/in/ishan-wijesinghe-5200a1318",
     tags: ["React", "Node.js", "Express.js", "MongoDB"],
     accentColor: "#ec4899",
     hasLiveDemo: true
+  },
+  {
+    name: "TrendTracker AI",
+    description: "TrendTracker AI is an AI-powered stock market analysis web application that helps users track real-time stock trends and understand market sentiment. It integrates live stock data from Yahoo Finance and analyzes the latest financial news using FinBERT, a specialized NLP model for finance. Built with Streamlit and Python, the app provides interactive charts, sentiment summaries, and actionable insights — all using free and open-source tools.",
+    image: project4Image,
+    github: "https://github.com/Dilhara2002/Dish-Craft.git",
+    tags: ["Python", "Streamlit", "Pandas", "Altair", "yfinance"],
+    accentColor: "#6148ec",
+    hasLiveDemo: false
   }
 ];
 
