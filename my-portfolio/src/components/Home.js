@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import profileImage from "../assets/profile.JPG";
-import cvFile from "../assets/IshanDilharaCV.pdf";
+import cvFile from "../assets/ISHAN_WIJESINGHE_CV.pdf";
 
 
 const Home = () => {
@@ -493,6 +493,7 @@ const Home = () => {
           }
         }
       `}</style>
+      
 
             <section id="home" className="home-container">
                 {/* Animated Background Orbs */}
@@ -515,8 +516,12 @@ const Home = () => {
                         ></div>
                     ))}
                 </div>
+                
+
+      
 
                 <div className="content-grid">
+              
                     {/* Text Content - Left Side */}
                     <div className="text-content">
                         <h1 className="title">Ishan Dilhara Wijesinghe</h1>
