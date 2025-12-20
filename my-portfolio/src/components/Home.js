@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Download, Github, Linkedin, Mail, Sparkles, Code2, Terminal, Cpu } from "lucide-react";
 
 // Assets
-import profileImage from "../assets/profile.JPG";
+import profileImage from "../assets/profile.png";
 import cvFile from "../assets/ISHAN_WIJESINGHE_CV.pdf";
 
 const Home = () => {

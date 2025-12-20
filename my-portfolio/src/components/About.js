@@ -10,7 +10,7 @@ const About = () => {
 
   const stats = [
     { number: "3+", label: "Years Learning", icon: <BookOpen size={24} />, color: "#6366f1" },
-    { number: "15+", label: "Projects Built", icon: <Rocket size={24} />, color: "#a855f7" },
+    { number: "7+", label: "Projects Built", icon: <Rocket size={24} />, color: "#a855f7" },
     { number: "10+", label: "Technologies", icon: <Code size={24} />, color: "#ec4899" },
     { number: "100%", label: "Dedication", icon: <Heart size={24} />, color: "#22c55e" }
   ];
@@ -33,7 +33,7 @@ const About = () => {
     { 
       icon: <Brain size={28} />, 
       title: "Focus Area", 
-      desc: "UI/UX & AI Innovations",
+      desc: "Backend & AI Innovations",
       gradient: "linear-gradient(135deg, #22c55e, #10b981)",
       border: "rgba(34, 197, 94, 0.3)"
     },

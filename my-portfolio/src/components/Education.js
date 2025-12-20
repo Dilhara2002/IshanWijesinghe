@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { GraduationCap, Calendar, MapPin, Sparkles, BookOpen, Award, Target, TrendingUp, Star } from "lucide-react";
+import { GraduationCap, Calendar, MapPin, Sparkles, BookOpen, Award, Target, TrendingUp, Star, ShieldCheck } from "lucide-react";
 
 const educationHistory = [
   {
@@ -8,11 +8,43 @@ const educationHistory = [
     duration: "2023 – 2026 (Expected)",
     location: "Malabe, Sri Lanka",
     details: "Focusing on Full-Stack Development and Software Engineering. Developing a strong command over modern web architectures, database management, and professional coding standards.",
-    achievements: ["Dean's List 2023", "IT Faculty Project Recognition"],
     icon: GraduationCap,
     color: "#6366f1",
     gradient: "linear-gradient(135deg, #6366f1, #8b5cf6)",
     status: "Current Undergraduate"
+  },
+  {
+    institution: "SLIIT Faculty of Computing",
+    degree: "AI/ML Engineer - Stage 1",
+    duration: "Issued: Nov 22, 2025",
+    location: "Center for Open and Distance Education",
+    details: "Completed specialized training in Artificial Intelligence and Machine Learning foundations through the Industry Engagement Unit. [ID: gzzsbnqbp1]",
+    icon: ShieldCheck,
+    color: "#10b981",
+    gradient: "linear-gradient(135deg, #10b981, #059669)",
+    status: "Professional Certificate"
+  },
+  {
+    institution: "LinkedIn Learning",
+    degree: "Introduction to Career Skills in Software Development",
+    duration: "Completed: Dec 18, 2024",
+    location: "Online Professional Development",
+    details: "Mastered core career management and tech career skills essential for modern software engineering roles. [ID: 1728bcda5711...]",
+    icon: Award,
+    color: "#0077b5",
+    gradient: "linear-gradient(135deg, #0077b5, #00a0dc)",
+    status: "Certification"
+  },
+  {
+    institution: "LinkedIn Learning / PMI",
+    degree: "Introduction to Analytics Engineering",
+    duration: "Completed: Dec 13, 2024",
+    location: "Online Professional Development",
+    details: "Gained proficiency in Data Engineering and Data Analytics concepts, authorized by the Project Management Institute (PMI). [ID: 7bla1055...]",
+    icon: TrendingUp,
+    color: "#f59e0b",
+    gradient: "linear-gradient(135deg, #f59e0b, #ef4444)",
+    status: "Certification"
   }
 ];
 
@@ -37,11 +69,9 @@ const Education = () => {
 
   return (
     <section id="education" ref={sectionRef} style={styles.section}>
-      {/* Background Decor */}
       <div style={styles.glowBg} />
       <div style={styles.gridBg} />
 
-      {/* Floating Particles */}
       {[...Array(5)].map((_, i) => (
         <div key={i} className="particle" style={{
           ...styles.particle,
@@ -53,29 +83,23 @@ const Education = () => {
       ))}
 
       <div style={{ ...styles.container, animation: isVisible ? "fadeIn 1s ease-out" : "none" }}>
-        {/* Header */}
         <div style={styles.header}>
           <div style={styles.badge}>
             <BookOpen size={20} color="#6366f1" />
-            <span>ACADEMIC JOURNEY</span>
+            <span>ACADEMIC & PROFESSIONAL JOURNEY</span>
           </div>
-
-          <h1 style={styles.title}>My Education</h1>
-
+          <h1 style={styles.title}>Education & Certifications</h1>
           <div style={styles.separator}>
             <div style={styles.line} />
             <Sparkles size={24} color="#6366f1" />
             <div style={styles.line} />
           </div>
-
           <p style={styles.subtitle}>
-            Acquiring technical excellence and professional skills at Sri Lanka's leading IT institute.
+            Continuous learning journey through formal degree studies and professional specialized certifications.
           </p>
         </div>
 
-        {/* Timeline Container */}
         <div style={styles.timelineWrapper}>
-          {/* Vertical Progress Line */}
           <div style={{
             ...styles.timelineLine,
             height: isVisible ? "100%" : "0%",
@@ -93,7 +117,6 @@ const Education = () => {
                 onMouseLeave={() => setHoveredCard(null)}
                 style={styles.timelineItem}
               >
-                {/* Timeline Icon Node */}
                 <div style={styles.timelineNode}>
                   <div style={{
                     ...styles.nodeRing,
@@ -109,14 +132,12 @@ const Education = () => {
                   </div>
                 </div>
 
-                {/* Education Card */}
                 <div style={{
                   ...styles.eduCard,
                   borderColor: isHovered ? edu.color : "rgba(255, 255, 255, 0.05)",
                   transform: isHovered ? "translateX(10px)" : "translateX(0)",
                   boxShadow: isHovered ? `0 20px 40px ${edu.color}20` : "none"
                 }}>
-                  {/* Card Status Badge */}
                   <div style={{
                     ...styles.statusBadge,
                     background: isHovered ? edu.gradient : "rgba(99, 102, 241, 0.1)",
@@ -141,20 +162,6 @@ const Education = () => {
                   </div>
 
                   <p style={styles.eduDetails}>{edu.details}</p>
-
-                  <div style={styles.achievementsBox}>
-                    <div style={styles.achievementsTitle}>
-                      <TrendingUp size={18} color={edu.color} />
-                      <span>KEY ACHIEVEMENTS</span>
-                    </div>
-                    <div style={styles.tagsWrapper}>
-                      {edu.achievements.map((ach, i) => (
-                        <div key={i} style={{ ...styles.achTag, borderColor: `${edu.color}40` }}>
-                          <Award size={14} color={edu.color} /> {ach}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
                 </div>
               </div>
             );
@@ -164,9 +171,7 @@ const Education = () => {
 
       <style>{`
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes pulse { 0% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; } 100% { transform: translate(-50%, -50%) scale(1.4); opacity: 0; } }
-        @keyframes gridMove { 0% { transform: translateY(0); } 100% { transform: translateY(60px); } }
         .particle { position: absolute; border-radius: 50%; opacity: 0.2; animation: float 10s infinite ease-in-out; }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
       `}</style>
@@ -198,10 +203,6 @@ const styles = {
   metaInfo: { display: "flex", gap: "25px", marginBottom: "25px", flexWrap: "wrap" },
   metaItem: { display: "flex", alignItems: "center", gap: "8px", color: "#9ca3af", fontSize: "0.95rem" },
   eduDetails: { color: "#d1d5db", lineHeight: "1.8", marginBottom: "30px" },
-  achievementsBox: { borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: "25px" },
-  achievementsTitle: { display: "flex", alignItems: "center", gap: "10px", color: "#fff", fontSize: "0.85rem", fontWeight: "800", marginBottom: "15px" },
-  tagsWrapper: { display: "flex", gap: "12px", flexWrap: "wrap" },
-  achTag: { display: "flex", alignItems: "center", gap: "8px", background: "rgba(255,255,255,0.03)", padding: "8px 16px", borderRadius: "12px", fontSize: "0.85rem", color: "#e5e7eb", border: "1px solid" }
 };
 
 export default Education;

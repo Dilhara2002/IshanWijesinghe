@@ -102,7 +102,7 @@ const Navbar = () => {
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent"
             }}>
-              ISHAN
+              ISHAN WIJESINGHE
             </span>
             <div style={{
               width: "8px",
