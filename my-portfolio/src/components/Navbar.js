@@ -11,7 +11,7 @@ const Navbar = () => {
       setScrolled(window.scrollY > 50);
 
       // Detect active section
-      const sections = ["home", "about", "projects", "skills", "education", "certificates", "contact"];
+      const sections = ["home", "about", "projects", "skills", "education", "contact"];
       const current = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -33,7 +33,6 @@ const Navbar = () => {
     { id: "projects", label: "Projects", icon: Folder },
     { id: "skills", label: "Skills", icon: Code },
     { id: "education", label: "Education", icon: GraduationCap },
-    { id: "certificates", label: "Certificates", icon: Award },
     { id: "contact", label: "Contact", icon: Mail }
   ];
 
