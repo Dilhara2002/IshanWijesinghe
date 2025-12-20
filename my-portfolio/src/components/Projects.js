@@ -6,8 +6,21 @@ import project1Image from "../assets/salonDiamond.png";
 import project2Image from "../assets/Homestock.png";
 import project3Image from "../assets/Dishcraft.png";
 import project4Image from "../assets/TrendtrackerAI.png";
+import project5Image from "../assets/LakTravelers.png";
 
 const projects = [
+  {
+    name: "Lak Travelers",
+    description: "A professional MERN stack tourism platform featuring role-based access control. Integrated with advanced security via Email OTP verification, a custom AI Travel Assistant for itineraries, and a high-performance dashboard with Base64 profile image handling.",
+    image: project5Image,
+    tech: ["React", "Node.js", "Express.js", "MongoDB", "Tailwind CSS", "Nodemailer"],
+    link: "https://github.com/Dilhara2002/lak-travelers.git",
+    color: "#45ed8bff",
+    gradient: "linear-gradient(135deg, #67ac74ff, #33e763ff)",
+    hasLiveDemo: false,
+    featured: true,
+    category: "Full-Stack"
+  },
   {
     name: "Salon Diamond System",
     description: "A comprehensive full-stack salon management platform. Streamlines appointments, client tracking, and service management with a custom SQL backend and dynamic EJS rendering.",
