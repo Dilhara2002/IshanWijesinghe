@@ -10,26 +10,18 @@ import project5Image from "../assets/LakTravelers.png";
 
 const projects = [
   {
-  name: "Lak Travelers",
-  description: "An AI-driven Tourism ecosystem utilizing GraphRAG for spatial itinerary planning. Features the CCTNS (Cognitive Community Trust) reputation model, secure Email OTP authentication, and a professional PDF itinerary engine. Fully optimized as a PWA for native mobile experience.",
-  image: project5Image,
-  tech: [
-    "React", 
-    "Node.js", 
-    "MongoDB", 
-    "Groq AI (Llama 3.3)", 
-    "GraphRAG", 
-    "PWA", 
-    "Tailwind CSS", 
-    "Nodemailer"
-  ],
-  link: "https://github.com/Dilhara2002/lak-travelers.git",
-  color: "#3b82f6", // Updated to a more professional Blue to match the Assistant UI
-  gradient: "linear-gradient(135deg, #1e40af, #3b82f6)",
-  hasLiveDemo: false,
-  featured: true,
   category: "AI & Full-Stack"
-},
+    name: "Lak Travelers",
+    description: "An AI-driven Tourism ecosystem utilizing GraphRAG for spatial itinerary planning. Features the CCTNS reputation model, secure Email OTP, and a professional PDF itinerary engine. Fully optimized as a PWA.",
+    image: project5Image,
+    tech: ["React", "Node.js", "MongoDB", "Groq AI", "GraphRAG", "PWA", "Tailwind"],
+    link: "https://github.com/Dilhara2002/lak-travelers.git",
+    color: "#3b82f6", 
+    gradient: "linear-gradient(135deg, #1e40af, #3b82f6)",
+    hasLiveDemo: false,
+    featured: true,
+    category: "AI & Full-Stack"
+  },
   {
     name: "Salon Diamond System",
     description: "A comprehensive full-stack salon management platform. Streamlines appointments, client tracking, and service management with a custom SQL backend and dynamic EJS rendering.",
@@ -70,7 +62,7 @@ const projects = [
   },
   {
     name: "TrendTracker AI",
-    description: "Advanced financial sentiment analyzer. Leverages FinBERT NLP models to process Yahoo Finance data and financial news, providing actionable real-time market sentiment summaries.",
+    description: "Advanced financial sentiment analyzer. Leverages FinBERT NLP models to process Yahoo Finance data and news, providing actionable real-time market sentiment summaries.",
     image: project4Image,
     tech: ["Python", "Streamlit", "NLP", "Pandas"],
     link: "https://github.com/Dilhara2002/Dish-Craft.git",
@@ -92,12 +84,10 @@ const Projects = () => {
 
   return (
     <section id="projects" style={styles.section}>
-      {/* Background Decor */}
       <div style={styles.glowBg} />
       <div style={styles.gridBg} />
 
       <div style={styles.container}>
-        {/* Header Section */}
         <div style={styles.header}>
           <div style={styles.badge}>
             <Layers size={18} color="#6366f1" />
@@ -116,7 +106,6 @@ const Projects = () => {
             A showcase of my technical journey—from complex enterprise management systems to AI-powered market analysis.
           </p>
 
-          {/* Filters */}
           <div style={styles.filterGroup}>
             {["all", "featured"].map((filter) => (
               <button
@@ -135,8 +124,8 @@ const Projects = () => {
           </div>
         </div>
 
-        {/* Projects Grid */}
-        <div style={styles.grid}>
+        {/* Updated Grid for 3x3 Balance */}
+        <div className="projects-grid" style={styles.grid}>
           {filteredProjects.map((project, index) => (
             <div
               key={index}
@@ -149,7 +138,6 @@ const Projects = () => {
                 boxShadow: hoveredIndex === index ? `0 30px 60px ${project.color}30` : "0 10px 30px rgba(0,0,0,0.3)"
               }}
             >
-              {/* Image & Overlay Part */}
               <div style={styles.imageContainer}>
                 <img
                   src={project.image}
@@ -160,16 +148,10 @@ const Projects = () => {
                   }}
                 />
                 <div style={styles.imgOverlay} />
-                
-                {/* Tech Icon */}
                 <div style={{ ...styles.techIcon, border: `1px solid ${project.color}40` }}>
                   <Code2 size={20} color={project.color} />
                 </div>
-
-                {/* Floating Category */}
                 <div style={{ ...styles.categoryBadge, color: project.color }}>{project.category}</div>
-
-                {/* GitHub & Live Links floating on image */}
                 <div style={{
                   ...styles.quickLinks,
                   opacity: hoveredIndex === index ? 1 : 0,
@@ -180,13 +162,13 @@ const Projects = () => {
                 </div>
               </div>
 
-              {/* Text Part */}
               <div style={styles.cardBody}>
                 <div style={styles.cardHeaderRow}>
                   <h3 style={styles.cardTitle}>{project.name}</h3>
                   {project.featured && <Star size={16} color={project.color} fill={project.color} />}
                 </div>
 
+                {/* flex-grow ensures this takes up space to keep buttons aligned */}
                 <p style={styles.cardDesc}>{project.description}</p>
 
                 <div style={styles.techStack}>
@@ -216,8 +198,21 @@ const Projects = () => {
       </div>
 
       <style>{`
+        /* Forces 3 columns on desktops, 2 on tablets, 1 on mobile */
+        .projects-grid {
+          display: grid;
+          gap: 30px;
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        @media (max-width: 1100px) {
+          .projects-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+          .projects-grid { grid-template-columns: 1fr; }
+        }
+
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
       `}</style>
     </section>
   );
@@ -225,9 +220,9 @@ const Projects = () => {
 
 const styles = {
   section: { minHeight: "100vh", background: "#050505", padding: "100px 20px", position: "relative", overflow: "hidden" },
-  glowBg: { position: "absolute", inset: 0, background: "radial-gradient(circle at 30% 40%, rgba(99, 102, 241, 0.05) 0%, transparent 50%)" },
-  gridBg: { position: "absolute", inset: 0, opacity: 0.1, backgroundImage: "linear-gradient(#6366f1 1px, transparent 1px), linear-gradient(90deg, #6366f1 1px, transparent 1px)", backgroundSize: "60px 60px" },
-  container: { position: "relative", zIndex: 10, maxWidth: "1300px", margin: "0 auto" },
+  glowBg: { position: "absolute", inset: 0, background: "radial-gradient(circle at 30% 40%, rgba(99, 102, 241, 0.05) 0%, transparent 50%)", pointerEvents: 'none' },
+  gridBg: { position: "absolute", inset: 0, opacity: 0.1, backgroundImage: "linear-gradient(#6366f1 1px, transparent 1px), linear-gradient(90deg, #6366f1 1px, transparent 1px)", backgroundSize: "60px 60px", pointerEvents: 'none' },
+  container: { position: "relative", zIndex: 10, maxWidth: "1400px", margin: "0 auto" },
   header: { textAlign: "center", marginBottom: "80px" },
   badge: { display: "inline-flex", alignItems: "center", gap: "10px", background: "rgba(99, 102, 241, 0.1)", padding: "10px 25px", borderRadius: "50px", color: "#6366f1", fontSize: "0.8rem", fontWeight: "700", letterSpacing: "2px" },
   title: { fontSize: "clamp(2.5rem, 5vw, 4.5rem)", fontWeight: "900", color: "#fff", margin: "20px 0" },
@@ -235,23 +230,51 @@ const styles = {
   line: { width: "50px", height: "2px", background: "#6366f1", borderRadius: "2px" },
   subtitle: { color: "#9ca3af", fontSize: "1.1rem", maxWidth: "700px", margin: "25px auto" },
   filterGroup: { display: "flex", gap: "15px", justifyContent: "center", marginTop: "40px" },
-  filterBtn: { padding: "12px 25px", borderRadius: "50px", cursor: "pointer", transition: "0.3s", fontWeight: "600", fontSize: "0.9rem" },
-  grid: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))", gap: "30px" },
-  card: { background: "rgba(255,255,255,0.02)", backdropFilter: "blur(20px)", borderRadius: "24px", overflow: "hidden", transition: "all 0.4s ease" },
-  imageContainer: { height: "230px", position: "relative", overflow: "hidden" },
+  filterBtn: { padding: "12px 25px", borderRadius: "50px", cursor: "pointer", transition: "0.3s", fontWeight: "600", fontSize: "0.9rem", color: "#9ca3af" },
+  
+  // Grid layout
+  grid: { 
+    display: "grid", 
+    gap: "30px",
+    width: "100%"
+  },
+
+  card: { 
+    background: "rgba(255,255,255,0.02)", 
+    backdropFilter: "blur(20px)", 
+    borderRadius: "24px", 
+    overflow: "hidden", 
+    transition: "all 0.4s ease",
+    display: "flex",
+    flexDirection: "column",
+    height: "100%" // Force cards to fill vertical space
+  },
+  imageContainer: { height: "230px", position: "relative", overflow: "hidden", flexShrink: 0 },
   image: { width: "100%", height: "100%", objectFit: "cover", transition: "0.6s" },
   imgOverlay: { position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent, rgba(0,0,0,0.8))" },
   techIcon: { position: "absolute", top: "15px", right: "15px", background: "rgba(0,0,0,0.6)", padding: "10px", borderRadius: "12px" },
   categoryBadge: { position: "absolute", top: "15px", left: "15px", background: "rgba(0,0,0,0.6)", padding: "5px 12px", borderRadius: "10px", fontSize: "0.75rem", fontWeight: "700" },
   quickLinks: { position: "absolute", bottom: "15px", right: "15px", display: "flex", gap: "10px", transition: "0.3s" },
   iconLink: { background: "rgba(0,0,0,0.8)", border: "1px solid #fff", color: "#fff", padding: "8px", borderRadius: "10px", display: "flex" },
-  cardBody: { padding: "30px", display: "flex", flexDirection: "column", gap: "15px" },
+  
+  cardBody: { 
+    padding: "30px", 
+    display: "flex", 
+    flexDirection: "column", 
+    flexGrow: 1, // Makes the body expand to fill the card
+    gap: "15px" 
+  },
   cardHeaderRow: { display: "flex", justifyContent: "space-between", alignItems: "center" },
   cardTitle: { color: "#fff", fontSize: "1.5rem", fontWeight: "800", margin: 0 },
-  cardDesc: { color: "#9ca3af", fontSize: "0.95rem", lineHeight: "1.7" },
-  techStack: { display: "flex", flexWrap: "wrap", gap: "8px" },
+  cardDesc: { 
+    color: "#9ca3af", 
+    fontSize: "0.95rem", 
+    lineHeight: "1.7",
+    flexGrow: 1 // Important: pushes the tech stack and button to the bottom
+  },
+  techStack: { display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "10px" },
   techTag: { border: "1px solid", padding: "5px 12px", borderRadius: "10px", fontSize: "0.75rem", fontWeight: "600", display: "flex", alignItems: "center", gap: "5px" },
-  viewBtn: { marginTop: "15px", display: "flex", alignItems: "center", justifyContent: "center", gap: "10px", padding: "12px", borderRadius: "50px", color: "#fff", textDecoration: "none", fontWeight: "700", transition: "0.3s", border: "2px solid" }
+  viewBtn: { marginTop: "auto", display: "flex", alignItems: "center", justifyContent: "center", gap: "10px", padding: "12px", borderRadius: "50px", color: "#fff", textDecoration: "none", fontWeight: "700", transition: "0.3s", border: "2px solid" }
 };
 
 export default Projects;
