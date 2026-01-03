@@ -10,7 +10,6 @@ import project5Image from "../assets/LakTravelers.png";
 
 const projects = [
   {
-  category: "AI & Full-Stack"
     name: "Lak Travelers",
     description: "An AI-driven Tourism ecosystem utilizing GraphRAG for spatial itinerary planning. Features the CCTNS reputation model, secure Email OTP, and a professional PDF itinerary engine. Fully optimized as a PWA.",
     image: project5Image,
