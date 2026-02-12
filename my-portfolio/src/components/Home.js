@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react"; // Removed useState
 import { motion, useSpring, useMotionValue } from "framer-motion";
-import { Cpu, Globe, Zap, Layers, Github, Linkedin, Mail, Download, Code2, Terminal } from "lucide-react";
+import { Cpu, Globe, Github, Linkedin, Mail, Download, Code2, Terminal } from "lucide-react"; // Removed Zap, Layers
 
 // Assets
 import profileImage from "../assets/profilex.PNG";
@@ -28,12 +28,11 @@ const HyperHome = () => {
       {/* BACKGROUND: 3D DEPTH GRID */}
       <div className="spatial-void">
         <div className="star-field" />
-        <div className="moving-scanline" /> {/* NEW: SCANLINE ANIMATION */}
+        <div className="moving-scanline" />
         <motion.div 
           className="perspective-grid"
           style={{ rotateX: springY, rotateY: springX }}
         />
-        {/* NEW: DATA RAIN */}
         <div className="data-rain">
            {Array(8).fill("0101_SYSTEM_LOG_ISHAN_WIJESINGHE_").map((t, i) => (
             <div key={i} className="rain-row">{t}</div>
@@ -43,7 +42,7 @@ const HyperHome = () => {
 
       {/* FLOATING HUD DECORATIONS */}
       <div className="frame-corner tl">
-        <div className="blink-dot" /> {/* NEW: STATUS BLINKER */}
+        <div className="blink-dot" /> 
         <span>SLIIT_UNDERGRAD</span>
       </div>
       <div className="frame-corner tr"><span>ISHAN_WIJESINGHE</span></div>
@@ -64,7 +63,7 @@ const HyperHome = () => {
             <div className="image-shield">
               <img src={profileImage} alt="Ishan" className="holo-img" />
               <div className="scan-line" />
-              <div className="vhs-static" /> {/* NEW: VHS STATIC */}
+              <div className="vhs-static" />
             </div>
           </div>
           <div className="data-tag">ID: ISHAN_WIJESINGHE</div>
@@ -77,7 +76,6 @@ const HyperHome = () => {
             animate={{ opacity: 1, x: 0 }}
             className="header-block"
           >
-            {/* NEW: TERMINAL TEXT */}
             <div className="terminal-log">
               <Terminal size={12} className="green-txt" />
               <span className="typewriter">system@sliit:~/home</span>
@@ -139,7 +137,6 @@ const HyperHome = () => {
           animation: grid-breath 10s infinite ease-in-out;
         }
 
-        /* NEW ANIMATION LAYERS */
         .moving-scanline {
           position: absolute; inset: 0;
           background: linear-gradient(to bottom, transparent 0%, rgba(0, 255, 136, 0.05) 50%, transparent 100%);
@@ -167,7 +164,6 @@ const HyperHome = () => {
         .holo-ring { position: absolute; border: 1px solid rgba(0, 255, 136, 0.3); border-radius: 50%; inset: -30px; animation: pulse 4s infinite; }
         .r2 { inset: -60px; animation-delay: 2s; }
 
-        /* LOGO GLITCH ANIMATION */
         .main-logo { font-family: 'Orbitron', sans-serif; font-size: 6rem; font-weight: 900; line-height: 0.85; margin: 20px 0; letter-spacing: -4px; position: relative; }
         .glitch:hover::before { content: attr(data-text); position: absolute; left: 2px; text-shadow: -2px 0 #ff00c1; clip: rect(44px, 450px, 56px, 0); animation: glitch-anim 0.2s infinite linear alternate-reverse; }
         .glitch:hover::after { content: attr(data-text); position: absolute; left: -2px; text-shadow: -2px 0 #00fff9; clip: rect(44px, 450px, 56px, 0); animation: glitch-anim 0.2s infinite linear alternate; }
@@ -195,7 +191,6 @@ const HyperHome = () => {
         .social-node { width: 50px; height: 50px; border: 1px solid rgba(0, 255, 136, 0.3); display: flex; align-items: center; justify-content: center; color: #888; transition: 0.3s; }
         .social-node:hover { color: #00ff88; border-color: #00ff88; background: rgba(0, 255, 136, 0.1); transform: translateY(-5px); }
 
-        /* NEW KEYFRAMES */
         @keyframes scan { from { background-position: 0 0; } to { background-position: 0 100%; } }
         @keyframes rain { from { transform: translateY(-100%); } to { transform: translateY(100%); } }
         @keyframes blink { 50% { opacity: 0; } }

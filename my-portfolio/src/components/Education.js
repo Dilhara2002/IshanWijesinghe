@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
-import { motion, useSpring, useMotionValue, useTransform } from "framer-motion";
+// Removed 'useTransform' as it was unused
+import { motion, useSpring, useMotionValue } from "framer-motion";
 import { 
-  GraduationCap, Calendar, MapPin, Activity, Cpu, 
+  GraduationCap, Calendar, MapPin, Cpu, 
   ShieldCheck, Award, TrendingUp, Terminal, Zap
-} from "lucide-react";
+} from "lucide-react"; // Removed 'Activity' as it was unused
 
 const educationHistory = [
   {
@@ -184,7 +185,6 @@ const Education = () => {
           padding: 140px 40px;
         }
 
-        /* 1. ANIMATION BACKGROUNDS */
         .spatial-void { position: absolute; inset: 0; perspective: 1500px; z-index: 1; pointer-events: none; overflow: hidden; }
         
         .perspective-grid {
@@ -210,14 +210,12 @@ const Education = () => {
         }
         .rain-row { white-space: nowrap; animation: rain 20s infinite linear; }
 
-        /* 2. HUD FRAME */
         .frame-corner { position: fixed; color: #00ff88; font-size: 10px; padding: 25px; letter-spacing: 2px; z-index: 100; font-weight: bold; }
         .tl { top: 0; left: 0; border-left: 3px solid #00ff88; border-top: 3px solid #00ff88; }
         .tr { top: 0; right: 0; border-right: 3px solid #00ff88; border-top: 3px solid #00ff88; }
         .bl { bottom: 0; left: 0; border-left: 3px solid #00ff88; border-bottom: 3px solid #00ff88; }
         .br { bottom: 0; right: 0; border-right: 3px solid #00ff88; border-bottom: 3px solid #00ff88; }
 
-        /* 3. TYPOGRAPHY & HEADER */
         .content-shell { position: relative; z-index: 5; max-width: 1000px; margin: 0 auto; }
         
         .expansive-title {
@@ -229,7 +227,6 @@ const Education = () => {
         .terminal-prompt { display: flex; align-items: center; gap: 10px; color: #00ff88; font-size: 12px; margin-top: 10px; }
         .typewriter { overflow: hidden; white-space: nowrap; border-right: 2px solid #00ff88; animation: typing 3s steps(40), blink 0.5s infinite; }
 
-        /* 4. DATA STREAM NODES */
         .data-stream { position: relative; padding-left: 100px; margin-top: 100px; }
         .stream-line {
           position: absolute; left: 35px; top: 0; width: 2px;
@@ -270,7 +267,6 @@ const Education = () => {
           box-shadow: -15px 0 40px rgba(0, 255, 136, 0.2);
         }
 
-        /* GLITCH EFFECTS */
         .glitch { position: relative; }
         .glitch::before, .glitch::after {
           content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.8;
@@ -284,7 +280,6 @@ const Education = () => {
         }
         .edu-data-card:hover .card-glitch-bar { width: 100%; }
 
-        /* KEYFRAMES */
         @keyframes scan { from { background-position: 0 0; } to { background-position: 0 100%; } }
         @keyframes rain { from { transform: translateY(-100%); } to { transform: translateY(100%); } }
         @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
@@ -299,7 +294,6 @@ const Education = () => {
           100% { transform: translate(0) }
         }
 
-        /* RESPONSIVE */
         @media (max-width: 900px) {
           .data-stream { padding-left: 0; }
           .stream-line, .node-anchor { display: none; }

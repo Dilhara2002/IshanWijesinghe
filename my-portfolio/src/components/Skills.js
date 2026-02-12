@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, useSpring, useMotionValue } from "framer-motion";
 import { 
   Code2, Terminal, Database, Wrench, 
-  Activity, Zap, Cpu, ShieldCheck 
+  Activity, ShieldCheck 
 } from "lucide-react";
 
 const skillCategories = [

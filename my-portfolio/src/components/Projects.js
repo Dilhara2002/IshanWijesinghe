@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react"; // Removed useRef
 import { motion, AnimatePresence, useSpring, useMotionValue } from "framer-motion";
-import { Github, Code2, Zap, ArrowUpRight, Terminal, Activity, ShieldCheck } from "lucide-react";
+import { Github, Zap, ArrowUpRight, Terminal, Activity, ShieldCheck } from "lucide-react"; // Removed Code2, ExternalLink
 
 // Assets (Using your existing imports)
 import project1Image from "../assets/salonDiamond.png";
@@ -95,7 +95,7 @@ const Projects = () => {
         <div className="vignette" />
       </div>
 
-      {/* 2. HUD INTERFACE ELEMENTS */}
+      {/* 2. HUD FRAME ELEMENTS */}
       <div className="cyber-frame">
         <div className="frame-corner tl"><div className="blink-dot" /> ARCHIVE_SCAN</div>
         <div className="frame-corner tr">UPLINK_STABLE: 100%</div>
@@ -292,7 +292,7 @@ const Projects = () => {
         @keyframes glitch-anim { 0% { clip: rect(31px, 9999px, 94px, 0); } 100% { clip: rect(70px, 9999px, 80px, 0); } }
 
         @media (max-width: 1200px) { .vault-grid { grid-template-columns: repeat(2, 1fr); } .main-title { font-size: 3.5rem; } }
-        @media (max-width: 768px) { .vault-grid { grid-template-columns: 1fr; .main-title { font-size: 2.5rem; } }
+        @media (max-width: 768px) { .vault-grid { grid-template-columns: 1fr; } .main-title { font-size: 2.5rem; } }
       `}</style>
     </section>
   );

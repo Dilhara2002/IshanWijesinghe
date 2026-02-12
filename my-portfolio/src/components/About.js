@@ -1,27 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { motion, useSpring, useMotionValue } from "framer-motion";
+import { motion } from "framer-motion"; // Removed unused useSpring, useMotionValue
 import { 
   GraduationCap, Activity, Cpu, 
-  Terminal, Zap, Brain, Target, ShieldCheck 
-} from "lucide-react";
+  Terminal, Target, ShieldCheck 
+} from "lucide-react"; // Removed unused Zap, Brain
 
 const HyperAbout = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  const springX = useSpring(mouseX, { stiffness: 80, damping: 20 });
-  const springY = useSpring(mouseY, { stiffness: 80, damping: 20 });
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
-      const { innerWidth, innerHeight } = window;
-      mouseX.set((e.clientX / innerWidth - 0.5) * 45);
-      mouseY.set((e.clientY / innerHeight - 0.5) * 45);
-    };
-    window.addEventListener("mousemove", handleMouseMove);
     setIsVisible(true);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [mouseX, mouseY]);
+  }, []);
 
   return (
     <section className="hyper-about-container">
@@ -29,10 +18,7 @@ const HyperAbout = () => {
       <div className="void-background">
         <div className="moving-scanline" />
         <div className="noise-overlay" />
-        <motion.div 
-          className="depth-grid" 
-          style={{ rotateX: springY, rotateY: springX, translateZ: 100 }}
-        />
+        <div className="depth-grid" />
         {/* Scrolling Background Data */}
         <div className="data-rain">
           {Array(8).fill("0101_BIO_DATA_EXTRACT_ISHAN_").map((t, i) => (
@@ -71,10 +57,9 @@ const HyperAbout = () => {
         </motion.div>
 
         <div className="main-layout">
-          {/* LEFT: FLOATING DATA TERMINAL */}
+          {/* LEFT: DATA TERMINAL */}
           <motion.div 
             className="floating-terminal"
-            style={{ x: springX, y: springY }}
             whileHover={{ scale: 1.02 }}
           >
             <div className="terminal-top">
@@ -160,7 +145,6 @@ const HyperAbout = () => {
           font-family: 'JetBrains Mono', monospace;
         }
 
-        /* 1. ANIMATION BACKGROUNDS */
         .void-background { position: absolute; inset: 0; perspective: 1200px; z-index: 1; pointer-events: none; }
         
         .depth-grid {
@@ -184,7 +168,6 @@ const HyperAbout = () => {
         }
         .rain-row { white-space: nowrap; animation: rain 20s infinite linear; }
 
-        /* 2. HUD FRAME */
         .frame-corner { position: fixed; color: #00ff88; font-size: 10px; padding: 25px; letter-spacing: 2px; z-index: 100; font-weight: bold; }
         .tl { top: 0; left: 0; border-left: 3px solid #00ff88; border-top: 3px solid #00ff88; }
         .tr { top: 0; right: 0; border-right: 3px solid #00ff88; border-top: 3px solid #00ff88; }
@@ -193,33 +176,24 @@ const HyperAbout = () => {
         .blink-dot { width: 8px; height: 8px; background: #00ff88; border-radius: 50%; display: inline-block; margin-right: 10px; animation: blink 1s infinite; }
 
         .content-wrapper { position: relative; z-index: 10; max-width: 1400px; margin: 0 auto; }
-
         .hud-header { margin-bottom: 60px; }
         .sys-status { display: flex; align-items: center; gap: 10px; color: #00ff88; font-size: 12px; letter-spacing: 4px; margin-bottom: 10px; }
-
         .expansive-title { font-family: 'Orbitron', sans-serif; font-size: 5rem; line-height: 0.9; font-weight: 900; }
         .outline-text { -webkit-text-stroke: 1px #00ff88; color: transparent; }
-
-        /* GLITCH TEXT */
         .glitch { position: relative; }
         .glitch:hover::before { content: attr(data-text); position: absolute; left: 2px; text-shadow: -2px 0 #ff00c1; clip: rect(44px, 450px, 56px, 0); animation: glitch-anim 0.2s infinite linear alternate-reverse; }
-
         .terminal-prompt { display: flex; align-items: center; gap: 10px; color: #00ff88; font-size: 12px; margin-top: 10px; }
         .typewriter { overflow: hidden; white-space: nowrap; border-right: 2px solid #00ff88; animation: typing 3s steps(30), blink 0.5s infinite; }
-
         .main-layout { display: flex; gap: 80px; align-items: flex-start; margin-bottom: 80px; }
 
-        /* TERMINAL INTERFACE */
         .floating-terminal {
           flex: 1.5; background: rgba(0, 10, 5, 0.85);
           border: 1px solid rgba(0, 255, 136, 0.2);
           position: relative; overflow: hidden; backdrop-filter: blur(20px);
         }
         .terminal-scan-line { position: absolute; width: 100%; height: 2px; background: rgba(0, 255, 136, 0.2); top: 0; animation: scan 4s infinite linear; }
-
         .terminal-top { padding: 12px 20px; background: rgba(0, 255, 136, 0.1); border-bottom: 1px solid rgba(0, 255, 136, 0.2); display: flex; justify-content: space-between; align-items: center; }
         .dots span { width: 10px; height: 10px; border-radius: 50%; background: #00ff88; opacity: 0.5; margin-right: 5px; display: inline-block; }
-
         .terminal-body { padding: 30px; }
         .code-line { margin-bottom: 5px; font-size: 16px; }
         .indent { padding-left: 30px; }
@@ -227,11 +201,9 @@ const HyperAbout = () => {
         .variable { color: #00ff88; }
         .property { color: #ffbd2e; }
         .string { color: #00ff88; }
-
         .bio-block { margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(0, 255, 136, 0.1); line-height: 1.8; color: #aaa; }
         .text-glow { color: #00ff88; text-shadow: 0 0 10px #00ff88; }
 
-        /* NODES */
         .nodes-stack { flex: 1; display: flex; flex-direction: column; gap: 25px; }
         .node-item {
           background: rgba(0, 20, 10, 0.4); border: 1px solid rgba(0, 255, 136, 0.1);
@@ -240,7 +212,6 @@ const HyperAbout = () => {
         }
         .node-item:hover { background: rgba(0, 255, 136, 0.1); border-color: #00ff88; transform: translateX(15px); }
 
-        /* STATS HOLOGRAM */
         .stats-hologram {
           display: flex; justify-content: space-around; padding: 40px;
           background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.05), transparent);
@@ -248,12 +219,10 @@ const HyperAbout = () => {
           position: relative; overflow: hidden;
         }
         .hologram-flicker { position: absolute; inset: 0; background: rgba(0, 255, 136, 0.02); animation: flicker 0.1s infinite; pointer-events: none; }
-
         .stat-divider { width: 1px; height: 50px; background: rgba(0, 255, 136, 0.2); }
         .stat-item h3 { font-family: 'Orbitron', sans-serif; font-size: 2.5rem; color: #00ff88; margin: 0; text-shadow: 0 0 20px rgba(0, 255, 136, 0.5); }
         .stat-item p { font-size: 10px; color: #888; letter-spacing: 2px; }
 
-        /* KEYFRAMES */
         @keyframes scan { from { top: 0; } to { top: 100%; } }
         @keyframes rain { from { transform: translateY(-100%); } to { transform: translateY(100%); } }
         @keyframes blink { 50% { opacity: 0; } }
