@@ -1,27 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Mail, Linkedin, Github, Send, MessageSquare, Sparkles, MapPin, CheckCircle, AlertCircle } from "lucide-react";
+import { motion } from "framer-motion";
+import { Mail, Linkedin, Github, Send, MessageSquare, Sparkles, MapPin, CheckCircle, AlertCircle, Terminal, Activity } from "lucide-react";
 
 const Contact = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [hoveredCard, setHoveredCard] = useState(null);
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [formStatus, setFormStatus] = useState(null);
   const sectionRef = useRef(null);
 
   useEffect(() => {
-    const currentRef = sectionRef.current;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true);
-      },
-      { threshold: 0.1 }
-    );
-    
-    if (currentRef) observer.observe(currentRef);
-    
-    return () => {
-      if (currentRef) observer.unobserve(currentRef);
-    };
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) setIsVisible(true);
+    }, { threshold: 0.1 });
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
   }, []);
 
   const handleSubmit = (e) => {
@@ -38,172 +30,234 @@ const Contact = () => {
     }, 3000);
   };
 
-  const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  // Your Original Details Integrated Here
   const contactMethods = [
-    { 
-      icon: Mail, 
-      label: "Email Me", 
-      value: "wijesinghelageishan@gmail.com", 
-      link: "mailto:wijesinghelageishan@gmail.com", 
-      color: "#6366f1",
-      gradient: "linear-gradient(135deg, #6366f1, #8b5cf6)"
-    },
-    { 
-      icon: Linkedin, 
-      label: "LinkedIn", 
-      value: "ishan-wijesinghe", 
-      link: "https://www.linkedin.com/in/ishan-wijesinghe-5200a1318/", 
-      color: "#0077b5",
-      gradient: "linear-gradient(135deg, #0077b5, #00a0dc)"
-    },
-    { 
-      icon: Github, 
-      label: "GitHub", 
-      value: "Dilhara2002", 
-      link: "https://github.com/Dilhara2002", 
-      color: "#fff",
-      gradient: "linear-gradient(135deg, #6e5494, #8b6cb7)"
-    },
-    { 
-      icon: MapPin, 
-      label: "Location", 
-      value: "Malabe, Sri Lanka", 
-      link: null, 
-      color: "#10b981",
-      gradient: "linear-gradient(135deg, #10b981, #059669)"
-    }
+    { icon: Mail, label: "EMAIL", value: "wijesinghelageishan@gmail.com", link: "mailto:wijesinghelageishan@gmail.com" },
+    { icon: Linkedin, label: "LINKEDIN", value: "ishan-wijesinghe", link: "https://www.linkedin.com/in/ishan-wijesinghe-5200a1318/" },
+    { icon: Github, label: "GITHUB", value: "Dilhara2002", link: "https://github.com/Dilhara2002" },
+    { icon: MapPin, label: "LOCATION", value: "Malabe, Sri Lanka", link: null }
   ];
 
   return (
-    <section id="contact" ref={sectionRef} style={styles.section}>
-      {/* Background Decor */}
-      <div style={styles.glowBg} />
-      <div style={styles.gridBg} />
+    <section id="contact" ref={sectionRef} className="hyper-contact-container">
+      {/* 3D SPATIAL BACKGROUND */}
+      <div className="spatial-floor" />
+      <div className="vignette" />
 
-      <div style={{ ...styles.container, animation: isVisible ? "fadeIn 1s ease-out" : "none" }}>
-        {/* Header */}
-        <div style={styles.header}>
-          <div style={styles.badge}>
-            <MessageSquare size={18} color="#6366f1" />
-            <span>GET IN TOUCH</span>
+      <div className="content-shell">
+        {/* HUD HEADER */}
+        <motion.header 
+          initial={{ opacity: 0, x: -50 }}
+          animate={isVisible ? { opacity: 1, x: 0 } : {}}
+          className="hud-header"
+        >
+          <div className="hud-badge">
+            <Activity size={14} className="pulse-green" />
+            <span>COMMS_UPLINK_ESTABLISHED</span>
           </div>
-          <h1 style={styles.title}>Let's Connect</h1>
-          <div style={styles.separator}>
-            <div style={styles.lineLeft} />
-            <Sparkles size={24} color="#6366f1" />
-            <div style={styles.lineRight} />
-          </div>
-          <p style={styles.subtitle}>
-            Ready to collaborate or have a question? Feel free to reach out and let's create something amazing together!
-          </p>
-        </div>
+          <h1 className="expansive-title">DIRECT<br/><span className="outline-text">_CHANNEL</span></h1>
+          <p className="hud-meta">Initialize secure transmission to establish collaboration.</p>
+        </motion.header>
 
-        {/* Main Layout */}
-        <div style={styles.mainGrid}>
-          {/* Contact Details Side */}
-          <div style={styles.methodsColumn}>
-            {contactMethods.map((method, index) => {
-              const Icon = method.icon;
-              const isHovered = hoveredCard === index;
-              return (
-                <div
-                  key={index}
-                  onMouseEnter={() => setHoveredCard(index)}
-                  onMouseLeave={() => setHoveredCard(null)}
-                  onClick={() => method.link && window.open(method.link, '_blank')}
-                  style={{
-                    ...styles.methodCard,
-                    border: `1px solid ${isHovered ? method.color : "rgba(255, 255, 255, 0.05)"}`,
-                    transform: isHovered ? "translateX(10px)" : "translateX(0)",
-                    cursor: method.link ? "pointer" : "default",
-                  }}
-                >
-                  <div style={{...styles.methodIconBox, background: isHovered ? method.gradient : `${method.color}15`}}>
-                    <Icon size={28} color={isHovered ? "#fff" : method.color} />
-                  </div>
-                  <div>
-                    <h4 style={styles.methodLabel}>{method.label}</h4>
-                    <p style={styles.methodValue}>{method.value}</p>
-                  </div>
+        <div className="contact-main-grid">
+          {/* LEFT: DATA NODES */}
+          <div className="nodes-column">
+            {contactMethods.map((method, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -30 }}
+                animate={isVisible ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: index * 0.1 }}
+                className="contact-node-card"
+                onClick={() => method.link && window.open(method.link, '_blank')}
+              >
+                <div className="node-icon-box">
+                  <method.icon size={22} />
                 </div>
-              );
-            })}
+                <div className="node-info">
+                  <span className="node-label">{method.label}</span>
+                  <span className="node-value">{method.value}</span>
+                </div>
+                <div className="node-glimmer" />
+              </motion.div>
+            ))}
           </div>
 
-          {/* Form Side */}
-          <div style={styles.formCard}>
-            <h3 style={styles.formTitle}>Send Me a Message</h3>
-            <form onSubmit={handleSubmit} style={styles.form}>
-              <div style={styles.inputGroup}>
-                <label style={styles.label}>Full Name</label>
-                <input type="text" name="name" value={formData.name} onChange={handleInputChange} placeholder="John Doe" style={styles.input} />
+          {/* RIGHT: TERMINAL FORM */}
+          <motion.div 
+            className="terminal-form-container"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={isVisible ? { opacity: 1, scale: 1 } : {}}
+          >
+            <div className="terminal-top">
+              <div className="dots"><span /><span /><span /></div>
+              <span className="terminal-path">system@ishan:~/send_msg</span>
+            </div>
+            
+            <form onSubmit={handleSubmit} className="terminal-body">
+              <div className="input-row">
+                <span className="prompt">{">"} NAME:</span>
+                <input 
+                  type="text" 
+                  value={formData.name}
+                  onChange={(e) => setFormData({...formData, name: e.target.value})}
+                  placeholder="IDENTIFY_YOURSELF" 
+                />
               </div>
-              <div style={styles.inputGroup}>
-                <label style={styles.label}>Email Address</label>
-                <input type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="john@example.com" style={styles.input} />
+
+              <div className="input-row">
+                <span className="prompt">{">"} EMAIL:</span>
+                <input 
+                  type="email" 
+                  value={formData.email}
+                  onChange={(e) => setFormData({...formData, email: e.target.value})}
+                  placeholder="CONTACT_PROTOCOL" 
+                />
               </div>
-              <div style={styles.inputGroup}>
-                <label style={styles.label}>Your Message</label>
-                <textarea name="message" value={formData.message} onChange={handleInputChange} placeholder="How can I help you?" rows="4" style={styles.textarea} />
+
+              <div className="input-row textarea-row">
+                <span className="prompt">{">"} MESSAGE:</span>
+                <textarea 
+                  rows="4" 
+                  value={formData.message}
+                  onChange={(e) => setFormData({...formData, message: e.target.value})}
+                  placeholder="ENTER_DATA_PACKET..." 
+                />
               </div>
-              <button type="submit" style={styles.submitBtn}>
-                <Send size={18} /> Send Message
+
+              <button type="submit" className="transmit-btn">
+                <span>EXECUTE_TRANSMISSION</span>
+                <Send size={18} />
               </button>
 
-              {formStatus === 'success' && <div style={styles.successBox}><CheckCircle size={18} /> Message sent successfully!</div>}
-              {formStatus === 'error' && <div style={styles.errorBox}><AlertCircle size={18} /> Please fill in all fields!</div>}
+              {formStatus === 'success' && <div className="status-msg success">UPLOAD_COMPLETE: Message Sent.</div>}
+              {formStatus === 'error' && <div className="status-msg error">CRITICAL_ERROR: Missing Fields.</div>}
             </form>
-          </div>
+
+            <div className="corner tr" />
+            <div className="corner bl" />
+          </motion.div>
         </div>
 
-        {/* Footer Credit */}
-        <div style={styles.footer}>
-          <p>Designed & Built by <span style={{color: "#fff", fontWeight: "700"}}>Ishan Wijesinghe</span> © 2025</p>
-        </div>
+        <footer className="spatial-footer">
+          <p>DESIGNED_BY <span className="green-txt">ISHAN_WIJESINGHE</span> // REF: 2026.SLIIT</p>
+        </footer>
       </div>
 
       <style>{`
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes gridMove { 0% { transform: translateY(0); } 100% { transform: translateY(50px); } }
-        @media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr !important; } }
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=JetBrains+Mono:wght@400;700&display=swap');
+
+        .hyper-contact-container {
+          background: #000;
+          min-height: 100vh;
+          position: relative;
+          overflow: hidden;
+          padding: 120px 40px;
+          color: #fff;
+          font-family: 'JetBrains Mono', monospace;
+        }
+
+        .spatial-floor {
+          position: absolute; inset: 0;
+          background-image: 
+            linear-gradient(rgba(0, 255, 136, 0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0, 255, 136, 0.05) 1px, transparent 1px);
+          background-size: 80px 80px;
+          transform: perspective(1000px) rotateX(60deg) translateY(200px);
+          z-index: 1;
+        }
+
+        .vignette {
+          position: absolute; inset: 0;
+          background: radial-gradient(circle, transparent 20%, #000 100%);
+          z-index: 2; pointer-events: none;
+        }
+
+        .content-shell { position: relative; z-index: 10; max-width: 1400px; margin: 0 auto; }
+
+        .hud-header { margin-bottom: 80px; }
+        .hud-badge {
+          display: inline-flex; align-items: center; gap: 10px;
+          border: 1px solid #00ff88; color: #00ff88;
+          padding: 8px 25px; border-radius: 50px; font-size: 11px;
+          background: rgba(0, 255, 136, 0.1); margin-bottom: 20px;
+        }
+
+        .expansive-title {
+          font-family: 'Orbitron', sans-serif;
+          font-size: 5rem; font-weight: 900; line-height: 0.9;
+        }
+        .outline-text { -webkit-text-stroke: 1px #00ff88; color: transparent; }
+        .hud-meta { color: #888; font-size: 14px; margin-top: 15px; }
+
+        .contact-main-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; }
+
+        /* CONTACT NODES */
+        .nodes-column { display: flex; flex-direction: column; gap: 20px; }
+        .contact-node-card {
+          background: rgba(10, 10, 10, 0.8);
+          border: 1px solid rgba(0, 255, 136, 0.1);
+          padding: 25px; display: flex; align-items: center; gap: 20px;
+          position: relative; overflow: hidden; transition: 0.3s; cursor: pointer;
+        }
+        .contact-node-card:hover { border-color: #00ff88; transform: translateX(10px); background: rgba(0, 255, 136, 0.05); }
+        .node-icon-box { color: #00ff88; }
+        .node-label { display: block; font-size: 10px; color: #555; font-weight: bold; }
+        .node-value { display: block; font-size: 14px; color: #fff; margin-top: 5px; }
+
+        /* TERMINAL FORM */
+        .terminal-form-container {
+          background: rgba(0, 20, 10, 0.8);
+          border: 1px solid rgba(0, 255, 136, 0.2);
+          position: relative; backdrop-filter: blur(10px);
+        }
+        .terminal-top {
+          padding: 12px 20px; background: rgba(0, 255, 136, 0.1);
+          border-bottom: 1px solid rgba(0, 255, 136, 0.2);
+          display: flex; justify-content: space-between; align-items: center;
+        }
+        .dots { display: flex; gap: 6px; }
+        .dots span { width: 10px; height: 10px; border-radius: 50%; background: #00ff88; opacity: 0.5; }
+        .terminal-path { font-size: 11px; color: #00ff88; opacity: 0.7; }
+
+        .terminal-body { padding: 40px; }
+        .input-row { margin-bottom: 30px; border-bottom: 1px solid rgba(0, 255, 136, 0.1); padding-bottom: 10px; }
+        .prompt { color: #00ff88; font-weight: bold; margin-right: 15px; font-size: 14px; }
+        
+        input, textarea {
+          background: transparent; border: none; color: #fff;
+          width: 70%; outline: none; font-family: 'JetBrains Mono', monospace;
+        }
+        textarea { width: 100%; margin-top: 15px; }
+
+        .transmit-btn {
+          width: 100%; padding: 20px; background: #00ff88; color: #000;
+          border: none; font-family: 'Orbitron', sans-serif; font-weight: 900;
+          display: flex; align-items: center; justify-content: center; gap: 15px;
+          cursor: pointer; transition: 0.3s;
+          clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
+        }
+        .transmit-btn:hover { background: #fff; box-shadow: 0 0 30px #00ff88; transform: scale(1.02); }
+
+        .status-msg { margin-top: 20px; font-size: 12px; font-weight: bold; text-align: center; }
+        .success { color: #00ff88; }
+        .error { color: #ff5f56; }
+
+        .spatial-footer { margin-top: 100px; text-align: center; color: #444; font-size: 12px; letter-spacing: 2px; }
+        .green-txt { color: #00ff88; }
+        .corner { position: absolute; width: 20px; height: 20px; border: 2px solid #00ff88; }
+        .tr { top: -2px; right: -2px; border-left: none; border-bottom: none; }
+        .bl { bottom: -2px; left: -2px; border-right: none; border-top: none; }
+
+        .pulse-green { animation: pulse 2s infinite; }
+        @keyframes pulse { 50% { opacity: 0.3; } }
+
+        @media (max-width: 1000px) {
+          .contact-main-grid { grid-template-columns: 1fr; }
+          .expansive-title { font-size: 3rem; }
+        }
       `}</style>
     </section>
   );
-};
-
-const styles = {
-  section: { minHeight: "100vh", background: "#050505", position: "relative", overflow: "hidden", padding: "100px 20px" },
-  glowBg: { position: "absolute", inset: 0, background: "radial-gradient(circle at 70% 60%, rgba(99, 102, 241, 0.05) 0%, transparent 100%)" },
-  gridBg: { position: "absolute", inset: 0, opacity: 0.1, backgroundImage: "linear-gradient(#6366f1 1px, transparent 1px), linear-gradient(90deg, #6366f1 1px, transparent 1px)", backgroundSize: "50px 50px" },
-  container: { maxWidth: "1200px", margin: "0 auto", position: "relative", zIndex: 10 },
-  header: { textAlign: "center", marginBottom: "60px" },
-  badge: { display: "inline-flex", alignItems: "center", gap: "10px", background: "rgba(99, 102, 241, 0.1)", padding: "8px 20px", borderRadius: "50px", border: "1px solid rgba(99, 102, 241, 0.3)", color: "#6366f1", fontSize: "0.75rem", fontWeight: "700", letterSpacing: "2px", marginBottom: "15px" },
-  title: { fontSize: "clamp(2.5rem, 6vw, 4rem)", fontWeight: "900", color: "#fff", marginBottom: "10px" },
-  separator: { display: "flex", alignItems: "center", justifyContent: "center", gap: "15px" },
-  lineLeft: { width: "50px", height: "2px", background: "linear-gradient(90deg, transparent, #6366f1)" },
-  lineRight: { width: "50px", height: "2px", background: "linear-gradient(90deg, #6366f1, transparent)" },
-  subtitle: { color: "#9ca3af", fontSize: "1.1rem", maxWidth: "700px", margin: "0 auto", lineHeight: "1.8" },
-  mainGrid: { display: "grid", gridTemplateColumns: "1fr 1.2fr", gap: "40px", marginTop: "40px" },
-  methodsColumn: { display: "flex", flexDirection: "column", gap: "20px" },
-  methodCard: { display: "flex", alignItems: "center", gap: "20px", padding: "25px", borderRadius: "24px", background: "rgba(255, 255, 255, 0.02)", backdropFilter: "blur(20px)", transition: "all 0.4s ease" },
-  methodIconBox: { width: "60px", height: "60px", borderRadius: "16px", display: "flex", alignItems: "center", justifyContent: "center", transition: "0.4s" },
-  methodLabel: { color: "#9ca3af", margin: "0 0 5px 0", fontSize: "0.8rem", fontWeight: "700", letterSpacing: "1px" },
-  methodValue: { color: "#fff", margin: 0, fontWeight: "600", fontSize: "1rem" },
-  formCard: { background: "rgba(255, 255, 255, 0.03)", padding: "40px", borderRadius: "32px", border: "1px solid rgba(99, 102, 241, 0.2)", backdropFilter: "blur(20px)" },
-  formTitle: { color: "#fff", fontSize: "1.8rem", fontWeight: "800", marginBottom: "30px" },
-  form: { display: "flex", flexDirection: "column", gap: "20px" },
-  inputGroup: { display: "flex", flexDirection: "column", gap: "8px" },
-  label: { color: "#9ca3af", fontSize: "0.9rem", fontWeight: "600" },
-  input: { background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "12px", padding: "15px", color: "#fff", outline: "none" },
-  textarea: { background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "12px", padding: "15px", color: "#fff", outline: "none", resize: "none" },
-  submitBtn: { padding: "16px", background: "linear-gradient(135deg, #6366f1, #a855f7)", color: "#fff", borderRadius: "14px", border: "none", fontWeight: "700", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: "10px", marginTop: "10px" },
-  successBox: { display: "flex", alignItems: "center", gap: "10px", color: "#10b981", fontSize: "0.9rem", fontWeight: "600" },
-  errorBox: { display: "flex", alignItems: "center", gap: "10px", color: "#ef4444", fontSize: "0.9rem", fontWeight: "600" },
-  footer: { textAlign: "center", marginTop: "80px", color: "#6b7280", fontSize: "0.9rem" }
 };
 
 export default Contact;

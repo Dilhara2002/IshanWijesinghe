@@ -1,5 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
-import { GraduationCap, Calendar, MapPin, Sparkles, BookOpen, Award, Target, TrendingUp, Star, ShieldCheck } from "lucide-react";
+import { motion } from "framer-motion";
+import { 
+  GraduationCap, Calendar, MapPin, Sparkles, BookOpen, 
+  Award, Target, TrendingUp, Star, ShieldCheck, Activity, Cpu 
+} from "lucide-react";
 
 const educationHistory = [
   {
@@ -9,9 +13,7 @@ const educationHistory = [
     location: "Malabe, Sri Lanka",
     details: "Focusing on Full-Stack Development and Software Engineering. Developing a strong command over modern web architectures, database management, and professional coding standards.",
     icon: GraduationCap,
-    color: "#6366f1",
-    gradient: "linear-gradient(135deg, #6366f1, #8b5cf6)",
-    status: "Current Undergraduate"
+    status: "UNDERGRADUATE_UNIT"
   },
   {
     institution: "SLIIT Faculty of Computing",
@@ -20,20 +22,16 @@ const educationHistory = [
     location: "Center for Open and Distance Education",
     details: "Completed specialized training in Artificial Intelligence and Machine Learning foundations through the Industry Engagement Unit. [ID: gzzsbnqbp1]",
     icon: ShieldCheck,
-    color: "#10b981",
-    gradient: "linear-gradient(135deg, #10b981, #059669)",
-    status: "Professional Certificate"
+    status: "PROFESSIONAL_CERT"
   },
   {
     institution: "LinkedIn Learning",
-    degree: "Introduction to Career Skills in Software Development",
+    degree: "Career Skills in Software Development",
     duration: "Completed: Dec 18, 2024",
     location: "Online Professional Development",
     details: "Mastered core career management and tech career skills essential for modern software engineering roles. [ID: 1728bcda5711...]",
     icon: Award,
-    color: "#0077b5",
-    gradient: "linear-gradient(135deg, #0077b5, #00a0dc)",
-    status: "Certification"
+    status: "CERTIFICATION"
   },
   {
     institution: "LinkedIn Learning / PMI",
@@ -42,167 +40,214 @@ const educationHistory = [
     location: "Online Professional Development",
     details: "Gained proficiency in Data Engineering and Data Analytics concepts, authorized by the Project Management Institute (PMI). [ID: 7bla1055...]",
     icon: TrendingUp,
-    color: "#f59e0b",
-    gradient: "linear-gradient(135deg, #f59e0b, #ef4444)",
-    status: "Certification"
+    status: "CERTIFICATION"
   }
 ];
 
 const Education = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [hoveredCard, setHoveredCard] = useState(null);
   const sectionRef = useRef(null);
 
   useEffect(() => {
-    const currentRef = sectionRef.current;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true);
-      },
-      { threshold: 0.1 }
-    );
-    if (currentRef) observer.observe(currentRef);
-    return () => {
-      if (currentRef) observer.unobserve(currentRef);
-    };
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) setIsVisible(true);
+    }, { threshold: 0.1 });
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <section id="education" ref={sectionRef} style={styles.section}>
-      <div style={styles.glowBg} />
-      <div style={styles.gridBg} />
+    <section id="education" ref={sectionRef} className="hyper-edu-container">
+      {/* 3D BACKGROUND DEPTH */}
+      <div className="spatial-void" />
+      <div className="vignette" />
 
-      {[...Array(5)].map((_, i) => (
-        <div key={i} className="particle" style={{
-          ...styles.particle,
-          top: `${Math.random() * 100}%`,
-          left: `${Math.random() * 100}%`,
-          background: i % 2 === 0 ? "#6366f1" : "#a855f7",
-          animationDelay: `${i * 2}s`
-        }} />
-      ))}
-
-      <div style={{ ...styles.container, animation: isVisible ? "fadeIn 1s ease-out" : "none" }}>
-        <div style={styles.header}>
-          <div style={styles.badge}>
-            <BookOpen size={20} color="#6366f1" />
-            <span>ACADEMIC & PROFESSIONAL JOURNEY</span>
+      <div className="content-shell">
+        {/* HUD HEADER */}
+        <motion.header 
+          initial={{ opacity: 0, x: -50 }}
+          animate={isVisible ? { opacity: 1, x: 0 } : {}}
+          className="hud-header"
+        >
+          <div className="hud-badge">
+            <Activity size={14} className="pulse-green" />
+            <span>ACADEMIC_LOG_ACTIVE</span>
           </div>
-          <h1 style={styles.title}>Education & Certifications</h1>
-          <div style={styles.separator}>
-            <div style={styles.line} />
-            <Sparkles size={24} color="#6366f1" />
-            <div style={styles.line} />
-          </div>
-          <p style={styles.subtitle}>
-            Continuous learning journey through formal degree studies and professional specialized certifications.
-          </p>
-        </div>
+          <h1 className="expansive-title">KNOWLEDGE<br/><span className="outline-text">_MATRIX</span></h1>
+          <p className="hud-meta">Chronological transmission of academic and professional credentials.</p>
+        </motion.header>
 
-        <div style={styles.timelineWrapper}>
-          <div style={{
-            ...styles.timelineLine,
-            height: isVisible ? "100%" : "0%",
-            opacity: isVisible ? 1 : 0
-          }} />
-
+        {/* VERTICAL DATA STREAM */}
+        <div className="data-stream">
+          <div className={`stream-line ${isVisible ? 'active' : ''}`} />
+          
           {educationHistory.map((edu, index) => {
             const Icon = edu.icon;
-            const isHovered = hoveredCard === index;
-            
             return (
-              <div
+              <motion.div
                 key={index}
-                onMouseEnter={() => setHoveredCard(index)}
-                onMouseLeave={() => setHoveredCard(null)}
-                style={styles.timelineItem}
+                initial={{ opacity: 0, x: 50 }}
+                animate={isVisible ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: index * 0.2 }}
+                className="stream-node"
               >
-                <div style={styles.timelineNode}>
-                  <div style={{
-                    ...styles.nodeRing,
-                    animation: isHovered ? "pulse 2s infinite" : "none"
-                  }} />
-                  <div style={{
-                    ...styles.nodeIconBox,
-                    background: isHovered ? edu.gradient : "#0a0a0a",
-                    borderColor: isHovered ? edu.color : "rgba(99, 102, 241, 0.5)",
-                    transform: isHovered ? "scale(1.1)" : "scale(1)"
-                  }}>
-                    <Icon size={28} color={isHovered ? "#fff" : edu.color} />
+                {/* NODE DOT */}
+                <div className="node-anchor">
+                  <div className="anchor-ring" />
+                  <div className="anchor-core">
+                    <Icon size={20} />
                   </div>
                 </div>
 
-                <div style={{
-                  ...styles.eduCard,
-                  borderColor: isHovered ? edu.color : "rgba(255, 255, 255, 0.05)",
-                  transform: isHovered ? "translateX(10px)" : "translateX(0)",
-                  boxShadow: isHovered ? `0 20px 40px ${edu.color}20` : "none"
-                }}>
-                  <div style={{
-                    ...styles.statusBadge,
-                    background: isHovered ? edu.gradient : "rgba(99, 102, 241, 0.1)",
-                    borderColor: edu.color
-                  }}>
-                    <Star size={14} color={isHovered ? "#fff" : edu.color} fill={isHovered ? "#fff" : "none"} />
-                    <span style={{ color: isHovered ? "#fff" : edu.color }}>{edu.status}</span>
+                {/* DATA CARD */}
+                <div className="edu-data-card">
+                  <div className="card-hud-top">
+                    <span className="status-tag">{edu.status}</span>
+                    <span className="node-index">NODE_0{index + 1}</span>
                   </div>
 
-                  <h3 style={styles.institutionName}>{edu.institution}</h3>
-                  <p style={{ ...styles.degreeName, color: edu.color }}>
-                    <Target size={18} /> {edu.degree}
-                  </p>
-
-                  <div style={styles.metaInfo}>
-                    <div style={styles.metaItem}>
-                      <Calendar size={18} /> <span>{edu.duration}</span>
-                    </div>
-                    <div style={styles.metaItem}>
-                      <MapPin size={18} /> <span>{edu.location}</span>
-                    </div>
+                  <h3 className="inst-name">{edu.institution}</h3>
+                  <div className="degree-row">
+                    <Cpu size={16} className="green-txt" />
+                    <span className="degree-txt">{edu.degree}</span>
                   </div>
 
-                  <p style={styles.eduDetails}>{edu.details}</p>
+                  <div className="meta-grid">
+                    <div className="meta-item"><Calendar size={14} /> {edu.duration}</div>
+                    <div className="meta-item"><MapPin size={14} /> {edu.location}</div>
+                  </div>
+
+                  <p className="edu-desc">{edu.details}</p>
+
+                  {/* DECORATIVE HUD CORNERS */}
+                  <div className="corner tr" />
+                  <div className="corner bl" />
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>
       </div>
 
       <style>{`
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes pulse { 0% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; } 100% { transform: translate(-50%, -50%) scale(1.4); opacity: 0; } }
-        .particle { position: absolute; border-radius: 50%; opacity: 0.2; animation: float 10s infinite ease-in-out; }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=JetBrains+Mono:wght@400;700&display=swap');
+
+        .hyper-edu-container {
+          background: #000;
+          min-height: 100vh;
+          position: relative;
+          overflow: hidden;
+          padding: 120px 40px;
+          color: #fff;
+          font-family: 'JetBrains Mono', monospace;
+        }
+
+        .spatial-void {
+          position: absolute; inset: 0;
+          background-image: 
+            linear-gradient(rgba(0, 255, 136, 0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0, 255, 136, 0.05) 1px, transparent 1px);
+          background-size: 80px 80px;
+          transform: perspective(1000px) rotateX(60deg) translateY(200px);
+          z-index: 1;
+        }
+
+        .vignette {
+          position: absolute; inset: 0;
+          background: radial-gradient(circle, transparent 20%, #000 100%);
+          z-index: 2; pointer-events: none;
+        }
+
+        .content-shell { position: relative; z-index: 10; max-width: 1200px; margin: 0 auto; }
+
+        .hud-header { margin-bottom: 80px; }
+        .hud-badge {
+          display: inline-flex; align-items: center; gap: 10px;
+          border: 1px solid #00ff88; color: #00ff88;
+          padding: 8px 25px; border-radius: 50px; font-size: 11px;
+          background: rgba(0, 255, 136, 0.1); margin-bottom: 20px;
+        }
+
+        .expansive-title {
+          font-family: 'Orbitron', sans-serif;
+          font-size: 5rem; font-weight: 900; line-height: 0.9;
+        }
+        .outline-text { -webkit-text-stroke: 1px #00ff88; color: transparent; }
+        .hud-meta { color: #888; font-size: 14px; margin-top: 15px; letter-spacing: 1px; }
+
+        /* DATA STREAM LINE */
+        .data-stream { position: relative; padding-left: 100px; }
+        .stream-line {
+          position: absolute; left: 35px; top: 0; width: 1px;
+          height: 0; background: linear-gradient(to bottom, #00ff88, transparent);
+          transition: height 2s ease;
+        }
+        .stream-line.active { height: 100%; }
+
+        /* STREAM NODES */
+        .stream-node { position: relative; margin-bottom: 60px; }
+        
+        .node-anchor {
+          position: absolute; left: -100px; top: 20px;
+          width: 70px; height: 70px; display: flex; align-items: center; justify-content: center;
+        }
+        .anchor-ring {
+          position: absolute; width: 100%; height: 100%;
+          border: 1px solid rgba(0, 255, 136, 0.3); border-radius: 50%;
+          animation: spin 10s linear infinite;
+        }
+        .anchor-core {
+          width: 45px; height: 45px; background: #00ff88; color: #000;
+          border-radius: 50%; display: flex; align-items: center; justify-content: center;
+          box-shadow: 0 0 20px #00ff88;
+        }
+
+        /* DATA CARDS */
+        .edu-data-card {
+          background: rgba(10, 10, 10, 0.8);
+          border: 1px solid rgba(0, 255, 136, 0.1);
+          padding: 40px; position: relative;
+          backdrop-filter: blur(10px);
+          transition: 0.4s;
+        }
+        .edu-data-card:hover {
+          border-color: #00ff88;
+          transform: translateX(15px);
+          background: rgba(0, 255, 136, 0.05);
+        }
+
+        .card-hud-top { display: flex; justify-content: space-between; margin-bottom: 20px; }
+        .status-tag { color: #00ff88; font-size: 10px; font-weight: 900; letter-spacing: 2px; }
+        .node-index { color: #444; font-size: 10px; }
+
+        .inst-name { font-family: 'Orbitron', sans-serif; font-size: 1.8rem; margin: 0; }
+        .degree-row { display: flex; align-items: center; gap: 12px; margin: 15px 0; }
+        .degree-txt { color: #00ff88; font-weight: bold; font-size: 1.1rem; }
+        .green-txt { color: #00ff88; }
+
+        .meta-grid { display: flex; gap: 30px; margin: 20px 0; font-size: 13px; color: #666; }
+        .meta-item { display: flex; align-items: center; gap: 8px; }
+
+        .edu-desc { color: #aaa; line-height: 1.8; font-size: 15px; max-width: 800px; }
+
+        /* HUD DECOR */
+        .corner { position: absolute; width: 20px; height: 20px; border: 2px solid #00ff88; }
+        .tr { top: -2px; right: -2px; border-left: none; border-bottom: none; }
+        .bl { bottom: -2px; left: -2px; border-right: none; border-top: none; }
+
+        .pulse-green { animation: pulse 2s infinite; }
+        @keyframes pulse { 50% { opacity: 0.3; } }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        @media (max-width: 900px) {
+          .data-stream { padding-left: 0; }
+          .stream-line, .node-anchor { display: none; }
+          .expansive-title { font-size: 3rem; }
+          .inst-name { font-size: 1.4rem; }
+        }
       `}</style>
     </section>
   );
-};
-
-const styles = {
-  section: { minHeight: "100vh", background: "#050505", position: "relative", overflow: "hidden", padding: "100px 20px" },
-  glowBg: { position: "absolute", inset: 0, background: "radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.05) 0%, transparent 100%)" },
-  gridBg: { position: "absolute", inset: 0, opacity: 0.1, backgroundImage: "linear-gradient(#6366f1 1px, transparent 1px), linear-gradient(90deg, #6366f1 1px, transparent 1px)", backgroundSize: "60px 60px" },
-  container: { maxWidth: "1200px", margin: "0 auto", position: "relative", zIndex: 10 },
-  header: { textAlign: "center", marginBottom: "80px" },
-  badge: { display: "inline-flex", alignItems: "center", gap: "10px", background: "rgba(99, 102, 241, 0.1)", padding: "12px 30px", borderRadius: "50px", border: "1px solid rgba(99, 102, 241, 0.3)", color: "#6366f1", fontSize: "0.85rem", fontWeight: "700", letterSpacing: "2px" },
-  title: { fontSize: "clamp(2.5rem, 6vw, 4rem)", fontWeight: "900", color: "#fff", margin: "20px 0" },
-  separator: { display: "flex", alignItems: "center", justifyContent: "center", gap: "15px" },
-  line: { width: "60px", height: "3px", background: "#6366f1", borderRadius: "2px" },
-  subtitle: { color: "#9ca3af", fontSize: "1.1rem", maxWidth: "700px", margin: "0 auto", lineHeight: "1.8" },
-  timelineWrapper: { position: "relative", paddingLeft: "80px" },
-  timelineLine: { position: "absolute", left: "30px", top: 0, width: "3px", background: "linear-gradient(to bottom, #6366f1, #a855f7, transparent)", transition: "height 1.5s ease" },
-  timelineItem: { position: "relative", marginBottom: "50px" },
-  timelineNode: { position: "absolute", left: "-80px", top: "20px", width: "60px", height: "60px" },
-  nodeRing: { position: "absolute", top: "50%", left: "50%", width: "70px", height: "70px", borderRadius: "50%", border: "2px solid rgba(99, 102, 241, 0.3)" },
-  nodeIconBox: { position: "relative", width: "60px", height: "60px", borderRadius: "50%", border: "3px solid", display: "flex", alignItems: "center", justifyContent: "center", transition: "0.4s" },
-  eduCard: { background: "rgba(255,255,255,0.02)", backdropFilter: "blur(20px)", padding: "40px", borderRadius: "30px", border: "1px solid", transition: "0.5s" },
-  statusBadge: { position: "absolute", top: "25px", right: "25px", display: "flex", alignItems: "center", gap: "8px", padding: "8px 18px", borderRadius: "50px", border: "1px solid", fontSize: "0.75rem", fontWeight: "700" },
-  institutionName: { fontSize: "1.8rem", fontWeight: "800", color: "#fff", marginBottom: "10px" },
-  degreeName: { fontSize: "1.2rem", fontWeight: "600", display: "flex", alignItems: "center", gap: "10px", marginBottom: "20px" },
-  metaInfo: { display: "flex", gap: "25px", marginBottom: "25px", flexWrap: "wrap" },
-  metaItem: { display: "flex", alignItems: "center", gap: "8px", color: "#9ca3af", fontSize: "0.95rem" },
-  eduDetails: { color: "#d1d5db", lineHeight: "1.8", marginBottom: "30px" },
 };
 
 export default Education;

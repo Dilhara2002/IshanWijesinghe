@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Github, ExternalLink, Code2, Sparkles, Star, ArrowUpRight, Layers, Zap } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Github, ExternalLink, Code2, Sparkles, Star, ArrowUpRight, Shield, Zap, Cpu, Database } from "lucide-react";
 
-// Real Project Images from your assets
+// Keeping your existing imports
 import project1Image from "../assets/salonDiamond.png";
 import project2Image from "../assets/Homestock.png";
 import project3Image from "../assets/Dishcraft.png";
@@ -11,269 +12,253 @@ import project5Image from "../assets/LakTravelers.png";
 const projects = [
   {
     name: "Lak Travelers",
-    description: "An AI-driven Tourism ecosystem utilizing GraphRAG for spatial itinerary planning. Features the CCTNS reputation model, secure Email OTP, and a professional PDF itinerary engine. Fully optimized as a PWA.",
+    id: "LT-01",
+    description: "Architecting an AI-driven Tourism ecosystem with GraphRAG. Cinematic itinerary engine with neural-style planning.",
     image: project5Image,
-    tech: ["React", "Node.js", "MongoDB", "Groq AI", "GraphRAG", "PWA", "Tailwind"],
+    tech: ["React", "Node.js", "Groq AI", "GraphRAG"],
     link: "https://github.com/Dilhara2002/lak-travelers.git",
-    color: "#3b82f6", 
-    gradient: "linear-gradient(135deg, #1e40af, #3b82f6)",
-    hasLiveDemo: false,
-    featured: true,
-    category: "AI & Full-Stack"
+    category: "AI_CORE",
+    featured: true
   },
   {
-    name: "Salon Diamond System",
-    description: "A comprehensive full-stack salon management platform. Streamlines appointments, client tracking, and service management with a custom SQL backend and dynamic EJS rendering.",
+    name: "Salon Diamond",
+    id: "SD-02",
+    description: "Enterprise-grade management system. High-performance SQL backend with real-time scheduling optics.",
     image: project1Image,
-    tech: ["Node.js", "Express.js", "EJS", "SQL"],
+    tech: ["Node.js", "Express", "SQL", "EJS"],
     link: "https://github.com/Dilhara2002/Salon_Diamond_Management-.git",
-    color: "#6366f1",
-    gradient: "linear-gradient(135deg, #6366f1, #8b5cf6)",
-    hasLiveDemo: false,
-    featured: true,
-    category: "Full-Stack"
+    category: "SYSTEMS",
+    featured: true
   },
   {
     name: "MyHomeStock",
-    description: "An intelligent inventory tracker for households. Uses React and MongoDB to monitor consumption patterns, manage stock levels, and reduce domestic waste through data-driven insights.",
+    id: "HS-03",
+    description: "Neural inventory tracking system. Monitoring consumption patterns through deep MERN integration.",
     image: project2Image,
-    tech: ["React", "Node.js", "Express.js", "MongoDB"],
+    tech: ["React", "Node", "MongoDB"],
     link: "https://github.com/Dilhara2002/MyHomeStock.git",
-    live: "https://www.linkedin.com/in/ishan-wijesinghe-5200a1318",
-    color: "#10b981",
-    gradient: "linear-gradient(135deg, #10b981, #059669)",
-    hasLiveDemo: true,
-    featured: true,
-    category: "MERN"
-  },
-  {
-    name: "Dish Craft",
-    description: "A social culinary platform where users share and discover global recipes. Built with a focus on seamless UI transitions and high-performance MongoDB data retrieval.",
-    image: project3Image,
-    tech: ["React", "Node.js", "Express.js", "MongoDB"],
-    link: "https://github.com/Dilhara2002/TrendTracker-AI.git",
-    live: "https://www.linkedin.com/in/ishan-wijesinghe-5200a1318",
-    color: "#ec4899",
-    gradient: "linear-gradient(135deg, #ec4899, #db2777)",
-    hasLiveDemo: true,
-    featured: false,
-    category: "Full-Stack"
+    category: "MERN_ARCH",
+    featured: true
   },
   {
     name: "TrendTracker AI",
-    description: "Advanced financial sentiment analyzer. Leverages FinBERT NLP models to process Yahoo Finance data and news, providing actionable real-time market sentiment summaries.",
+    id: "TT-04",
+    description: "Market sentiment analyzer. FinBERT NLP integration for high-frequency financial data processing.",
     image: project4Image,
-    tech: ["Python", "Streamlit", "NLP", "Pandas"],
+    tech: ["Python", "NLP", "Streamlit"],
     link: "https://github.com/Dilhara2002/Dish-Craft.git",
-    color: "#8b5cf6",
-    gradient: "linear-gradient(135deg, #8b5cf6, #7c3aed)",
-    hasLiveDemo: false,
-    featured: true,
-    category: "AI/Data"
+    category: "AI_DATA",
+    featured: true
+  },
+  {
+    name: "Dish Craft",
+    id: "DC-05",
+    description: "Global recipe database. Optimized for rapid data retrieval and fluid UI transitions.",
+    image: project3Image,
+    tech: ["React", "Express", "MongoDB"],
+    link: "https://github.com/Dilhara2002/TrendTracker-AI.git",
+    category: "FULLSTACK",
+    featured: false
   }
 ];
 
 const Projects = () => {
-  const [hoveredIndex, setHoveredIndex] = useState(null);
   const [activeFilter, setActiveFilter] = useState("all");
-
-  const filteredProjects = activeFilter === "all" 
-    ? projects 
-    : projects.filter(p => p.featured);
+  const filteredProjects = activeFilter === "all" ? projects : projects.filter(p => p.featured);
 
   return (
-    <section id="projects" style={styles.section}>
-      <div style={styles.glowBg} />
-      <div style={styles.gridBg} />
+    <section className="cinematic-projects">
+      {/* Dynamic Background Noise & HUD Lines */}
+      <div className="noise-overlay" />
+      <div className="vignette" />
+      <div className="hud-line-top" />
+      <div className="hud-line-bottom" />
 
-      <div style={styles.container}>
-        <div style={styles.header}>
-          <div style={styles.badge}>
-            <Layers size={18} color="#6366f1" />
-            <span>PORTFOLIO SHOWCASE</span>
+      <div className="content-container">
+        {/* Cinematic Header */}
+        <motion.header 
+          initial={{ opacity: 0, letterSpacing: "10px" }}
+          whileInView={{ opacity: 1, letterSpacing: "2px" }}
+          transition={{ duration: 1 }}
+          className="section-header"
+        >
+          <div className="status-indicator">
+            <span className="blink-dot" />
+            <span>ACCESSING_ARCHIVES</span>
           </div>
-
-          <h1 style={styles.title}>Featured Projects</h1>
+          <h1 className="main-title">VAULT<span className="green-glow">_01</span></h1>
           
-          <div style={styles.titleSeparator}>
-            <div style={styles.line} />
-            <Sparkles size={24} color="#6366f1" />
-            <div style={styles.line} />
-          </div>
-
-          <p style={styles.subtitle}>
-            A showcase of my technical journey—from complex enterprise management systems to AI-powered market analysis.
-          </p>
-
-          <div style={styles.filterGroup}>
+          <div className="filter-system">
             {["all", "featured"].map((filter) => (
               <button
                 key={filter}
                 onClick={() => setActiveFilter(filter)}
-                style={{
-                  ...styles.filterBtn,
-                  border: activeFilter === filter ? "2px solid #6366f1" : "2px solid rgba(255, 255, 255, 0.1)",
-                  background: activeFilter === filter ? "rgba(99, 102, 241, 0.15)" : "rgba(255, 255, 255, 0.03)",
-                  color: activeFilter === filter ? "#6366f1" : "#9ca3af",
-                }}
+                className={`nav-btn ${activeFilter === filter ? 'active' : ''}`}
               >
-                {filter === "all" ? "All Collections" : "Featured Work"}
+                {filter.toUpperCase()}
               </button>
             ))}
           </div>
-        </div>
+        </motion.header>
 
-        {/* Updated Grid for 3x3 Balance */}
-        <div className="projects-grid" style={styles.grid}>
-          {filteredProjects.map((project, index) => (
-            <div
-              key={index}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              style={{
-                ...styles.card,
-                border: `1px solid ${hoveredIndex === index ? project.color : "rgba(255, 255, 255, 0.05)"}`,
-                transform: hoveredIndex === index ? "translateY(-12px) scale(1.02)" : "translateY(0)",
-                boxShadow: hoveredIndex === index ? `0 30px 60px ${project.color}30` : "0 10px 30px rgba(0,0,0,0.3)"
-              }}
-            >
-              <div style={styles.imageContainer}>
-                <img
-                  src={project.image}
-                  alt={project.name}
-                  style={{
-                    ...styles.image,
-                    transform: hoveredIndex === index ? "scale(1.1)" : "scale(1)",
-                  }}
-                />
-                <div style={styles.imgOverlay} />
-                <div style={{ ...styles.techIcon, border: `1px solid ${project.color}40` }}>
-                  <Code2 size={20} color={project.color} />
-                </div>
-                <div style={{ ...styles.categoryBadge, color: project.color }}>{project.category}</div>
-                <div style={{
-                  ...styles.quickLinks,
-                  opacity: hoveredIndex === index ? 1 : 0,
-                  transform: hoveredIndex === index ? "translateY(0)" : "translateY(10px)",
-                }}>
-                  <a href={project.link} target="_blank" rel="noreferrer" style={styles.iconLink}><Github size={18} /></a>
-                  {project.hasLiveDemo && <a href={project.live} target="_blank" rel="noreferrer" style={styles.iconLink}><ExternalLink size={18} /></a>}
-                </div>
-              </div>
-
-              <div style={styles.cardBody}>
-                <div style={styles.cardHeaderRow}>
-                  <h3 style={styles.cardTitle}>{project.name}</h3>
-                  {project.featured && <Star size={16} color={project.color} fill={project.color} />}
+        {/* 3x3 Expansion Grid */}
+        <motion.div layout className="vault-grid">
+          <AnimatePresence>
+            {filteredProjects.map((project, idx) => (
+              <motion.div
+                key={project.name}
+                layout
+                initial={{ opacity: 0, filter: "blur(20px)" }}
+                animate={{ opacity: 1, filter: "blur(0px)" }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ delay: idx * 0.1 }}
+                className="vault-card"
+              >
+                <div className="card-top">
+                  <span className="project-id">{project.id}</span>
+                  <div className="tag-pill">{project.category}</div>
                 </div>
 
-                {/* flex-grow ensures this takes up space to keep buttons aligned */}
-                <p style={styles.cardDesc}>{project.description}</p>
-
-                <div style={styles.techStack}>
-                  {project.tech.map((t, i) => (
-                    <span key={i} style={{ ...styles.techTag, color: project.color, borderColor: `${project.color}40` }}>
-                      <Zap size={10} /> {t}
-                    </span>
-                  ))}
+                <div className="preview-window">
+                  <img src={project.image} alt={project.name} className="project-img" />
+                  <div className="glitch-overlay" />
+                  <div className="hover-actions">
+                    <a href={project.link} target="_blank" rel="noreferrer" className="action-circle">
+                      <Github size={20} />
+                    </a>
+                  </div>
                 </div>
 
-                <a 
-                  href={project.link} 
-                  target="_blank" 
-                  rel="noreferrer"
-                  style={{
-                    ...styles.viewBtn,
-                    background: hoveredIndex === index ? project.gradient : "rgba(255, 255, 255, 0.03)",
-                    borderColor: hoveredIndex === index ? "transparent" : `${project.color}60`
-                  }}
-                >
-                  View Details <ArrowUpRight size={18} />
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
+                <div className="card-footer">
+                  <h3>{project.name}</h3>
+                  <p>{project.description}</p>
+                  
+                  <div className="tech-nodes">
+                    {project.tech.map(t => (
+                      <span key={t} className="node-item"><Zap size={10} /> {t}</span>
+                    ))}
+                  </div>
+
+                  <a href={project.link} target="_blank" rel="noreferrer" className="open-btn">
+                    DEPLOY_INTERFACE <ArrowUpRight size={16} />
+                  </a>
+                </div>
+                
+                {/* 3D Glass Corners */}
+                <div className="corner-decor tl" />
+                <div className="corner-decor br" />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </div>
 
       <style>{`
-        /* Forces 3 columns on desktops, 2 on tablets, 1 on mobile */
-        .projects-grid {
+        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=JetBrains+Mono:wght@300;700&display=swap');
+
+        .cinematic-projects {
+          background: #000;
+          min-height: 100vh;
+          padding: 150px 40px;
+          position: relative;
+          color: #fff;
+          font-family: 'JetBrains Mono', monospace;
+          overflow: hidden;
+        }
+
+        /* Cinematic Overlays */
+        .noise-overlay {
+          position: fixed; inset: 0;
+          background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+          pointer-events: none; z-index: 2;
+        }
+        .vignette {
+          position: absolute; inset: 0;
+          background: radial-gradient(circle, transparent 20%, #000 100%);
+          z-index: 3; pointer-events: none;
+        }
+
+        .content-container { position: relative; z-index: 10; max-width: 1600px; margin: 0 auto; }
+
+        /* Header Styling */
+        .section-header { text-align: center; margin-bottom: 80px; }
+        .main-title { 
+          font-family: 'Syncopate', sans-serif; 
+          font-size: 6rem; font-weight: 700; margin: 20px 0; 
+        }
+        .green-glow { color: #00ff88; text-shadow: 0 0 30px #00ff88; }
+        
+        .status-indicator {
+          display: flex; align-items: center; justify-content: center; gap: 10px;
+          color: #00ff88; font-size: 12px; letter-spacing: 5px;
+        }
+        .blink-dot { width: 8px; height: 8px; background: #00ff88; border-radius: 50%; animation: blink 1s infinite; }
+
+        .filter-system { display: flex; justify-content: center; gap: 30px; margin-top: 40px; }
+        .nav-btn {
+          background: transparent; border: none; color: #444; 
+          font-weight: 900; cursor: pointer; transition: 0.4s;
+          padding-bottom: 5px; border-bottom: 2px solid transparent;
+        }
+        .nav-btn.active { color: #00ff88; border-color: #00ff88; }
+
+        /* Expansion 3x3 Grid */
+        .vault-grid {
           display: grid;
-          gap: 30px;
           grid-template-columns: repeat(3, 1fr);
+          gap: 30px;
         }
 
-        @media (max-width: 1100px) {
-          .projects-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 768px) {
-          .projects-grid { grid-template-columns: 1fr; }
+        .vault-card {
+          background: rgba(10, 10, 10, 0.8);
+          border: 1px solid rgba(0, 255, 136, 0.1);
+          padding: 25px;
+          position: relative;
+          transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+          backdrop-filter: blur(10px);
         }
 
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+        .vault-card:hover {
+          transform: scale(1.05) translateY(-10px);
+          border-color: #00ff88;
+          box-shadow: 0 0 50px rgba(0, 255, 136, 0.1);
+          z-index: 15;
+        }
+
+        .card-top { display: flex; justify-content: space-between; margin-bottom: 20px; font-size: 10px; }
+        .project-id { color: #444; }
+        .tag-pill { border: 1px solid #00ff88; padding: 2px 10px; color: #00ff88; border-radius: 50px; }
+
+        .preview-window {
+          height: 250px; position: relative; overflow: hidden;
+          clip-path: polygon(0 0, 100% 0, 100% 90%, 90% 100%, 0 100%);
+        }
+        .project-img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: 0.5s; }
+        .vault-card:hover .project-img { filter: grayscale(0%); transform: scale(1.1); }
+
+        .card-footer h3 { font-family: 'Syncopate', sans-serif; color: #00ff88; font-size: 16px; margin: 20px 0 10px; }
+        .card-footer p { font-size: 13px; color: #888; line-height: 1.6; height: 60px; overflow: hidden; }
+
+        .tech-nodes { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
+        .node-item { font-size: 10px; color: #00ff88; background: rgba(0, 255, 136, 0.05); padding: 5px 10px; }
+
+        .open-btn {
+          display: flex; align-items: center; gap: 10px; color: #fff; text-decoration: none;
+          font-weight: 700; font-size: 12px; margin-top: 20px; transition: 0.3s;
+        }
+        .open-btn:hover { color: #00ff88; letter-spacing: 2px; }
+
+        .corner-decor { position: absolute; width: 20px; height: 20px; border: 1px solid #00ff88; }
+        .tl { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+        .br { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+        @keyframes blink { 50% { opacity: 0; } }
+
+        @media (max-width: 1200px) { .vault-grid { grid-template-columns: repeat(2, 1fr); } .main-title { font-size: 3.5rem; } }
+        @media (max-width: 768px) { .vault-grid { grid-template-columns: 1fr; } }
       `}</style>
     </section>
   );
-};
-
-const styles = {
-  section: { minHeight: "100vh", background: "#050505", padding: "100px 20px", position: "relative", overflow: "hidden" },
-  glowBg: { position: "absolute", inset: 0, background: "radial-gradient(circle at 30% 40%, rgba(99, 102, 241, 0.05) 0%, transparent 50%)", pointerEvents: 'none' },
-  gridBg: { position: "absolute", inset: 0, opacity: 0.1, backgroundImage: "linear-gradient(#6366f1 1px, transparent 1px), linear-gradient(90deg, #6366f1 1px, transparent 1px)", backgroundSize: "60px 60px", pointerEvents: 'none' },
-  container: { position: "relative", zIndex: 10, maxWidth: "1400px", margin: "0 auto" },
-  header: { textAlign: "center", marginBottom: "80px" },
-  badge: { display: "inline-flex", alignItems: "center", gap: "10px", background: "rgba(99, 102, 241, 0.1)", padding: "10px 25px", borderRadius: "50px", color: "#6366f1", fontSize: "0.8rem", fontWeight: "700", letterSpacing: "2px" },
-  title: { fontSize: "clamp(2.5rem, 5vw, 4.5rem)", fontWeight: "900", color: "#fff", margin: "20px 0" },
-  titleSeparator: { display: "flex", alignItems: "center", justifyContent: "center", gap: "15px" },
-  line: { width: "50px", height: "2px", background: "#6366f1", borderRadius: "2px" },
-  subtitle: { color: "#9ca3af", fontSize: "1.1rem", maxWidth: "700px", margin: "25px auto" },
-  filterGroup: { display: "flex", gap: "15px", justifyContent: "center", marginTop: "40px" },
-  filterBtn: { padding: "12px 25px", borderRadius: "50px", cursor: "pointer", transition: "0.3s", fontWeight: "600", fontSize: "0.9rem", color: "#9ca3af" },
-  
-  // Grid layout
-  grid: { 
-    display: "grid", 
-    gap: "30px",
-    width: "100%"
-  },
-
-  card: { 
-    background: "rgba(255,255,255,0.02)", 
-    backdropFilter: "blur(20px)", 
-    borderRadius: "24px", 
-    overflow: "hidden", 
-    transition: "all 0.4s ease",
-    display: "flex",
-    flexDirection: "column",
-    height: "100%" // Force cards to fill vertical space
-  },
-  imageContainer: { height: "230px", position: "relative", overflow: "hidden", flexShrink: 0 },
-  image: { width: "100%", height: "100%", objectFit: "cover", transition: "0.6s" },
-  imgOverlay: { position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent, rgba(0,0,0,0.8))" },
-  techIcon: { position: "absolute", top: "15px", right: "15px", background: "rgba(0,0,0,0.6)", padding: "10px", borderRadius: "12px" },
-  categoryBadge: { position: "absolute", top: "15px", left: "15px", background: "rgba(0,0,0,0.6)", padding: "5px 12px", borderRadius: "10px", fontSize: "0.75rem", fontWeight: "700" },
-  quickLinks: { position: "absolute", bottom: "15px", right: "15px", display: "flex", gap: "10px", transition: "0.3s" },
-  iconLink: { background: "rgba(0,0,0,0.8)", border: "1px solid #fff", color: "#fff", padding: "8px", borderRadius: "10px", display: "flex" },
-  
-  cardBody: { 
-    padding: "30px", 
-    display: "flex", 
-    flexDirection: "column", 
-    flexGrow: 1, // Makes the body expand to fill the card
-    gap: "15px" 
-  },
-  cardHeaderRow: { display: "flex", justifyContent: "space-between", alignItems: "center" },
-  cardTitle: { color: "#fff", fontSize: "1.5rem", fontWeight: "800", margin: 0 },
-  cardDesc: { 
-    color: "#9ca3af", 
-    fontSize: "0.95rem", 
-    lineHeight: "1.7",
-    flexGrow: 1 // Important: pushes the tech stack and button to the bottom
-  },
-  techStack: { display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "10px" },
-  techTag: { border: "1px solid", padding: "5px 12px", borderRadius: "10px", fontSize: "0.75rem", fontWeight: "600", display: "flex", alignItems: "center", gap: "5px" },
-  viewBtn: { marginTop: "auto", display: "flex", alignItems: "center", justifyContent: "center", gap: "10px", padding: "12px", borderRadius: "50px", color: "#fff", textDecoration: "none", fontWeight: "700", transition: "0.3s", border: "2px solid" }
 };
 
 export default Projects;

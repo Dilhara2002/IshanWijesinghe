@@ -1,242 +1,319 @@
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { Download, Github, Linkedin, Mail, Sparkles, Code2, Terminal, Cpu } from "lucide-react";
+import { motion, useSpring, useMotionValue } from "framer-motion";
+import { Cpu, Globe, Zap, Layers, ChevronRight, Github, Linkedin, Mail, Download } from "lucide-react";
 
 // Assets
-import profileImage from "../assets/profile.png";
+import profileImage from "../assets/profilex.PNG";
 import cvFile from "../assets/ISHAN_WIJESINGHE_CV.pdf";
 
-const Home = () => {
-  const [typedText, setTypedText] = useState("");
-  const roles = ["Full-Stack Developer", "IT Undergraduate @ SLIIT", "UI/UX Designer", "Problem Solver"];
-  const [roleIndex, setRoleIndex] = useState(0);
-  const [charIndex, setCharIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
+const HyperHome = () => {
+  // Smooth mouse tracking for 3D effect
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const springX = useSpring(mouseX, { stiffness: 100, damping: 30 });
+  const springY = useSpring(mouseY, { stiffness: 100, damping: 30 });
 
   useEffect(() => {
-    const currentRole = roles[roleIndex];
-    const timeout = setTimeout(() => {
-      if (!isDeleting && charIndex < currentRole.length) {
-        setTypedText(currentRole.substring(0, charIndex + 1));
-        setCharIndex(charIndex + 1);
-      } else if (isDeleting && charIndex > 0) {
-        setTypedText(currentRole.substring(0, charIndex - 1));
-        setCharIndex(charIndex - 1);
-      } else if (!isDeleting && charIndex === currentRole.length) {
-        setTimeout(() => setIsDeleting(true), 2000);
-      } else if (isDeleting && charIndex === 0) {
-        setIsDeleting(false);
-        setRoleIndex((roleIndex + 1) % roles.length);
-      }
-    }, isDeleting ? 40 : 100);
-    return () => clearTimeout(timeout);
-  }, [charIndex, isDeleting, roleIndex]);
+    const handleMouseMove = (e) => {
+      const { innerWidth, innerHeight } = window;
+      mouseX.set((e.clientX / innerWidth - 0.5) * 50);
+      mouseY.set((e.clientY / innerHeight - 0.5) * 50);
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [mouseX, mouseY]);
 
   return (
-    <section id="home" className="home-section">
-      {/* Background Animated Orbs */}
-      <div className="bg-orb orb-1" />
-      <div className="bg-orb orb-2" />
-
-      <div className="home-container">
-        
-        {/* LEFT SIDE: Large Profile Image */}
+    <div className="hyper-container">
+      {/* BACKGROUND: 3D DEPTH GRID */}
+      <div className="spatial-void">
+        <div className="star-field" />
         <motion.div 
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
-          className="image-side"
-        >
-          <div className="img-container">
-            <div className="ring-fast" />
-            <div className="ring-slow" />
-            
-            <div className="image-wrapper">
-              <img src={profileImage} alt="Ishan Wijesinghe" className="profile-img" />
-            </div>
-
-            {/* Floating Tech Icons */}
-            <div className="tech-badge badge-1"><Code2 size={28} /></div>
-            <div className="tech-badge badge-2"><Cpu size={28} /></div>
-          </div>
-        </motion.div>
-
-        {/* RIGHT SIDE: Text Content */}
-        <motion.div 
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="content-side"
-        >
-          <div className="status-badge">
-            <Sparkles size={16} /> <span>Available for Work</span>
-          </div>
-          
-          <h1 className="main-title">
-            Hi, I'm <br />
-            <span className="gradient-text">Ishan Wijesinghe</span>
-          </h1>
-
-          <div className="typewriter-box">
-            <Terminal size={24} color="#6366f1" />
-            <span className="typed-text">{typedText}</span>
-            <span className="cursor">|</span>
-          </div>
-
-          <p className="description">
-            I am an Information Technology undergraduate at <b>SLIIT</b>, 
-            building high-performance full-stack applications with modern technology.
-          </p>
-
-          <div className="button-group">
-            <motion.a 
-              href={cvFile} 
-              download 
-              whileHover={{ scale: 1.05 }}
-              className="primary-btn"
-            >
-              <Download size={20} /> Download CV
-            </motion.a>
-            
-            <div className="social-group">
-              <SocialIcon icon={<Github />} url="https://github.com/Dilhara2002" />
-              <SocialIcon icon={<Linkedin />} url="https://www.linkedin.com/in/ishan-wijesinghe-5200a1318/" />
-              <SocialIcon icon={<Mail />} url="mailto:wijesinghelageishan@gmail.com" />
-            </div>
-          </div>
-        </motion.div>
-
+          className="perspective-grid"
+          style={{ rotateX: springY, rotateY: springX }}
+        />
       </div>
 
+      {/* FLOATING HUD DECORATIONS */}
+      <div className="frame-corner tl"><span>CORE_v4.0</span></div>
+      <div className="frame-corner tr"><span>ISHAN_WIJESINGHE</span></div>
+      <div className="frame-corner bl"><span>SRI_LANKA // 2026</span></div>
+      <div className="frame-corner br"><span>LAT: 6.9271° N</span></div>
+
+      <main className="viewport">
+        
+        {/* LEFT: HOLOGRAPHIC AVATAR */}
+        <motion.div 
+          className="hologram-section"
+          style={{ x: springX, y: springY }}
+        >
+          <div className="glitch-container">
+            <div className="holo-ring r1" />
+            <div className="holo-ring r2" />
+            <div className="image-shield">
+              <img src={profileImage} alt="Ishan" className="holo-img" />
+              <div className="scan-line" />
+            </div>
+          </div>
+          <div className="data-tag">UNIT_IDENTIFIED: ISHAN_W</div>
+        </motion.div>
+
+        {/* RIGHT: FLOATING INTERFACE */}
+        <div className="interface-section">
+          <motion.div 
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="header-block"
+          >
+            <h2 className="top-title">INFORMATION TECHNOLOGY / SLIIT</h2>
+            <h1 className="main-logo">
+              ISHAN<br/>
+              <span className="outline-text">WIJESINGHE</span>
+            </h1>
+          </motion.div>
+
+          {/* EXPANSIVE NODE GRID */}
+          <div className="node-grid">
+            <Node icon={<Cpu />} title="FULL-STACK" detail="NEXT.JS / MERN" delay={0.2} />
+            <Node icon={<Globe />} title="TOURISM AI" detail="RESEARCH 2026" delay={0.3} />
+            <Node icon={<Layers />} title="UI/UX" detail="ADVANCED HUD" delay={0.4} />
+          </div>
+
+          <p className="bio-paragraph">
+            Engineering high-frequency digital architectures. Specialized in 
+            <span className="neon-text"> Neural Interfaces</span> and <span className="neon-text">Full-Stack Scalability</span>. 
+            Currently architecting the future of tourism at <span className="neon-text">SLIIT</span>.
+          </p>
+
+          <div className="cta-dock">
+            <a href={cvFile} download className="expansive-btn">
+              <Download size={20} />
+              <span>ACCESS_RESUME.DAT</span>
+              <div className="btn-glimmer" />
+            </a>
+            
+            <div className="social-nodes">
+              <SocialNode icon={<Github />} link="https://github.com/Dilhara2002" />
+              <SocialNode icon={<Linkedin />} link="https://linkedin.com/in/ishan-wijesinghe-5200a1318/" />
+              <SocialNode icon={<Mail />} link="mailto:wijesinghelageishan@gmail.com" />
+            </div>
+          </div>
+        </div>
+      </main>
+
       <style>{`
-        .home-section {
-          min-height: 100vh;
-          background-color: #050505;
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=JetBrains+Mono:wght@300;700&display=swap');
+
+        .hyper-container {
+          background: radial-gradient(circle at center, #0a150f 0%, #000 100%);
+          height: 100vh;
+          width: 100vw;
+          overflow: hidden;
+          position: relative;
+          color: #fff;
+          font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* 3D SPATIAL BACKGROUND */
+        .spatial-void {
+          position: absolute;
+          inset: 0;
+          perspective: 1500px;
+          z-index: 1;
+        }
+
+        .perspective-grid {
+          position: absolute;
+          width: 200%;
+          height: 200%;
+          top: -50%;
+          left: -50%;
+          background-image: 
+            linear-gradient(rgba(0, 255, 136, 0.1) 2px, transparent 2px),
+            linear-gradient(90deg, rgba(0, 255, 136, 0.1) 2px, transparent 2px);
+          background-size: 80px 80px;
+          transform: rotateX(60deg);
+          transform-style: preserve-3d;
+        }
+
+        .star-field {
+          position: absolute;
+          inset: 0;
+          background-image: radial-gradient(white 1px, transparent 1px);
+          background-size: 100px 100px;
+          opacity: 0.1;
+        }
+
+        /* FRAME HUD */
+        .frame-corner {
+          position: absolute;
+          color: #00ff88;
+          font-size: 10px;
+          padding: 20px;
+          letter-spacing: 3px;
+          z-index: 10;
+          text-shadow: 0 0 10px #00ff88;
+        }
+        .tl { top: 0; left: 0; border-left: 2px solid #00ff88; border-top: 2px solid #00ff88; }
+        .tr { top: 0; right: 0; border-right: 2px solid #00ff88; border-top: 2px solid #00ff88; }
+        .bl { bottom: 0; left: 0; border-left: 2px solid #00ff88; border-bottom: 2px solid #00ff88; }
+        .br { bottom: 0; right: 0; border-right: 2px solid #00ff88; border-bottom: 2px solid #00ff88; }
+
+        .viewport {
+          position: relative;
+          z-index: 5;
           display: flex;
           align-items: center;
           justify-content: center;
+          height: 100%;
+          gap: 120px;
+          max-width: 1600px;
+          margin: 0 auto;
+        }
+
+        /* HOLOGRAM SYSTEM */
+        .glitch-container {
           position: relative;
-          overflow: hidden;
-          /* Navbar Gap (approx 2cm) */
-          padding: 10px 10px 60px; 
+          width: 380px;
+          height: 500px;
         }
 
-        .home-container {
-          display: flex;
-          flex-direction: row; /* Desktop: Image Left, Text Right */
-          align-items: center;
-          justify-content: space-between;
-          width: 100%;
-          max-width: 1250px;
-          gap: 60px;
-          z-index: 10;
-        }
-
-        .image-side { 
-          flex: 1; 
-          display: flex; 
-          justify-content: center; 
-          position: relative;
-        }
-
-        .content-side { 
-          flex: 1.2; 
-          text-align: left; 
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-        }
-
-        /* Large Image Styling */
-        .img-container {
-          position: relative;
-          width: clamp(300px, 45vw, 420px);
-          height: clamp(300px, 45vw, 420px);
-        }
-
-        .image-wrapper {
+        .image-shield {
           width: 100%;
           height: 100%;
-          border-radius: 50%;
-          padding: 10px;
-          background: linear-gradient(135deg, #6366f1, #a855f7);
+          background: #000;
+          border: 1px solid #00ff88;
           overflow: hidden;
-          z-index: 2;
           position: relative;
-          box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+          clip-path: polygon(0 0, 90% 0, 100% 10%, 100% 100%, 10% 100%, 0 90%);
         }
 
-        .profile-img {
+        .holo-img {
           width: 100%;
           height: 100%;
-          border-radius: 50%;
           object-fit: cover;
-          object-position: top;
-          border: 6px solid #050505;
+          filter: sepia(100%) hue-rotate(90deg) brightness(0.8) contrast(1.2);
+          opacity: 0.8;
         }
 
-        /* Rings */
-        .ring-fast { position: absolute; inset: -15px; border-radius: 50%; border: 4px solid transparent; border-top-color: #6366f1; border-bottom-color: #a855f7; animation: rotate 5s linear infinite; }
-        .ring-slow { position: absolute; inset: -30px; border-radius: 50%; border: 2px dashed rgba(255, 255, 255, 0.15); animation: rotateReverse 15s linear infinite; }
-        
-        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        @keyframes rotateReverse { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+        .scan-line {
+          position: absolute;
+          width: 100%;
+          height: 4px;
+          background: #00ff88;
+          top: 0;
+          box-shadow: 0 0 20px #00ff88;
+          animation: slide 4s infinite linear;
+        }
 
-        /* Text */
-        .main-title { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; color: #fff; line-height: 1.1; margin: 20px 0; }
-        .gradient-text { background: linear-gradient(90deg, #6366f1, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .description { color: #9ca3af; font-size: 1.2rem; line-height: 1.8; max-width: 550px; margin-bottom: 35px; }
+        .holo-ring {
+          position: absolute;
+          border: 1px solid rgba(0, 255, 136, 0.3);
+          border-radius: 50%;
+          inset: -30px;
+          animation: pulse 4s infinite;
+        }
+        .r2 { inset: -60px; animation-delay: 2s; }
 
-        .button-group { display: flex; align-items: center; gap: 30px; flex-wrap: wrap; }
-        .primary-btn { display: flex; align-items: center; gap: 10px; padding: 16px 36px; background: linear-gradient(135deg, #6366f1, #a855f7); color: #fff; border-radius: 50px; text-decoration: none; font-weight: 700; box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4); }
-        
-        /* Badges */
-        .tech-badge { position: absolute; background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); padding: 14px; border-radius: 16px; color: #fff; z-index: 5; border: 1px solid rgba(255,255,255,0.1); }
-        .badge-1 { top: 10%; left: -5%; animation: float 4s ease-in-out infinite; }
-        .badge-2 { bottom: 10%; right: -5%; animation: float 4s ease-in-out infinite 2s; }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        /* TYPOGRAPHY */
+        .main-logo {
+          font-family: 'Orbitron', sans-serif;
+          font-size: 6rem;
+          font-weight: 900;
+          line-height: 0.85;
+          margin: 20px 0;
+          letter-spacing: -4px;
+        }
 
-        .status-badge { display: flex; align-items: center; gap: 8px; background: rgba(99, 102, 241, 0.1); padding: 8px 20px; border-radius: 50px; color: #818cf8; font-size: 0.9rem; font-weight: 600; }
-        .typewriter-box { display: flex; align-items: center; gap: 12px; font-size: 1.5rem; color: #9ca3af; margin: 15px 0; font-weight: 600; }
-        .cursor { color: #6366f1; animation: blink 1s infinite; }
-        @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
+        .outline-text {
+          -webkit-text-stroke: 1px #00ff88;
+          color: transparent;
+        }
 
-        .bg-orb { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.12; }
-        .orb-1 { top: 10%; left: 10%; width: 400px; height: 400px; background: #6366f1; }
-        .orb-2 { bottom: 10%; right: 10%; width: 500px; height: 500px; background: #a855f7; }
+        .top-title { color: #00ff88; font-size: 14px; letter-spacing: 5px; }
 
-        .social-group { display: flex; gap: 25px; }
+        .node-grid {
+          display: flex;
+          gap: 20px;
+          margin: 40px 0;
+        }
 
-        /* Mobile Adjustments */
-        @media (max-width: 950px) {
-          .home-container { 
-            flex-direction: column; /* Stacks image on top for mobile */
-            text-align: center; 
-            gap: 50px;
-          }
-          .content-side { 
-            align-items: center; 
-            text-align: center; 
-          }
-          .button-group { justify-content: center; }
-          .img-container { width: 280px; height: 280px; }
-          .home-section { padding-top: 100px; }
+        .node-box {
+          background: rgba(0, 255, 136, 0.03);
+          border: 1px solid rgba(0, 255, 136, 0.2);
+          padding: 20px;
+          width: 180px;
+          transition: 0.4s;
+        }
+        .node-box:hover { border-color: #00ff88; background: rgba(0, 255, 136, 0.1); transform: translateY(-10px); }
+        .node-box h3 { font-size: 12px; margin: 10px 0 5px; color: #00ff88; }
+        .node-box p { font-size: 10px; color: #888; margin: 0; }
+
+        .bio-paragraph { max-width: 550px; line-height: 1.8; color: #ccc; font-size: 15px; }
+        .neon-text { color: #00ff88; font-weight: bold; }
+
+        /* BUTTONS */
+        .cta-dock { display: flex; align-items: center; gap: 40px; margin-top: 50px; }
+
+        .expansive-btn {
+          background: #00ff88;
+          color: #000;
+          padding: 20px 45px;
+          text-decoration: none;
+          font-weight: 900;
+          font-family: 'Orbitron', sans-serif;
+          display: flex;
+          align-items: center;
+          gap: 15px;
+          clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+          transition: 0.3s;
+          position: relative;
+        }
+        .expansive-btn:hover { background: #fff; box-shadow: 0 0 50px #00ff88; transform: scale(1.05); }
+
+        .social-nodes { display: flex; gap: 20px; }
+        .social-node {
+          width: 50px;
+          height: 50px;
+          border: 1px solid rgba(0, 255, 136, 0.3);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #888;
+          transition: 0.3s;
+        }
+        .social-node:hover { color: #00ff88; border-color: #00ff88; background: rgba(0, 255, 136, 0.1); }
+
+        @keyframes slide { from { top: 0% } to { top: 100% } }
+        @keyframes pulse { 0%, 100% { opacity: 0.1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.1); } }
+
+        @media (max-width: 1200px) {
+          .viewport { flex-direction: column; text-align: center; gap: 50px; overflow-y: auto; padding: 100px 0; }
+          .main-logo { font-size: 3.5rem; }
+          .glitch-container { width: 280px; height: 350px; }
+          .node-grid { flex-wrap: wrap; justify-content: center; }
+          .cta-dock { flex-direction: column; }
         }
       `}</style>
-    </section>
+    </div>
   );
 };
 
-const SocialIcon = ({ icon, url }) => (
-  <motion.a 
-    href={url} target="_blank" rel="noreferrer"
-    whileHover={{ y: -5, color: "#6366f1" }} 
-    style={{ color: "#4b5563", fontSize: "1.8rem", transition: "0.3s" }}
+const Node = ({ icon, title, detail, delay }) => (
+  <motion.div 
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ delay }}
+    className="node-box"
   >
     {icon}
-  </motion.a>
+    <h3>{title}</h3>
+    <p>{detail}</p>
+  </motion.div>
 );
 
-export default Home;
+const SocialNode = ({ icon, link }) => (
+  <a href={link} className="social-node">{icon}</a>
+);
+
+export default HyperHome;

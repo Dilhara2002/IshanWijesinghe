@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Home, User, Folder, Code, GraduationCap, Award, Mail, Menu, X, Sparkles } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Home, User, Folder, Code, GraduationCap, Mail, Menu, X, Terminal } from "lucide-react";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -10,12 +11,13 @@ const Navbar = () => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
 
-      // Detect active section
+      // Detect active section for high-precision HUD tracking
       const sections = ["home", "about", "projects", "skills", "education", "contact"];
       const current = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
+          // Active if the section is near the top of the viewport
           return rect.top <= 150 && rect.bottom >= 150;
         }
         return false;
@@ -28,12 +30,12 @@ const Navbar = () => {
   }, []);
 
   const navItems = [
-    { id: "home", label: "Home", icon: Home },
-    { id: "about", label: "About", icon: User },
-    { id: "projects", label: "Projects", icon: Folder },
-    { id: "skills", label: "Skills", icon: Code },
-    { id: "education", label: "Education", icon: GraduationCap },
-    { id: "contact", label: "Contact", icon: Mail }
+    { id: "home", label: "HOME", icon: Home },
+    { id: "about", label: "ABOUT", icon: User },
+    { id: "projects", label: "PROJECTS", icon: Folder },
+    { id: "skills", label: "SKILLS", icon: Code },
+    { id: "education", label: "EDUCATION", icon: GraduationCap },
+    { id: "contact", label: "CONTACT", icon: Mail }
   ];
 
   const handleNavClick = (id) => {
@@ -46,80 +48,19 @@ const Navbar = () => {
 
   return (
     <>
-      <nav style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 1000,
-        background: scrolled 
-          ? "rgba(10, 10, 15, 0.85)" 
-          : "linear-gradient(180deg, rgba(10, 10, 15, 0.8) 0%, transparent 100%)",
-        backdropFilter: scrolled ? "blur(20px)" : "blur(5px)",
-        transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-        borderBottom: scrolled ? "1px solid rgba(99, 102, 241, 0.2)" : "1px solid transparent",
-        boxShadow: scrolled ? "0 10px 40px rgba(0, 0, 0, 0.3)" : "none",
-        fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif"
-      }}>
-        <div style={{
-          maxWidth: "1400px",
-          margin: "0 auto",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          padding: scrolled ? "1rem 2rem" : "1.5rem 2rem",
-          transition: "padding 0.4s ease"
-        }}>
-          {/* Logo */}
-          <a
-            href="#home"
-            onClick={(e) => {
-              e.preventDefault();
-              handleNavClick("home");
-            }}
-            style={{
-              color: "white",
-              textDecoration: "none",
-              fontSize: "1.75rem",
-              fontWeight: "900",
-              display: "flex",
-              alignItems: "center",
-              gap: "8px",
-              letterSpacing: "-1px",
-              transition: "all 0.3s",
-              position: "relative"
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "scale(1.05)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = "scale(1)";
-            }}
-          >
-            <span style={{
-              background: "linear-gradient(135deg, #fff, #6366f1)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent"
-            }}>
-              ISHAN WIJESINGHE
-            </span>
-            <div style={{
-              width: "8px",
-              height: "8px",
-              background: "linear-gradient(135deg, #6366f1, #a855f7)",
-              borderRadius: "50%",
-              boxShadow: "0 0 20px rgba(99, 102, 241, 0.6)",
-              animation: "pulse 2s ease-in-out infinite"
-            }} />
+      <nav className={`hyper-nav ${scrolled ? "scrolled" : ""}`}>
+        <div className="nav-container">
+          
+          {/* LOGO: COMMAND IDENTIFIER */}
+          <a href="#home" onClick={(e) => { e.preventDefault(); handleNavClick("home"); }} className="nav-logo">
+            <Terminal size={20} className="logo-icon" />
+            <span className="logo-text">ISHAN_WIJESINGHE</span>
+            <div className="status-dot" />
           </a>
 
-          {/* Desktop Navigation */}
-          <div style={{
-            display: "flex",
-            gap: "8px",
-            alignItems: "center"
-          }}>
-            {navItems.map((item, index) => {
+          {/* DESKTOP HUD NAVIGATION */}
+          <div className="nav-links">
+            {navItems.map((item) => {
               const isActive = activeSection === item.id;
               const Icon = item.icon;
               
@@ -127,199 +68,135 @@ const Navbar = () => {
                 <a
                   key={item.id}
                   href={`#${item.id}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavClick(item.id);
-                  }}
-                  style={{
-                    color: isActive ? "#fff" : "#9ca3af",
-                    textDecoration: "none",
-                    fontSize: "0.95rem",
-                    fontWeight: isActive ? "600" : "500",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "8px",
-                    padding: "10px 18px",
-                    borderRadius: "50px",
-                    background: isActive 
-                      ? "linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(168, 85, 247, 0.2))"
-                      : "transparent",
-                    border: isActive 
-                      ? "1px solid rgba(99, 102, 241, 0.4)" 
-                      : "1px solid transparent",
-                    transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-                    position: "relative",
-                    overflow: "hidden",
-                    boxShadow: isActive ? "0 4px 15px rgba(99, 102, 241, 0.2)" : "none"
-                  }}
-                  onMouseEnter={(e) => {
-                    if (!isActive) {
-                      e.currentTarget.style.background = "rgba(255, 255, 255, 0.05)";
-                      e.currentTarget.style.color = "#fff";
-                      e.currentTarget.style.borderColor = "rgba(99, 102, 241, 0.2)";
-                      e.currentTarget.style.transform = "translateY(-2px)";
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!isActive) {
-                      e.currentTarget.style.background = "transparent";
-                      e.currentTarget.style.color = "#9ca3af";
-                      e.currentTarget.style.borderColor = "transparent";
-                      e.currentTarget.style.transform = "translateY(0)";
-                    }
-                  }}
+                  onClick={(e) => { e.preventDefault(); handleNavClick(item.id); }}
+                  className={`nav-link ${isActive ? "active" : ""}`}
                 >
-                  <Icon 
-                    size={18} 
-                    style={{
-                      color: isActive ? "#6366f1" : "inherit",
-                      transition: "color 0.3s"
-                    }}
-                  />
-                  <span className="nav-text" style={{
-                    letterSpacing: "0.5px"
-                  }}>
-                    {item.label}
-                  </span>
-                  
-                  {/* Active Indicator */}
+                  <Icon size={16} className="link-icon" />
+                  <span className="link-label">{item.label}</span>
                   {isActive && (
-                    <div style={{
-                      position: "absolute",
-                      bottom: 0,
-                      left: "50%",
-                      transform: "translateX(-50%)",
-                      width: "60%",
-                      height: "2px",
-                      background: "linear-gradient(90deg, transparent, #6366f1, transparent)",
-                      animation: "shimmer 2s ease-in-out infinite"
-                    }} />
+                    <motion.div 
+                      layoutId="activeHUD" 
+                      className="hud-indicator"
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
                   )}
                 </a>
               );
             })}
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            style={{
-              display: "none",
-              background: "rgba(99, 102, 241, 0.1)",
-              border: "1px solid rgba(99, 102, 241, 0.3)",
-              borderRadius: "12px",
-              padding: "10px",
-              color: "#fff",
-              cursor: "pointer",
-              transition: "all 0.3s"
-            }}
-            className="mobile-menu-btn"
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = "rgba(99, 102, 241, 0.2)";
-              e.currentTarget.style.borderColor = "#6366f1";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = "rgba(99, 102, 241, 0.1)";
-              e.currentTarget.style.borderColor = "rgba(99, 102, 241, 0.3)";
-            }}
-          >
+          {/* MOBILE TOGGLE */}
+          <button className="mobile-toggle" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
-        {/* Mobile Menu Dropdown */}
-        <div style={{
-          display: mobileMenuOpen ? "flex" : "none",
-          flexDirection: "column",
-          gap: "8px",
-          padding: "20px",
-          background: "rgba(10, 10, 15, 0.98)",
-          backdropFilter: "blur(20px)",
-          borderTop: "1px solid rgba(99, 102, 241, 0.2)",
-          animation: mobileMenuOpen ? "slideDown 0.3s ease-out" : "none"
-        }}
-        className="mobile-menu"
-        >
-          {navItems.map((item) => {
-            const isActive = activeSection === item.id;
-            const Icon = item.icon;
-            
-            return (
-              <a
-                key={item.id}
-                href={`#${item.id}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick(item.id);
-                }}
-                style={{
-                  color: isActive ? "#fff" : "#9ca3af",
-                  textDecoration: "none",
-                  fontSize: "1rem",
-                  fontWeight: isActive ? "600" : "500",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "12px",
-                  padding: "14px 20px",
-                  borderRadius: "16px",
-                  background: isActive 
-                    ? "linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(168, 85, 247, 0.2))"
-                    : "rgba(255, 255, 255, 0.02)",
-                  border: isActive 
-                    ? "1px solid rgba(99, 102, 241, 0.4)" 
-                    : "1px solid rgba(255, 255, 255, 0.05)",
-                  transition: "all 0.3s"
-                }}
-              >
-                <Icon size={20} style={{ color: isActive ? "#6366f1" : "inherit" }} />
-                {item.label}
-              </a>
-            );
-          })}
-        </div>
+        {/* MOBILE OVERLAY */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div 
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "tween", duration: 0.4 }}
+              className="mobile-overlay"
+            >
+              {navItems.map((item) => (
+                <a
+                  key={item.id}
+                  href={`#${item.id}`}
+                  onClick={(e) => { e.preventDefault(); handleNavClick(item.id); }}
+                  className={`mobile-link ${activeSection === item.id ? "active" : ""}`}
+                >
+                  <item.icon size={24} />
+                  {item.label}
+                </a>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
       <style>{`
-        @keyframes pulse {
-          0%, 100% { opacity: 1; transform: scale(1); }
-          50% { opacity: 0.7; transform: scale(0.9); }
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=JetBrains+Mono:wght@400;700&display=swap');
+
+        .hyper-nav {
+          position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+          padding: 30px 40px;
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          font-family: 'JetBrains Mono', monospace;
         }
+
+        .hyper-nav.scrolled {
+          padding: 15px 40px;
+          background: rgba(0, 0, 0, 0.85);
+          backdrop-filter: blur(20px);
+          border-bottom: 1px solid rgba(0, 255, 136, 0.2);
+        }
+
+        .nav-container {
+          max-width: 1600px; margin: 0 auto;
+          display: flex; justify-content: space-between; align-items: center;
+        }
+
+        /* LOGO STYLING */
+        .nav-logo {
+          display: flex; align-items: center; gap: 12px;
+          text-decoration: none; color: #fff;
+          font-family: 'Orbitron', sans-serif; font-weight: 900;
+          font-size: 1.2rem; letter-spacing: -1px;
+        }
+        .logo-icon { color: #00ff88; }
+        .status-dot {
+          width: 8px; height: 8px; background: #00ff88; border-radius: 50%;
+          box-shadow: 0 0 15px #00ff88; animation: blink 2s infinite;
+        }
+
+        /* HUD LINK STYLING */
+        .nav-links { display: flex; gap: 5px; }
+        .nav-link {
+          position: relative;
+          display: flex; align-items: center; gap: 10px;
+          padding: 10px 20px; text-decoration: none;
+          color: #666; font-size: 0.8rem; font-weight: bold;
+          transition: 0.3s;
+        }
+        .nav-link:hover, .nav-link.active { color: #00ff88; }
         
-        @keyframes shimmer {
-          0%, 100% { opacity: 0.5; }
-          50% { opacity: 1; }
-        }
-        
-        @keyframes slideDown {
-          from { opacity: 0; transform: translateY(-20px); }
-          to { opacity: 1; transform: translateY(0); }
+        .hud-indicator {
+          position: absolute; inset: 0;
+          border: 1px solid #00ff88;
+          background: rgba(0, 255, 136, 0.05);
+          clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+          z-index: -1;
         }
 
-        @media (max-width: 1024px) {
-          .nav-text {
-            display: none !important;
-          }
-          nav > div > div:nth-child(2) {
-            gap: 4px !important;
-          }
-          nav > div > div:nth-child(2) > a {
-            padding: 10px 12px !important;
-          }
+        /* MOBILE SYSTEM */
+        .mobile-toggle {
+          display: none; background: transparent; border: 1px solid #00ff88;
+          color: #00ff88; padding: 8px; cursor: pointer;
+          border-radius: 4px;
         }
 
-        @media (max-width: 768px) {
-          nav > div > div:nth-child(2) {
-            display: none !important;
-          }
-          .mobile-menu-btn {
-            display: block !important;
-          }
+        .mobile-overlay {
+          position: fixed; top: 0; right: 0; width: 100%; height: 100vh;
+          background: #000; display: flex; flex-direction: column;
+          justify-content: center; align-items: center; gap: 30px;
+          z-index: 999;
         }
 
-        @media (min-width: 769px) {
-          .mobile-menu {
-            display: none !important;
-          }
+        .mobile-link {
+          font-size: 1.8rem; color: #333; text-decoration: none;
+          font-family: 'Orbitron', sans-serif; display: flex; align-items: center; gap: 20px;
+          transition: 0.3s;
+        }
+        .mobile-link.active { color: #00ff88; text-shadow: 0 0 20px #00ff88; }
+
+        @keyframes blink { 50% { opacity: 0.3; } }
+
+        @media (max-width: 1100px) {
+          .nav-links { display: none; }
+          .mobile-toggle { display: block; }
         }
       `}</style>
     </>
