@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
-import { Code2, Terminal, Database, Wrench, Sparkles, Cpu, Zap, TrendingUp, Award, Activity } from "lucide-react";
+import { motion, useSpring, useMotionValue } from "framer-motion";
+import { 
+  Code2, Terminal, Database, Wrench, 
+  Activity, Zap, Cpu, ShieldCheck 
+} from "lucide-react";
 
 const skillCategories = [
   { 
@@ -42,28 +45,50 @@ const skillCategories = [
 ];
 
 const Skills = () => {
-  const [hoveredCategory, setHoveredCategory] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
 
+  // Mouse Tracking for 3D Perspective (Syncs with Global Theme)
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const springX = useSpring(mouseX, { stiffness: 100, damping: 30 });
+  const springY = useSpring(mouseY, { stiffness: 100, damping: 30 });
+
   useEffect(() => {
+    const handleMouseMove = (e) => {
+      const { innerWidth, innerHeight } = window;
+      mouseX.set((e.clientX / innerWidth - 0.5) * 40);
+      mouseY.set((e.clientY / innerHeight - 0.5) * 40);
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) setIsVisible(true);
     }, { threshold: 0.1 });
     if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      observer.disconnect();
+    };
+  }, [mouseX, mouseY]);
 
   return (
-    <section id="skills" ref={sectionRef} className="hyper-skills-container">
-      {/* 3D BACKGROUND GRID */}
-      <div className="spatial-floor" />
-      <div className="vignette-overlay" />
+    <section id="skills" ref={sectionRef} className="cyber-skills-container">
+      {/* 1. BACKGROUND INFRASTRUCTURE */}
+      <div className="spatial-void">
+        <div className="moving-scanline" />
+        <motion.div 
+          className="perspective-grid"
+          style={{ rotateX: springY, rotateY: springX }}
+        />
+        <div className="vignette-overlay" />
+      </div>
 
       <div className="content-shell">
-        {/* HUD HEADER */}
+        {/* 2. COMPACT HUD HEADER */}
         <motion.header 
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: -30 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           className="hud-header"
         >
@@ -71,200 +96,208 @@ const Skills = () => {
             <Activity size={14} className="pulse-green" />
             <span>NEURAL_CAPACITY_LOADED</span>
           </div>
-          <h1 className="expansive-title">TECH<span className="outline-text">_MATRIX</span></h1>
-          <p className="hud-meta">Decoding multi-stack proficiency across modern digital architectures.</p>
+          <h1 className="expansive-title glitch" data-text="TECH_MATRIX">
+            TECH<span className="outline-text">_MATRIX</span>
+          </h1>
+          <div className="terminal-prompt">
+            <Terminal size={14} />
+            <span className="typewriter">system@ishan:~/skills --scan --full</span>
+          </div>
         </motion.header>
 
-        {/* SKILLS HEX GRID */}
+        {/* 3. MULTI-COLUMN GRID (REDUCES PAGE LENGTH) */}
         <div className="skills-grid">
           {skillCategories.map((category, index) => {
             const Icon = category.icon;
-            const isHovered = hoveredCategory === index;
-
             return (
               <motion.div
                 key={index}
-                onMouseEnter={() => setHoveredCategory(index)}
-                onMouseLeave={() => setHoveredCategory(null)}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={isVisible ? { opacity: 1, scale: 1 } : {}}
+                initial={{ opacity: 0, scale: 0.95, y: 30 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="skill-hex-card"
+                className="skill-card"
               >
-                <div className="card-glitch-border" />
-                
-                {/* CATEGORY ICON & TITLE */}
-                <div className="category-header">
-                  <div className={`icon-shield ${isHovered ? 'active' : ''}`}>
-                    <Icon size={24} />
+                <div className="card-top">
+                  <div className="icon-shield">
+                    <Icon size={20} />
                   </div>
                   <h3>{category.title}</h3>
+                  <div className="node-id">0{index + 1}</div>
                 </div>
 
-                {/* PROGRESS BARS */}
-                <div className="skills-stack">
+                <div className="skill-rows">
                   {category.skills.map((skill, i) => (
-                    <div key={i} className="skill-line">
+                    <div key={i} className="skill-entry">
                       <div className="skill-info">
-                        <span className="skill-name">{skill.name}</span>
-                        <span className="skill-percent">{skill.level}%</span>
+                        <span className="name">{skill.name}</span>
+                        <span className="val">{skill.level}%</span>
                       </div>
-                      <div className="progress-track">
+                      <div className="track">
                         <motion.div 
-                          className="progress-fill"
+                          className="fill"
                           initial={{ width: 0 }}
-                          animate={isVisible ? { width: `${skill.level}%` } : {}}
-                          transition={{ duration: 1.5, delay: 0.5 + (i * 0.1) }}
+                          whileInView={{ width: `${skill.level}%` }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 2, delay: 0.5 }}
                         />
+                        <div className="shimmer-light" />
                       </div>
                     </div>
                   ))}
                 </div>
-
-                {/* DECORATIVE HUD ELEMENTS */}
-                <div className="corner tl" />
-                <div className="corner br" />
+                {/* HUD Corners */}
+                <div className="corner-tr" />
+                <div className="corner-bl" />
               </motion.div>
             );
           })}
         </div>
 
-        {/* BOTTOM GLOBAL STATS */}
-        <div className="global-stats-bar">
-          <StatNode label="STACK_DEPTH" value="4 CATEGORIES" />
+        {/* 4. SYNC FOOTER BAR */}
+        <motion.div 
+          className="sync-bar"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+        >
+          <div className="sync-node">
+            <span className="label">SYNC_RATE</span>
+            <span className="value glow-txt">STABLE // 98.4%</span>
+          </div>
           <div className="divider" />
-          <StatNode label="TOTAL_NODES" value="12 MODULES" />
+          <div className="sync-node">
+            <span className="label">STACK_LOAD</span>
+            <span className="value">FULL_MERN_NEXT</span>
+          </div>
           <div className="divider" />
-          <StatNode label="SYNC_LEVEL" value="HIGH" />
-        </div>
+          <div className="sync-node">
+             <ShieldCheck size={18} className="green-txt pulse" />
+             <span className="value">VERIFIED_LOGS</span>
+          </div>
+        </motion.div>
       </div>
 
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=JetBrains+Mono:wght@400;700&display=swap');
 
-        .hyper-skills-container {
+        .cyber-skills-container {
           background: #000;
           min-height: 100vh;
+          width: 100vw;
           position: relative;
           overflow: hidden;
-          padding: 120px 20px;
+          padding: 100px 40px;
           color: #fff;
           font-family: 'JetBrains Mono', monospace;
         }
 
-        /* 3D SPATIAL FLOOR */
-        .spatial-floor {
-          position: absolute;
-          inset: 0;
-          background-image: 
-            linear-gradient(rgba(0, 255, 136, 0.05) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0, 255, 136, 0.05) 1px, transparent 1px);
-          background-size: 60px 60px;
-          transform: perspective(1000px) rotateX(60deg) translateY(200px);
-          z-index: 1;
+        /* 3D BACKGROUND */
+        .spatial-void { position: absolute; inset: 0; perspective: 1500px; z-index: 1; pointer-events: none; }
+        .perspective-grid {
+          position: absolute; width: 250%; height: 250%; top: -75%; left: -75%;
+          background-image: linear-gradient(rgba(0, 255, 136, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 136, 0.1) 1px, transparent 1px);
+          background-size: 80px 80px; transform: rotateX(60deg);
         }
-
-        .vignette-overlay {
-          position: absolute; inset: 0;
-          background: radial-gradient(circle, transparent 30%, #000 100%);
-          z-index: 2; pointer-events: none;
+        .moving-scanline {
+          position: absolute; width: 100%; height: 100%;
+          background: linear-gradient(0deg, transparent 0%, rgba(0, 255, 136, 0.05) 50%, transparent 100%);
+          background-size: 100% 4px; animation: scan 8s infinite linear;
         }
+        .vignette-overlay { position: absolute; inset: 0; background: radial-gradient(circle, transparent 20%, #000 100%); }
 
         .content-shell { position: relative; z-index: 10; max-width: 1400px; margin: 0 auto; }
 
-        /* HUD HEADER */
-        .hud-header { text-align: center; margin-bottom: 80px; }
+        /* HEADER */
+        .hud-header { margin-bottom: 60px; }
         .hud-badge {
           display: inline-flex; align-items: center; gap: 10px;
           border: 1px solid #00ff88; color: #00ff88;
-          padding: 8px 25px; border-radius: 50px; font-size: 11px;
-          background: rgba(0, 255, 136, 0.1); margin-bottom: 20px;
+          padding: 8px 25px; border-radius: 2px; font-size: 10px;
+          background: rgba(0, 255, 136, 0.05); margin-bottom: 20px;
+          letter-spacing: 2px;
         }
-
-        .expansive-title {
-          font-family: 'Orbitron', sans-serif;
-          font-size: 5rem; font-weight: 900; line-height: 1;
-        }
+        .expansive-title { font-family: 'Orbitron', sans-serif; font-size: 5rem; font-weight: 900; line-height: 0.9; }
         .outline-text { -webkit-text-stroke: 1px #00ff88; color: transparent; }
-        .hud-meta { color: #888; font-size: 14px; margin-top: 15px; }
+        .terminal-prompt { display: flex; align-items: center; gap: 10px; color: #00ff88; font-size: 12px; margin-top: 15px; }
+        .typewriter { overflow: hidden; white-space: nowrap; border-right: 2px solid #00ff88; animation: typing 3s steps(30), blink 0.5s infinite; }
 
-        /* SKILL CARDS */
-        .skills-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-          gap: 30px;
+        /* MULTI-COLUMN GRID (Key for length optimization) */
+        .skills-grid { 
+          display: grid; 
+          grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); 
+          gap: 25px; 
+          margin-bottom: 60px;
         }
 
-        .skill-hex-card {
-          background: rgba(10, 10, 10, 0.8);
-          border: 1px solid rgba(0, 255, 136, 0.1);
-          padding: 40px;
+        .skill-card {
+          background: rgba(0, 15, 8, 0.7);
+          border: 1px solid rgba(0, 255, 136, 0.15);
+          padding: 35px;
           position: relative;
-          backdrop-filter: blur(10px);
-          transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          backdrop-filter: blur(15px);
+          transition: 0.3s cubic-bezier(0.2, 1, 0.3, 1);
         }
-
-        .skill-hex-card:hover {
+        .skill-card:hover {
           border-color: #00ff88;
-          transform: translateY(-10px) scale(1.02);
-          background: rgba(0, 255, 136, 0.03);
-          box-shadow: 0 0 40px rgba(0, 255, 136, 0.1);
+          transform: translateY(-8px) scale(1.02);
+          box-shadow: 0 10px 40px rgba(0, 255, 136, 0.1);
         }
 
-        .category-header { display: flex; alignItems: center; gap: 20px; margin-bottom: 35px; }
+        .card-top { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; position: relative; }
         .icon-shield {
-          width: 50px; height: 50px; border: 1px solid #00ff88;
+          width: 40px; height: 40px; border: 1px solid #00ff88;
           display: flex; align-items: center; justify-content: center;
-          color: #00ff88; background: rgba(0, 255, 136, 0.05);
-          transition: 0.3s;
+          color: #00ff88; background: rgba(0, 255, 136, 0.1);
         }
-        .icon-shield.active { background: #00ff88; color: #000; box-shadow: 0 0 20px #00ff88; }
-        .category-header h3 { font-family: 'Orbitron', sans-serif; font-size: 1.2rem; margin: 0; letter-spacing: 2px; }
+        .card-top h3 { font-family: 'Orbitron', sans-serif; font-size: 1.1rem; margin: 0; letter-spacing: 1px; }
+        .node-id { position: absolute; right: 0; font-size: 10px; color: #333; font-weight: bold; }
 
-        /* PROGRESS SYSTEM */
-        .skill-line { margin-bottom: 20px; }
-        .skill-info { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 12px; }
-        .skill-name { color: #888; font-weight: bold; }
-        .skill-percent { color: #00ff88; }
-
-        .progress-track { height: 4px; background: rgba(255,255,255,0.05); overflow: hidden; }
-        .progress-fill { height: 100%; background: #00ff88; box-shadow: 0 0 10px #00ff88; }
-
-        /* HUD CORNERS */
-        .corner { position: absolute; width: 15px; height: 15px; border: 2px solid #00ff88; }
-        .tl { top: -2px; left: -2px; border-right: none; border-bottom: none; }
-        .br { bottom: -2px; right: -2px; border-left: none; border-top: none; }
-
-        /* BOTTOM STATS */
-        .global-stats-bar {
-          display: flex; justify-content: center; align-items: center; gap: 50px;
-          margin-top: 80px; padding: 30px;
-          border-top: 1px solid rgba(0, 255, 136, 0.2);
-          background: linear-gradient(90deg, transparent, rgba(0,255,136,0.05), transparent);
+        /* SKILL BARS */
+        .skill-entry { margin-bottom: 20px; }
+        .skill-info { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 12px; }
+        .name { color: #888; }
+        .val { color: #00ff88; font-weight: bold; }
+        .track { height: 4px; background: rgba(255,255,255,0.05); position: relative; overflow: hidden; }
+        .fill { height: 100%; background: #00ff88; box-shadow: 0 0 15px #00ff88; }
+        .shimmer-light {
+          position: absolute; top: 0; left: 0; width: 60%; height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+          animation: shim-move 3s infinite linear;
         }
-        .stat-node { text-align: center; }
-        .stat-node h4 { font-family: 'Orbitron', sans-serif; font-size: 18px; color: #00ff88; margin: 0; }
-        .stat-node p { font-size: 10px; color: #555; letter-spacing: 2px; }
-        .divider { width: 1px; height: 40px; background: rgba(0, 255, 136, 0.2); }
+
+        /* STATUS BAR */
+        .sync-bar {
+          display: flex; align-items: center; justify-content: center; gap: 50px;
+          padding: 25px; border-top: 1px solid rgba(0, 255, 136, 0.2);
+          background: linear-gradient(90deg, transparent, rgba(0,255,136,0.03), transparent);
+        }
+        .sync-node { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+        .label { font-size: 9px; color: #444; letter-spacing: 2px; }
+        .value { font-size: 12px; color: #00ff88; font-weight: bold; }
+        .glow-txt { text-shadow: 0 0 8px #00ff88; }
+        .divider { width: 1px; height: 35px; background: rgba(0, 255, 136, 0.2); }
+
+        /* KEYFRAMES */
+        @keyframes scan { from { background-position: 0 0; } to { background-position: 0 100%; } }
+        @keyframes shim-move { from { left: -100%; } to { left: 200%; } }
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink { 50% { opacity: 0; } }
+        
+        .corner-tr { position: absolute; top: -1px; right: -1px; width: 12px; height: 12px; border-top: 2px solid #00ff88; border-right: 2px solid #00ff88; }
+        .corner-bl { position: absolute; bottom: -1px; left: -1px; width: 12px; height: 12px; border-bottom: 2px solid #00ff88; border-left: 2px solid #00ff88; }
 
         .pulse-green { animation: pulse 2s infinite; }
         @keyframes pulse { 50% { opacity: 0.3; } }
 
-        @media (max-width: 900px) {
-          .expansive-title { font-size: 2.8rem; }
-          .global-stats-bar { flex-direction: column; gap: 20px; }
+        @media (max-width: 1000px) {
+          .expansive-title { font-size: 3rem; }
+          .skills-grid { grid-template-columns: 1fr; }
+          .sync-bar { flex-direction: column; gap: 20px; }
           .divider { display: none; }
         }
       `}</style>
     </section>
   );
 };
-
-const StatNode = ({ label, value }) => (
-  <div className="stat-node">
-    <h4>{value}</h4>
-    <p>{label}</p>
-  </div>
-);
 
 export default Skills;

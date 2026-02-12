@@ -1,5 +1,6 @@
 import React from "react";
-import Navbar from "./components/Navbar";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import GamingNav from "./components/GamingNav";
 import Home from "./components/Home";
 import About from "./components/About";
 import Projects from "./components/Projects";
@@ -10,17 +11,23 @@ import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <Navbar />
-      <main>
-        <section id="home"><Home /></section>
-        <section id="about"><About /></section>
-        <section id="projects"><Projects /></section>
-        <section id="skills"><Skills /></section>
-        <section id="education"><Education /></section>
-        <section id="contact"><Contact /></section>
-      </main>
-    </div>
+    <Router>
+      <div className="App">
+        {/* Persistent Gaming UI at the Top-Right */}
+        <GamingNav /> 
+        
+        <main className="content-area">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/skills" element={<Skills />} />
+            <Route path="/education" element={<Education />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </main>
+      </div>
+    </Router>
   );
 }
 
