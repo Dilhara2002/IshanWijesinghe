@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion"; // Removed unused useSpring, useMotionValue
+import { motion } from "framer-motion";
 import { 
   GraduationCap, Activity, Cpu, 
-  Terminal, Target, ShieldCheck 
-} from "lucide-react"; // Removed unused Zap, Brain
+  Terminal, Target, ShieldCheck, Briefcase 
+} from "lucide-react";
 
 const HyperAbout = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -75,6 +75,9 @@ const HyperAbout = () => {
                 <span className="property">name</span>: <span className="string">"Ishan Wijesinghe"</span>,
               </div>
               <div className="code-line indent">
+                <span className="property">current_role</span>: <span className="string">"Software Developer Intern @ OCTICK"</span>,
+              </div>
+              <div className="code-line indent">
                 <span className="property">status</span>: <span className="string">"Final Year IT Undergrad @ SLIIT"</span>,
               </div>
               <div className="code-line indent">
@@ -84,7 +87,8 @@ const HyperAbout = () => {
               
               <div className="bio-block">
                 <p>
-                  I am a passionate Full-Stack developer currently completing my degree at 
+                  I am a passionate Full-Stack developer currently honing my skills as an intern at 
+                  <span className="text-glow"> OCTICK</span> while completing my degree at 
                   <span className="text-glow"> SLIIT</span>. My focus lies in building scalable web architectures using 
                   <span className="text-glow"> Next.js</span> and <span className="text-glow">MERN</span>, with a strong interest in integrating 
                   AI to solve real-world industry challenges.
@@ -96,6 +100,12 @@ const HyperAbout = () => {
 
           {/* RIGHT: HOLOGRAPHIC NODES */}
           <div className="nodes-stack">
+            <AboutNode 
+              icon={<Briefcase />} 
+              title="EXPERIENCE" 
+              desc="Software Developer Intern / OCTICK" 
+              delay={0.1}
+            />
             <AboutNode 
               icon={<GraduationCap />} 
               title="EDUCATION" 
@@ -252,8 +262,8 @@ const AboutNode = ({ icon, title, desc, delay }) => (
   >
     <div className="node-icon" style={{ color: '#00ff88' }}>{icon}</div>
     <div className="node-content">
-      <h4>{title}</h4>
-      <p>{desc}</p>
+      <h4 style={{ margin: 0, fontSize: '14px', letterSpacing: '2px' }}>{title}</h4>
+      <p style={{ margin: '5px 0 0 0', fontSize: '12px', color: '#aaa' }}>{desc}</p>
     </div>
   </motion.div>
 );
