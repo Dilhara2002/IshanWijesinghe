@@ -66,7 +66,7 @@ const HyperHome = () => {
               <div className="vhs-static" />
             </div>
           </div>
-          <div className="data-tag">ID: ISHAN_WIJESINGHE</div>
+
         </motion.div>
 
         {/* RIGHT: FLOATING INTERFACE */}
